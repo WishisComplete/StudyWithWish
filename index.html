@@ -887,7 +887,23 @@ window.addEventListener('DOMContentLoaded',()=>{
   renderAll();
   renderVList();
   renderTranscript(selVI);
-  changeTab('today');
+
+  // 처음 접속(히스토리 없음)이면 랜덤 탭, 새로고침이면 마지막 탭 유지
+  const isFirstVisit = !sessionStorage.getItem('visited');
+  if(isFirstVisit){
+    sessionStorage.setItem('visited','1');
+    changeTab('today');
+  } else {
+    const savedTab = localStorage.getItem('currentTab') || 'today';
+    if(savedTab === 'detail'){
+      prevTab = 'vlist';
+      const savedVI = localStorage.getItem('selectedVI');
+      if(savedVI !== null) selVI = parseInt(savedVI, 10);
+      openDetailAt(selVI, null, null);
+    } else {
+      changeTab(savedTab);
+    }
+  }
 
   const t=document.createElement('script');
   t.src='https://www.youtube.com/iframe_api';
