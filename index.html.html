@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>wish</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20,400,1,0&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --glass:          rgba(255,255,255,0.60);  /* 카드·박스 기본 glass 배경 */
+  --glass-thick:    rgba(255,255,255,0.80);  /* 더 불투명한 glass */
+  --glass-thin:     rgba(255,255,255,0.35);  /* 얇은 glass */
+  --glass-hover:    rgba(255,255,255,0.72);  /* hover 시 glass */
+  --glass-border:   rgba(255,255,255,0.90);  /* glass 카드 테두리 밝은 하이라이트 */
+  --glass-border2:  rgba(255,255,255,0.60);  /* 헤더·탭바 테두리 */
+  --glass-shadow:   0 2px 24px rgba(140,185,220,.18), 0 0 0 .5px #fafafa inset;  /* 카드 그림자 */
+  --glass-shadow-sm:0 1px 12px rgba(140,185,220,.14), 0 0 0 .5px #fafafa inset;  /* 작은 요소 그림자 */
+  --bd:             rgba(255,255,255,.75);   /* 일반 구분선 */
+  --bd2:            rgba(255,255,255,.90);   /* 진한 구분선 (팝업 드래그 바) */
+  --ink:            #1e4a62;   /* 본문 텍스트 — 일본어, 주요 내용, 제목 */
+  --ink2:           #2d6480;   /* 보조 텍스트 — 번역, 버튼 텍스트 */
+  --ink3:           #5a90a8;   /* 흐린 텍스트 — 라벨, 날짜, 탭 아이콘 */
+  --ink4:           #90b8c8;   /* 가장 흐린 텍스트 — 힌트 키, 플레이스홀더 */
+  --sky:            #5aaad4;   /* 포인트 컬러 */
+  --sky-dim:        #78bce0;   /* 연한 accent */
+  --sky-glow:       rgba(90,170,212,.20);
+  --riku:           #e06868;   /* RIKU */
+  --yushi:          #4aa8d8;   /* YUSHI */
+  --ryo:            #c8a030;   /* RYO */
+  --sakuya:         #d870a8;   /* SAKUYA */
+  --sans: 'DM Sans',-apple-system,'SF Pro Display',sans-serif;
+  --r:    16px;
+  --col-wordmark:        #1e4a62;              /* 로고 텍스트 */
+  --col-header-btn:      #5d6f79;              /* 헤더 버튼 */
+  --col-tab-off:         #dcdcdc;              /* 비선택 탭 */
+  --col-tab-on:          #b7cbe0;              /* 선택된 탭 */
+  --col-card-bg:         var(--glass);         /* 카드 배경 */
+  --col-vtitle:          #b0b0b0;              /* 카드 내 영상 제목 */
+  --col-jbadge-bg:       rgba(240,242,245,.55); /* JLPT 뱃지 배경 */
+  --col-jbadge-text:     #b3daee;              /* JLPT 뱃지 텍스트 */
+  --col-jp:              #1e4a62;              /* 일본어 텍스트 */
+  --col-ruby:            #90b8c8;              /* 후리가나 텍스트 */
+  --col-cw-hover:        rgba(255,255,255,.80); /* 단어 hover 배경 */
+  --col-copy:            #bedef0;              /* 복사 버튼 아이콘 */
+  --col-copy-done:       #48b878;              /* 복사 완료 아이콘 */
+  --col-hint-row-bg:     rgba(255,255,255,.50); /* 힌트 행 배경 */
+  --col-hint-key:        #90b8c8;              /* '발음' '의미' 라벨 */
+  --col-hint-val:        #2d6480;              /* 힌트 값 텍스트 */
+  --col-hint-val-bold:   #1e4a62;              /* 발음 강조 텍스트 */
+  --col-tog-off-bg:      rgba(240,242,245,.55); /* 토글 꺼진 배경 */
+  --col-tog-off-text:    #2d6480;              /* 토글 꺼진 텍스트 */
+  --col-tog-off-icon:    #90b8c8;              /* 토글 꺼진 아이콘 */
+  --col-tog-ruby:        #c8d7de;              /* 요미가나 토글 켜진 색 */
+  --col-tog-sound:       #c8d7de;              /* 발음 토글 켜진 색 */
+  --col-tog-meaning:     #c8d7de;              /* 의미 토글 켜진 색 */
+  --col-btn-off-bg:      rgba(255,255,255,.55); /* 재생버튼 꺼진 배경 */
+  --col-btn-off-text:    #2d6480;              /* 재생버튼 꺼진 텍스트 */
+  --col-btn-icon:        #5aaad4;              /* 재생버튼 아이콘 */
+  --col-btn-on-bg:       rgba(90,170,212,.55);  /* 재생버튼 켜진 배경 */
+  --col-primary-btn:     rgba(200,215,221,.65); /* 메인 버튼 배경 */
+  --col-section-title:   #5a7584;              /* '전체 문장' 타이틀 */
+  --col-section-count:   #b0b0b0;              /* 문장 수 텍스트 */
+  --col-filter-label:    #b3daee;              /* '멤버' 'JLPT' 라벨 */
+  --col-chip-off-bg:     rgba(255,255,255,.55); /* 필터칩 꺼진 배경 */
+  --col-chip-off-text:   #7e9eae;              /* 필터칩 꺼진 텍스트 */
+  --col-chip-on-bg:      rgba(104,130,144,0.72); /* 필터칩 켜진 배경 */
+  --col-vlink:           #b0b0b0;              /* 영상 링크 텍스트 */
+  --col-empty-msg:       #b0b0b0;              /* 결과없음 텍스트 */
+  --col-sort-label:      #90b8c8;              /* '정렬' 텍스트 */
+  --col-seg-off-text:    #2d6480;              /* 세그먼트 꺼진 */
+  --col-seg-on-text:     #1e4a62;              /* 세그먼트 켜진 */
+  --col-vtitle-text:     #464a4c;              /* 영상 제목 텍스트 */
+  --col-vmeta:           #8a9093;              /* 날짜·채널 메타 */
+  --col-vcnt:            #73797b;              /* 'N개 문장' */
+  --col-detail-title:    #464a4c;              /* 영상 제목 */
+  --col-detail-sub:      #8a9093;              /* 채널·날짜 부제목 */
+  --col-speed-btn:       #2d6480;              /* 속도 버튼 */
+  --col-speed-val:       #1e4a62;              /* 속도 값 */
+  --col-dfilter:         #2d6480;              /* 화자필터 텍스트 */
+  --col-dfclear:         #5aaad4;              /* 전체보기 버튼 */
+  --col-srow-bg:         rgba(240,242,245,.50); /* 자막 행 배경 */
+  --col-srow-active-bg:  rgba(90,170,212,.10);  /* 재생 중 행 배경 */
+  --col-tbtn:            #4a88a9;              /* 타임스탬프 버튼 */
+  --col-sr-jp:           #1e4a62;              /* 자막 일본어 */
+  --col-sr-sound:        #5aaad4;              /* 자막 발음 */
+  --col-sr-trans:        #5a90a8;              /* 자막 번역 */
+  --col-rep-icon:        #b0ccd8;              /* 반복·복사 아이콘 */
+  --col-rep-on:          #83b8d4;              /* 반복 켜진 색 */
+  --col-pop-bg:          rgba(248,250,250,0.94); /* 팝업 시트 배경 */
+  --col-pop-word:        #1e4a62;              /* 단어 큰 텍스트 */
+  --col-pop-read:        #5a90a8;              /* 읽기 텍스트 */
+  --col-pop-mean:        #1e4a62;              /* 뜻 텍스트 */
+  --col-pop-tag-type-bg: rgba(90,170,212,.10);  /* 품사 태그 배경 */
+  --col-pop-tag-type:    #5aaad4;              /* 품사 태그 */
+  --col-pop-tag-etc:     #5a90a8;              /* 기타 태그 */
+  --col-pop-note-bg:     rgba(255,255,255,.65); /* 설명 박스 배경 */
+  --col-pop-note-text:   #2d6480;              /* 설명 텍스트 */
+  --bg:#F0F2F5;               /* ← 배경 단색 여기서 바꾸세요 */ --card:var(--glass); --card2:rgba(255,255,255,.48);
+  --card3:rgba(255,255,255,.65); --acc:#5aaad4; --acc3:#48b878;
+}
+*,::before,::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px}
+body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--ink);display:flex;justify-content:center;min-height:100vh;-webkit-font-smoothing:antialiased}
+
+.app{width:100%;max-width:430px;min-height:100vh;display:flex;flex-direction:column;position:relative}
+
+/* ── NAV BAR ── */
+.hdr{position:sticky;top:0;z-index:200;background:rgba(240,242,245,.78);backdrop-filter:blur(28px) saturate(140%);-webkit-backdrop-filter:blur(28px) saturate(140%);border-bottom:.5px solid rgba(255,255,255,.85);box-shadow:0 1px 0 rgba(255,255,255,.95)}
+.hdr-top{display:grid;grid-template-columns:56px 1fr 56px;align-items:center;height:48px;padding:0 4px}
+.wordmark{font-size:17px;font-weight:600;letter-spacing:-.3px;text-align:center;color:var(--col-wordmark)}
+.hdr-l,.hdr-r{display:flex;align-items:center}
+.hdr-r{justify-content:flex-end}
+.ibtn{background:none;border:none;cursor:pointer;height:44px;padding:0 10px;display:flex;align-items:center;gap:3px;color:var(--col-header-btn);font-size:17px;font-family:var(--sans);white-space:nowrap}
+.ibtn .material-symbols-rounded{font-size:22px}
+.ibtn:active{opacity:.5}
+#btnBack{visibility:hidden}
+.srch-wrap{display:none;padding:6px 16px 10px}
+.srch-in{width:100%;padding:8px 12px 8px 36px;border:none;border-radius:10px;background:rgba(118,118,128,.12);font-family:var(--sans);font-size:15px;color:var(--ink);outline:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236D6D72' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:11px center}
+.srch-in::placeholder{color:var(--ink4)}
+
+.view{display:none;flex-direction:column;flex-grow:1;padding-bottom:100px;background:transparent}
+
+/* ── TAB BAR ── */
+.bnav{position:fixed;bottom:0;width:100%;max-width:430px;background:rgba(240,242,245,.82);backdrop-filter:blur(32px) saturate(140%);-webkit-backdrop-filter:blur(32px) saturate(140%);border-top:.5px solid rgba(255,255,255,.88);box-shadow:0 -1px 0 rgba(255,255,255,.98);display:flex;padding:4px 0 max(env(safe-area-inset-bottom),16px);z-index:200}
+.ntab{flex:1;background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:10px;font-weight:400;color:var(--col-tab-off);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:3px 0;transition:color .1s}
+.ntab:active{opacity:.5}
+.ntab.on{color:var(--col-tab-on)}.ntab.on .material-symbols-rounded{filter:drop-shadow(0 0 6px rgba(58,143,200,.5))}
+.ntab.on .material-symbols-rounded{font-variation-settings:'FILL' 1}
+.ntab .material-symbols-rounded{font-size:26px}
+
+/* ── TODAY ── */
+/* Hero sentence card */
+.rnd-hero{margin:20px 16px 0;background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:26px;overflow:hidden;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow)}
+.rnd-hero-band{display:flex;align-items:center;gap:8px;padding:14px 18px 12px}
+.spkpill{font-size:11px;font-weight:600;letter-spacing:.04em;padding:4px 12px;border-radius:20px;color:rgba(255,255,255,.95);flex-shrink:0;box-shadow:0 1px 6px rgba(0,0,0,.12),0 0 0 .5px #fafafa inset}
+.card-vtitle{flex:1;font-size:12px;color:var(--col-vtitle);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.jbadge{font-size:11px;font-weight:500;padding:3px 9px;border-radius:8px;background:var(--col-jbadge-bg);color:var(--col-jbadge-text);flex-shrink:0}
+.rnd-hero-body{padding:16px 18px 18px;border-top:.5px solid rgba(255,255,255,.45)}
+
+/* Japanese text */
+.jp-name,.jp-plain{color:var(--col-jp)}
+.jp-line{display:block;font-size:26px;font-weight:300;color:var(--col-jp);line-height:2.2;margin-bottom:0}
+.jp-line .cw{display:inline;cursor:pointer;border-radius:5px;padding:1px 3px;transition:background .1s}
+.jp-line .cw:hover{background:var(--col-cw-hover)}
+.jp-line .cw ruby rt{font-size:.48em;font-weight:400;color:var(--col-ruby);letter-spacing:.04em}
+.no-ruby .cw rt{visibility:hidden;font-size:0}
+.sent-box{position:relative;padding-right:36px}
+.cp-btn{position:absolute;top:2px;right:0;background:none;border:none;color:var(--col-copy);cursor:pointer;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:8px}
+.cp-btn:active{opacity:.5}
+.cp-btn.done{color:var(--col-copy-done)}
+.cp-btn .material-symbols-rounded{font-size:17px}
+
+/* Hint rows */
+.hint-rows{display:flex;flex-direction:column;gap:0;margin-top:14px;border-radius:14px;overflow:hidden;border:.5px solid rgba(255,255,255,.50);box-shadow:0 2px 8px rgba(100,150,200,.10)}.sitem-hints{display:flex;flex-direction:column;gap:4px;margin-top:10px;padding:8px 0 2px}.sitem-hint-row{display:flex;align-items:baseline;gap:0}
+.hrow{display:flex;align-items:baseline;gap:0;background:var(--col-hint-row-bg)}
+.hrow+.hrow{border-top:.5px solid rgba(255,255,255,.40)}
+.hk{font-size:11px;font-weight:500;color:var(--col-hint-key);width:46px;flex-shrink:0;padding:10px 0 10px 14px}
+.hv{color:var(--col-hint-val);font-size:14px;padding:9px 14px 9px 0;flex:1}
+.hv.rv{font-size:15px;font-weight:500;letter-spacing:.02em;color:var(--col-hint-val-bold);padding-top:9px}
+
+/* Controls below card */
+.rnd-actions{padding:16px 16px 20px;display:flex;flex-direction:column;gap:14px}
+.tog-row{display:flex;gap:8px;flex-wrap:wrap}
+.tog{font-size:14px;font-weight:400;padding:7px 15px;border-radius:20px;border:.5px solid var(--glass-border);background:var(--col-tog-off-bg);color:var(--col-tog-off-text);cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .15s;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:var(--glass-shadow-sm)}
+.tog .material-symbols-rounded{font-size:15px;color:var(--col-tog-off-icon)}
+.tog.on{background:rgba(200,215,221,.80);color:rgba(255,255,255,.95);border-color:rgba(255,255,255,.60);box-shadow:0 2px 16px rgba(160,172,178,.35),0 0 0 .5px #fafafa inset;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.tog.on .material-symbols-rounded{color:rgba(255,255,255,.9)}
+.hint-expand{overflow:hidden;max-height:0;opacity:0;transition:max-height .3s ease,opacity .25s}.hint-expand.always-open{max-height:none;opacity:1}
+.hint-expand.open{max-height:200px;opacity:1}
+.hint-inner{padding:10px 0 2px;display:flex;flex-direction:column;gap:8px;border-top:.5px solid var(--bd);margin-top:4px}.hint-item.show{display:flex}
+.hint-item{display:none;align-items:baseline;gap:8px}
+
+
+/* Play buttons */
+.btn2-row{display:flex;gap:8px}
+.btn2{flex:1;font-family:var(--sans);font-size:15px;font-weight:400;padding:12px;border:.5px solid var(--glass-border);background:var(--col-btn-off-bg);color:var(--col-btn-off-text);cursor:pointer;border-radius:16px;display:flex;align-items:center;justify-content:center;gap:7px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:var(--glass-shadow-sm);transition:all .15s}
+.btn2:active{opacity:.6;transform:scale(.97)}
+.btn2.on{background:rgba(58,143,200,.75);color:rgba(255,255,255,.95);border-color:rgba(255,255,255,.55);box-shadow:0 2px 16px rgba(58,143,200,.30),0 0 0 .5px #fafafa inset}
+.btn2 .material-symbols-rounded{font-size:19px;color:var(--col-btn-icon)}
+.btn2.on .material-symbols-rounded{color:#fff}
+.video-frame{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.15)}
+.video-frame>div{position:absolute;inset:0;width:100%;height:100%}
+.primary-btn{width:100%;font-family:var(--sans);font-size:17px;font-weight:400;padding:15px;background:var(--col-primary-btn);color:rgba(255,255,255,.95);border:.5px solid rgba(255,255,255,.45);cursor:pointer;border-radius:18px;display:flex;align-items:center;justify-content:center;gap:8px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 4px 20px rgba(26,58,82,.25),0 0 0 .5px #fafafa inset;transition:all .15s}
+.primary-btn:active{opacity:.8;transform:scale(.98)}
+.primary-btn .material-symbols-rounded{font-size:19px}
+
+/* ── ALL ── */
+.sec-head{padding:32px 18px 8px;display:flex;align-items:flex-end;justify-content:space-between}
+.sec-ttl{font-size:28px;font-weight:700;color:var(--col-section-title);letter-spacing:-.5px;line-height:1}
+.sec-cnt{font-size:13px;color:var(--col-section-count);padding-bottom:2px}
+
+/* Filter — segmented pill row */
+.filter-panel{padding:12px 16px 8px}
+.filter-sec{display:flex;flex-direction:column;gap:10px}.filter-card{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:18px;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow);padding:12px 14px}
+.filter-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.fl{font-size:12px;font-weight:500;color:var(--col-filter-label);min-width:38px;flex-shrink:0}
+.fc{font-size:14px;font-weight:400;padding:6px 14px;border-radius:20px;border:.5px solid var(--glass-border);background:var(--col-chip-off-bg);color:var(--col-chip-off-text);cursor:pointer;transition:all .15s;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:var(--glass-shadow-sm)}
+.fc:active{opacity:.6}
+.fc.on{background:rgba(104,130,144,.72);color:rgba(255,255,255,.95);border-color:rgba(255,255,255,.45);box-shadow:0 2px 12px rgba(104,130,144,.22)}
+.fc.riku.on{background:var(--riku)}
+.fc.yushi.on{background:var(--yushi)}
+.fc.ryo.on{background:var(--ryo)}
+.fc.sakuya.on{background:var(--sakuya)}
+
+/* Sentence list — inset grouped */
+.slist{padding:0 16px;display:flex;flex-direction:column;gap:12px}
+.sitem{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);overflow:hidden;border-radius:22px;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow)}
+.sitem.hidden{display:none}
+.sitem-head{display:flex;align-items:center;gap:8px;padding:10px 14px 8px;background:rgba(255,255,255,.20)}
+.vlink{flex:1;font-size:12px;font-weight:400;color:var(--col-vlink);background:none;border:none;cursor:pointer;text-align:left;padding:0;font-family:var(--sans);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.vlink:active{opacity:.5}
+.sitem-body{padding:12px 14px 14px;border-top:.5px solid rgba(255,255,255,.45)}
+.empty-msg{padding:60px 16px;text-align:center;font-size:16px;color:var(--col-empty-msg);display:none}
+
+/* ── VIDEO LIST ── */
+.vlist-toolbar{padding:4px 16px 12px;display:flex;align-items:center;gap:8px}
+.sort-lbl{font-size:14px;color:var(--col-sort-label)}
+/* Segmented control */
+.seg-ctrl{display:flex;background:rgba(255,255,255,.28);backdrop-filter:blur(10px);border:.5px solid rgba(255,255,255,.55);border-radius:12px;padding:2px;gap:0}
+.sc{font-family:var(--sans);font-size:13px;font-weight:400;padding:5px 16px;border-radius:7px;border:none;background:transparent;color:var(--col-seg-off-text);cursor:pointer;transition:all .2s}
+.sc.on{background:rgba(255,255,255,.75);color:var(--col-seg-on-text);box-shadow:0 2px 8px rgba(100,150,200,.18)}
+
+/* Video cards — full-width stacked with thumbnails */
+.vlist{padding:0 16px;display:flex;flex-direction:column;gap:14px}
+.vitem{display:flex;flex-direction:column;background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);overflow:hidden;cursor:pointer;border-radius:24px;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow);transition:transform .18s,box-shadow .18s}
+.vitem:active{transform:scale(.97);box-shadow:0 2px 8px rgba(100,150,200,.12)}
+.vthumb{width:100%;height:0;padding-bottom:56.25%;position:relative;overflow:hidden;background:var(--card3)}
+.vthumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.vinfo{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px;background:rgba(255,255,255,.18)}
+.vtitle{font-size:14px;font-weight:500;line-height:1.45;color:var(--col-vtitle-text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.vmeta{font-size:12px;color:var(--col-vmeta)}
+.vbrow{display:flex;align-items:center;justify-content:space-between;margin-top:2px}
+.vcnt{font-size:12px;font-weight:400;color:var(--col-vcnt)}
+
+/* ── DETAIL ── */
+#view-detail{display:none;flex-direction:column;height:calc(100vh - 116px);overflow:hidden}
+.detail-sticky{flex-shrink:0;background:rgba(245,251,255,.85);backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%)}
+.detail-video-wrap{width:100%;aspect-ratio:16/9;position:relative;background:#000;flex-shrink:0}
+.detail-video-wrap>div{position:absolute;inset:0;width:100%;height:100%}
+.dinfo{padding:10px 16px 9px;background:rgba(255,255,255,.68);border-bottom:.5px solid rgba(255,255,255,.85)}
+.dtitle{font-size:14px;font-weight:500;line-height:1.4;margin-bottom:1px;color:var(--col-detail-title)}
+.dsub{font-size:12px;color:var(--col-detail-sub)}
+.dfilter{padding:9px 16px;font-size:13px;color:var(--col-dfilter);display:none;justify-content:space-between;align-items:center;background:rgba(58,143,200,.12);border-bottom:.5px solid rgba(58,143,200,.20)}
+.dfclear{background:none;border:none;color:var(--col-dfclear);font-family:var(--sans);font-size:13px;cursor:pointer}
+.transcript-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:80px;background:transparent}
+.transcript{display:flex;flex-direction:column}
+.srow{width:100%;display:flex;align-items:flex-start;border-bottom:.5px solid rgba(255,255,255,.38);background:var(--col-srow-bg);transition:background .1s}
+.srow:active{background:var(--card3)}
+.srow.hl{background:var(--card2)}
+.srow.active{background:var(--col-srow-active-bg);border-left:3px solid rgba(58,143,200,.70)}
+.srow.active .sr-jp .cw{color:var(--col-tbtn)}
+.srow.active .sr-trans{color:rgba(0,122,255,.7)!important}
+.srow.active .sr-sound{color:var(--col-sr-sound)!important}
+.srow-main{flex:1;display:flex;align-items:flex-start;text-align:left;padding:12px 4px 12px 12px;background:none;border:none;cursor:pointer;width:100%;min-width:0}
+.sl{display:flex;flex-direction:column;align-items:center;gap:6px;width:58px;min-width:58px;flex-shrink:0;padding:12px 0 12px 12px}
+.tbtn{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--col-tbtn);background:none;border:none;padding:0;cursor:pointer;line-height:1;width:44px;text-align:center;display:block;white-space:nowrap}
+.sspk{font-size:9px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.95);padding:3px 0;border-radius:8px;border:none;cursor:pointer;transition:opacity .15s;width:44px;text-align:center;line-height:1.5;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.10)}
+.sspk:active{opacity:.6}
+.sr{flex:1;min-width:0}
+.sr-jp .jp-name,.sr-jp .jp-plain{color:var(--col-sr-jp)}
+.sr-jp{font-size:16px;font-weight:400;color:var(--col-sr-jp);line-height:2;display:block}
+.sr-jp .cw{display:inline;cursor:pointer;border-radius:4px;padding:1px 2px;transition:background .1s}
+.sr-jp .cw:hover{background:var(--col-cw-hover)}
+.sr-jp .cw ruby rt{font-size:.55em;color:var(--col-ruby);letter-spacing:.05em}
+.no-ruby .sr-jp rt{visibility:hidden;font-size:0}
+.sr-sound{font-size:12px;color:var(--col-sr-sound);margin-top:2px;line-height:1.4;display:block}
+.sr-trans{font-size:12px;color:var(--col-sr-trans);margin-top:1px;line-height:1.4;display:block}
+.srow-rep{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 10px 10px 4px;flex-shrink:0;align-self:flex-start}
+.rrep,.rcopy{background:none;border:none;color:var(--col-rep-icon);padding:6px;display:flex;align-items:center;justify-content:center;border-radius:8px;cursor:pointer;transition:all .12s}
+.rrep:active,.rcopy:active{opacity:.5}
+.rrep.on{color:var(--col-rep-on)}
+.rcopy.done{color:var(--col-copy-done)}
+.rrep .material-symbols-rounded,.rcopy .material-symbols-rounded{font-size:17px}
+
+/* Speed */
+.speed-wrap{display:flex;align-items:center;justify-content:center;gap:0;padding:8px 16px;background:rgba(255,255,255,.58);border-bottom:.5px solid rgba(255,255,255,.80)}
+.speed-btn{border:.5px solid rgba(255,255,255,.55);background:rgba(255,255,255,.35);backdrop-filter:blur(8px);color:var(--col-speed-btn);width:40px;height:32px;cursor:pointer;font-size:14px;font-family:var(--sans);font-weight:500;line-height:1;display:flex;align-items:center;justify-content:center;transition:all .12s}
+.speed-btn:first-child{border-radius:8px 0 0 8px}
+.speed-btn:last-child{border-radius:0 8px 8px 0}
+.speed-btn:active{opacity:.6}
+.speed-value{min-width:64px;text-align:center;font-weight:500;font-size:14px;color:var(--col-speed-val);background:rgba(255,255,255,.25);height:32px;display:flex;align-items:center;justify-content:center;border-left:.5px solid rgba(255,255,255,.50);border-right:.5px solid rgba(255,255,255,.50)}
+
+/* ── WORD POPUP ── */
+.pop-ov{display:none;position:fixed;inset:0;background:rgba(30,74,98,.22);backdrop-filter:blur(8px);z-index:500;align-items:flex-end;justify-content:center}
+.pop-ov.open{display:flex}
+.pop-sh{width:100%;max-width:430px;background:rgba(220,236,248,.88);backdrop-filter:blur(32px) saturate(160%);-webkit-backdrop-filter:blur(32px) saturate(160%);border-radius:32px 32px 0 0;border-top:.5px solid rgba(255,255,255,.85);padding:16px 24px max(env(safe-area-inset-bottom),32px);max-height:72vh;overflow-y:auto;animation:shUp .28s cubic-bezier(.22,1,.36,1)}
+@keyframes shUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.pop-drag{width:36px;height:4px;background:var(--bd2);border-radius:2px;margin:0 auto 20px}
+.pop-close{position:absolute;top:16px;right:20px;background:rgba(255,255,255,.65);border:.5px solid rgba(255,255,255,.88);color:var(--ink3);width:30px;height:30px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600}
+.pop-close:active{opacity:.6}
+.pop-word{font-size:36px;font-weight:300;margin-bottom:4px;letter-spacing:-1px;color:var(--col-pop-word)}
+.pop-read{font-size:15px;color:var(--col-pop-read);margin-bottom:12px}
+.pop-mean{font-size:22px;font-weight:600;margin-bottom:14px;padding-bottom:14px;border-bottom:.5px solid var(--bd);letter-spacing:-.4px;color:var(--col-pop-mean)}
+.pop-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.ptag{font-size:12px;font-weight:500;padding:4px 11px;border-radius:20px;border:1px solid}
+.ptag.type{border-color:var(--col-pop-tag-type);color:var(--col-pop-tag-type);background:var(--col-pop-tag-type-bg)}
+.ptag.grp,.ptag.form{border-color:var(--bd2);color:var(--col-pop-tag-etc)}
+.ptag.note{border-color:var(--bd);color:var(--col-pop-tag-etc);font-size:12px;font-weight:400}
+.pop-note{font-size:14px;line-height:1.7;color:var(--col-pop-note-text);background:rgba(255,255,255,.45);border:.5px solid rgba(255,255,255,.60);padding:14px 16px;border-radius:16px}
+
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   DESKTOP RESPONSIVE — 768px 이상
+   ═══════════════════════════════════════════════════════════ */
+@media (min-width: 768px) {
+
+  body { justify-content: center; }
+
+  .app {
+    max-width: 900px;
+    width: 100%;
+  }
+
+  .bnav { max-width: 900px; }
+  .hdr  { max-width: 900px; }
+
+  /* ── 핵심: 뷰 기본은 none, JS가 flex로 바꿈 ──
+     display:flex !important 절대 쓰지 않음      */
+  .view {
+    padding-bottom: 90px;
+  }
+
+  /* ── TODAY — 단일 컬럼, 최대너비 제한 ── */
+  #view-today {
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  /* ── 전체 문장 탭 — 2열 그리드 ── */
+  #view-all { padding: 0 24px; }
+  #view-all .sec-head    { padding: 32px 0 8px; }
+  #view-all .filter-panel { padding: 12px 0 8px; }
+  #view-all .slist {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 1fr;   /* 카드 높이 동일하게 */
+    gap: 14px;
+    align-items: start;
+  }
+  /* 카드 내부도 높이 100% 채우기 */
+  #view-all .slist .sitem {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  #view-all .slist .sitem-body {
+    flex: 1;
+  }
+  #view-all .empty-msg { grid-column: 1 / -1; }
+
+  /* ── 영상 목록 탭 — 2열 그리드 ── */
+  #view-vlist { padding: 0 24px; }
+  #view-vlist .sec-head       { padding: 32px 0 8px; }
+  #view-vlist .vlist-toolbar  { padding: 4px 0 12px; }
+  #view-vlist .vlist {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* ── 영상 상세 탭 — 좌: 영상+컨트롤 / 우: 자막 ── */
+  #view-detail {
+    flex-direction: row !important;
+    height: calc(100vh - 72px);
+  }
+
+  .detail-sticky {
+    width: 420px;
+    min-width: 360px;
+    max-width: 420px;
+    flex-shrink: 0;
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    border-right: .5px solid rgba(255,255,255,.35);
+  }
+
+  .transcript-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 80px;
+  }
+
+  /* ── 팝업 — 가운데 모달 ── */
+  .pop-ov { align-items: center; }
+  .pop-sh {
+    max-width: 520px;
+    border-radius: 24px !important;
+    margin-bottom: 0;
+    max-height: 80vh;
+  }
+}
+
+/* ── 1200px 이상: 영상 목록 3열 ── */
+@media (min-width: 1200px) {
+  .app  { max-width: 1100px; }
+  .bnav { max-width: 1100px; }
+  .hdr  { max-width: 1100px; }
+
+  #view-vlist .vlist {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .detail-sticky { width: 480px; max-width: 480px; }
+}
+
+</style>
+</head>
+<body>
+<div class="app">
+
+<header class="hdr">
+  <div class="hdr-top">
+    <div class="hdr-l">
+      <button class="ibtn" id="btnBack" onclick="handleBack()">
+        <span class="material-symbols-rounded">arrow_back</span>
+      </button>
+    </div>
+    <div class="wordmark">*.⋆·̩͙꒰ঌ𝐒𝐭𝐮𝐝𝐲 𝐖𝐢𝐭𝐡 𝐖𝐈𝐒𝐇໒꒱·̩͙⋆.*</div>
+    <div class="hdr-r">
+      <button class="ibtn" id="btnSearch" style="display:none" onclick="toggleSearch()">
+        <span class="material-symbols-rounded">search</span>
+      </button>
+    </div>
+  </div>
+  <div class="srch-wrap" id="srchWrap">
+    <input class="srch-in" id="srchIn" placeholder="단어, 발음, 뜻으로 검색" oninput="applyFilters()">
+  </div>
+</header>
+
+<main class="view" id="view-today" style="display:flex">
+  <div class="rnd-hero">
+    <div class="rnd-hero-band" id="rnd-meta"></div>
+    <div class="rnd-hero-body" id="rnd-body"></div>
+  </div>
+  <div class="rnd-actions">
+    <div class="tog-row" id="rnd-togs"></div>
+    <div class="hint-expand" id="rnd-expand">
+      <div class="hint-inner" id="rnd-hints"></div>
+    </div>
+    <div class="btn2-row">
+      <button class="btn2" onclick="playFull()">
+        <span class="material-symbols-rounded">play_arrow</span>처음부터
+      </button>
+      <button class="btn2" id="btnRep" onclick="toggleTodayRepeat()">
+        <span class="material-symbols-rounded">repeat</span>구간 반복
+      </button>
+      <button class="btn2" onclick="goDetail()" style="flex:0 0 auto;padding:12px 14px">
+        <span class="material-symbols-rounded" style="font-size:17px">arrow_forward</span>
+      </button>
+    </div>
+    <div class="video-frame"><div id="todayPlayer"></div></div>
+  </div>
+</main>
+
+<main class="view" id="view-all">
+  <div class="sec-head">
+    <span class="sec-ttl">전체 문장</span>
+    <span class="sec-cnt" id="total-cnt"></span>
+  </div>
+  <div class="filter-panel">
+    <div class="filter-card">
+      <div class="filter-row">
+        <span class="fl">멤버</span>
+        <button class="fc riku"   data-f="member" data-v="RIKU"   onclick="togChip(this)">RIKU</button>
+        <button class="fc yushi"  data-f="member" data-v="YUSHI"  onclick="togChip(this)">YUSHI</button>
+        <button class="fc ryo"    data-f="member" data-v="RYO"    onclick="togChip(this)">RYO</button>
+        <button class="fc sakuya" data-f="member" data-v="SAKUYA" onclick="togChip(this)">SAKUYA</button>
+      </div>
+      <div class="filter-row" style="margin-top:8px">
+        <span class="fl">JLPT</span>
+        <button class="fc" data-f="jlpt" data-v="N5" onclick="togChip(this)">N5</button>
+        <button class="fc" data-f="jlpt" data-v="N4" onclick="togChip(this)">N4</button>
+        <button class="fc" data-f="jlpt" data-v="N3" onclick="togChip(this)">N3</button>
+      </div>
+    </div>
+  </div>
+  <div class="slist" id="slist"></div>
+  <div class="empty-msg" id="empty-msg">조건에 맞는 문장이 없어요.</div>
+</main>
+
+<main class="view" id="view-vlist">
+  <div class="sec-head"><span class="sec-ttl">영상 목록</span></div>
+
+  <div class="vlist-toolbar">
+    <span class="sort-lbl">정렬</span>
+    <div class="seg-ctrl">
+      <button class="sc on" data-vs="newest" onclick="setVSort(this)">최신순</button>
+      <button class="sc" data-vs="oldest" onclick="setVSort(this)">오래된순</button>
+    </div>
+  </div>
+  <div class="vlist" id="vlist"></div>
+</main>
+
+<main id="view-detail" style="display:none">
+  <div class="detail-sticky">
+    <div class="detail-video-wrap"><div id="detailPlayer"></div></div>
+    <div class="dinfo">
+      <div class="dtitle" id="d-title">—</div>
+      <div class="dsub" id="d-sub">NCT WISH</div>
+    </div>
+    <div class="speed-wrap">
+  <button class="speed-btn" onclick="restartTranscript()" style="font-size:12px;font-weight:500;width:52px;letter-spacing:-.2px">처음으로</button>
+  <button class="speed-btn" onclick="changeSpeed(-0.25)">－</button>
+  <span class="speed-value" id="speedLabel">1.00x</span>
+  <button class="speed-btn" onclick="changeSpeed(0.25)">＋</button>
+</div>
+    <div class="dfilter" id="dfilter">
+      <span id="dfilter-lbl">—</span>
+      <button class="dfclear" onclick="clearDFilter()">전체보기 ✕</button>
+    </div>
+  </div>
+  <div class="transcript-scroll">
+    <div class="transcript" id="transcript"></div>
+  </div>
+</main>
+
+<nav class="bnav">
+  <button class="ntab on" id="tab-today" onclick="changeTab('today')">
+    <span class="material-symbols-rounded">shuffle</span>랜덤 문장
+  </button>
+  <button class="ntab" id="tab-all" onclick="changeTab('all')">
+    <span class="material-symbols-rounded">import_contacts</span>전체 문장
+  </button>
+  <button class="ntab" id="tab-vlist" onclick="changeTab('vlist')">
+    <span class="material-symbols-rounded">playlist_play</span>영상 목록
+  </button>
+</nav>
+</div>
+
+<div class="pop-ov" id="popup" onclick="maybeClosePop(event)">
+  <div class="pop-sh">
+    <div class="pop-drag"></div>
+    <button class="pop-close" onclick="closePop()">✕</button>
+    <div class="pop-word" id="pWord"></div>
+    <div class="pop-read" id="pRead"></div>
+    <div class="pop-mean" id="pMean"></div>
+    <div class="pop-tags" id="pTags"></div>
+    <div class="pop-note" id="pNote" style="display:none"></div>
+  </div>
+</div>
+
+<script>
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 화자별 색상 맵 — spkpill, sspk 배경색에 사용
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const MEM={RIKU:'#C94F44',YUSHI:'#2E96C8',RYO:'#B89400',SAKUYA:'#C45C90'};
+
+// mm:ss 문자열 또는 숫자(초)를 초 단위 숫자로 변환
+function toSec(v){if(typeof v==='number')return v;const[m,s]=String(v).split(':').map(Number);return m*60+s;}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 단어 사전 — 단어 팝업(showWord)에서 참조
+// key: showWord('키') 와 일치해야 함
+// r: 읽기(히라가나), m: 뜻, tags: 품사/그룹/활용형/메모, note: 설명
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const WDB={
+  "ここ":{r:"ここ",m:"여기 (지시대명사)",tags:[{t:"대명사"}]},
+  "の__attr":{r:"の",m:"~의 / ~인 (연체 조사)",tags:[{t:"조사"},{n:"명사 수식"}],note:"「何の倉庫」= 무슨 창고 — 뒤 명사를 꾸며주는 の。"},
+  "の__q":{r:"の",m:"~야? (캐주얼 의문 종조사)",tags:[{t:"종조사"},{n:"캐주얼 의문"}],note:"「誰がやるの？」= 누가 할 거야? — 문장 끝의 の는 가벼운 물음."},
+  "の__nom":{r:"の",m:"~하는 것 (명사화 조사)",tags:[{t:"조사"},{n:"명사화"}],note:"「走るのが好き」= 달리는 것을 좋아해."},
+  "何":{r:"なに",m:"무엇 / 뭔",tags:[{t:"의문대명사"}]},
+  "倉庫":{r:"そうこ",m:"창고",tags:[{t:"명사"}]},
+  "やっ":{r:"やっ",m:"やった의 구어 단축",tags:[{t:"동사"},{g:"1그룹"},{f:"과거형 단축"}],note:"「やった」의 た 앞이 구어에서 뭉쳐지는 현상."},
+  "たっけ":{r:"たっけ",m:"~더라? / ~였던가?",tags:[{t:"종조사"},{f:"회상의문"}],note:"과거를 기억에서 불러오는 어미."},
+  "お金":{r:"おかね",m:"돈",tags:[{t:"명사"},{n:"お: 미화 접두어"}]},
+  "持って":{r:"もって",m:"가지고 (持つ의 て형)",tags:[{t:"동사"},{g:"1그룹"},{f:"て형"}],note:"持つ → 持って。"},
+  "来れば":{r:"くれば",m:"오면 (来る의 가정형)",tags:[{t:"동사"},{g:"カ変 불규칙"},{f:"ば형 가정"}],note:"来る(불규칙) → 来れば。"},
+  "よかった":{r:"よかった",m:"좋았다 / ~했으면 좋았을 텐데",tags:[{t:"형용사 활용"},{f:"과거형·후회표현"}],note:"〜ばよかった = ~했으면 좋았을 텐데."},
+  "なぁ":{r:"なぁ",m:"~이네 (감탄·혼잣말 어미)",tags:[{t:"종조사"},{n:"혼잣말·감탄"}]},
+  "どういう":{r:"どういう",m:"어떤 / 무슨",tags:[{t:"연체사"},{n:"どう+いう"}],note:"「どういうつもり？」= 무슨 생각이야?"},
+  "つもり":{r:"つもり",m:"생각 / 의도 / 작정",tags:[{t:"명사"},{n:"형식명사"}],note:"〜するつもり = ~할 생각이야."},
+  "挨拶":{r:"あいさつ",m:"인사",tags:[{t:"명사"},{n:"挨拶する = 인사하다"}]},
+  "して":{r:"して",m:"~해 (する의 て형 명령)",tags:[{t:"동사 활용"},{f:"て형 명령"},{n:"する의 て형"}]},
+  "俺":{r:"おれ",m:"나 (남성 반말)",tags:[{t:"1인칭 대명사"},{n:"남성 캐주얼"}]},
+  "やる":{r:"やる",m:"하다",tags:[{t:"동사"},{g:"1그룹"},{f:"기본형"}],note:"「する」보다 캐주얼."},
+  "よ":{r:"よ",m:"~야 / ~라고 (단정·강조)",tags:[{t:"종조사"}]},
+  "誰":{r:"だれ",m:"누구",tags:[{t:"의문대명사"}]},
+  "が":{r:"が",m:"~이/가 (주격 조사)",tags:[{t:"조사"},{n:"주격"}]},
+  "違う":{r:"ちがう",m:"다르다 / 아니야",tags:[{t:"동사"},{g:"1그룹"},{f:"기본형"}]},
+  "じゃんけん":{r:"じゃんけん",m:"가위바위보",tags:[{t:"명사"}],note:"じゃんけんぽん!"},
+  "おっす":{r:"おっす",m:"안녕! (남성 캐주얼)",tags:[{t:"인사말"},{n:"おはようございます 단축"}]},
+  "頑張る":{r:"がんばる",m:"열심히 하다 / 힘내다",tags:[{t:"동사"},{g:"1그룹"},{f:"기본형"}],note:"「頑張って」= 힘내 / 「頑張ってます」= 열심히 하고 있어요."},
+  "お勧め":{r:"おすすめ",m:"추천",tags:[{t:"명사"},{n:"お: 미화 접두어"}]},
+  "食べる":{r:"たべる",m:"먹다",tags:[{t:"동사"},{g:"2그룹"},{f:"기본형"}]},
+  "食べ方":{r:"たべかた",m:"먹는 법",tags:[{t:"명사"},{n:"食べる+方(방법)"}]},
+  "いい":{r:"いい",m:"좋다 / ~해도 돼",tags:[{t:"형용사"}],note:"「食べていいよ」= 먹어도 돼."},
+  "まだ":{r:"まだ",m:"아직",tags:[{t:"부사"}]},
+  "早い":{r:"はやい",m:"이르다 / 빠르다",tags:[{t:"형용사"},{f:"기본형"}]},
+  "マジ":{r:"まじ",m:"진짜 / 정말",tags:[{t:"부사"},{n:"캐주얼"}]},
+  "教える":{r:"おしえる",m:"알려주다 / 가르치다",tags:[{t:"동사"},{g:"2그룹"},{f:"기본형"}]},
+  "あげる":{r:"あげる",m:"~해주다",tags:[{t:"보조동사"},{n:"てあげる형"}],note:"「教えてあげたい」= 알려주고 싶다."},
+  "方":{r:"かた",m:"분 / 방법",tags:[{t:"명사"},{n:"丁寧語"}],note:"「ファンの方」= 팬 분들."},
+  "なんで":{r:"なんで",m:"왜",tags:[{t:"의문사"},{n:"캐주얼"}]},
+  "人":{r:"ひと",m:"사람",tags:[{t:"명사"}]},
+  "あんまり":{r:"あんまり",m:"별로 / 그다지",tags:[{t:"부사"},{n:"あまり 구어형"}],note:"「あんまりいない」= 별로 없어."},
+  "いない":{r:"いない",m:"없다 (사람/동물)",tags:[{t:"동사"},{f:"부정형"}],note:"いる의 부정."},
+  "でしょ":{r:"でしょ",m:"~이지? (동의 요구)",tags:[{t:"종조사"},{n:"캐주얼 확인"}]},
+  "本当に":{r:"ほんとうに",m:"정말로",tags:[{t:"부사"}]},
+  "焼ける":{r:"やける",m:"구워지다 / 타다",tags:[{t:"동사"},{g:"2그룹"},{f:"기본형"}]},
+  "これ":{r:"これ",m:"이것 / 이게",tags:[{t:"지시대명사"}]},
+  "回":{r:"かい",m:"회 / 번 (횟수)",tags:[{t:"조수사"}]},
+  "さっき":{r:"さっき",m:"아까",tags:[{t:"부사"}]},
+  "もう":{r:"もう",m:"이제 / 더",tags:[{t:"부사"}],note:"「もう10回」= 10번 더."},
+  "行く":{r:"いく",m:"가다",tags:[{t:"동사"},{g:"1그룹"},{f:"기본형"}],note:"「行こう」= 가자."},
+  "噂":{r:"うわさ",m:"소문",tags:[{t:"명사"}],note:"「噂の神戸牛」= 소문의 고베 소고기."},
+  "神戸牛":{r:"こうべぎゅう",m:"고베 소고기",tags:[{t:"명사"}]},
+  "から":{r:"から",m:"~부터 / ~에서",tags:[{t:"조사"},{n:"기점"}]},
+  "はい":{r:"はい",m:"네",tags:[{t:"응답사"}]},
+  "いきます":{r:"いきます",m:"갑니다",tags:[{t:"동사"},{f:"정중형"}]},
+  "おいしい":{r:"おいしい",m:"맛있다",tags:[{t:"형용사"},{f:"기본형"}]},
+  "やばい":{r:"やばい",m:"대박 / 엄청나다",tags:[{t:"형용사"},{n:"캐주얼 슬랭"}],note:"긍정·부정 모두 쓰임."},
+  "いただきます":{r:"いただきます",m:"잘 먹겠습니다",tags:[{t:"인사말"},{n:"식사 전 인사"}]},
+  "震える":{r:"ふるえる",m:"떨리다",tags:[{t:"동사"},{g:"2그룹"},{f:"기본형"}]},
+  "よね":{r:"よね",m:"~이지? (공감·확인)",tags:[{t:"종조사"},{n:"よ+ね 복합"}]},
+  "テレビ":{r:"テレビ",m:"TV",tags:[{t:"명사"},{n:"외래어"}]},
+  "始める":{r:"はじめる",m:"시작하다",tags:[{t:"동사"},{g:"2그룹"},{f:"기본형"}]},
+  "部位":{r:"ぶい",m:"부위",tags:[{t:"명사"}]},
+  "さっきの":{r:"さっきの",m:"아까의 / 아까 그",tags:[{t:"연체사"}]},
+  "やつ":{r:"やつ",m:"것 / 녀석",tags:[{t:"명사"},{n:"구어 형식명사"}]},
+  "焼く":{r:"やく",m:"굽다",tags:[{t:"동사"},{g:"1그룹"},{f:"기본형"}],note:"「焼いたら」= 구우면."},
+  "変わる":{r:"かわる",m:"변하다",tags:[{t:"동사"},{g:"1그룹"},{f:"기본형"}],note:"「変わらん」= 안 변해 (関西弁)."},
+  "合う":{r:"あう",m:"맞다 / 어울리다",tags:[{t:"동사"},{g:"1그룹"},{f:"기본형"}],note:"「合ってるよ」= 맞아요."},
+  "どうぞ":{r:"どうぞ",m:"먼저 하세요 / 어서",tags:[{t:"부사"},{n:"권유·양보"}]},
+  // ── 추가 단어 ──────────────────────────────────────────────
+  "さん":{r:"さん",m:"~씨 / ~상 (경칭)",tags:[{t:"접미사"},{n:"이름 뒤에 붙이는 경칭"}]},
+  "ちゃん":{r:"ちゃん",m:"~짱 (친근한 경칭)",tags:[{t:"접미사"},{n:"さん보다 친근한 호칭"}]},
+  "レモン":{r:"レモン",m:"레몬",tags:[{t:"명사"},{n:"외래어"}]},
+  "ファン":{r:"ファン",m:"팬",tags:[{t:"명사"},{n:"외래어"}]},
+  "と":{r:"と",m:"~와/과 (나열 조사)",tags:[{t:"조사"},{n:"나열"}]},
+  "の__title":{r:"の",m:"~의 / ~인 (소유·수식)",tags:[{t:"조사"},{n:"수식"}]},
+  "が__subj":{r:"が",m:"~이/가 (주격 조사)",tags:[{t:"조사"},{n:"주격"}]},
+  "に":{r:"に",m:"~에 / ~에게 (방향·대상)",tags:[{t:"조사"},{n:"방향·대상"}]},
+  "って":{r:"って",m:"~라니 / ~라는 게 (인용·놀람)",tags:[{t:"조사"},{n:"인용·놀람"}],note:"「テレビって」= TV라니. 말하는 대상을 화제로 올릴 때 쓰임."},
+  "ます":{r:"ます",m:"~습니다 (정중 어미)",tags:[{t:"어미"},{n:"정중형"}]},
+  "いや":{r:"いや",m:"아니 / 아니야",tags:[{t:"감탄사"},{n:"부정·반박"}]},
+  "カルピス":{r:"カルピス",m:"칼피스 (음료 브랜드)",tags:[{t:"명사"},{n:"외래어"}]}
+};
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 영상 플레이리스트 — 영상 목록 + 각 영상의 문장 데이터
+// videoId: 유튜브 영상 ID
+// dv: 날짜 숫자 (정렬용, YYYYMMDD)
+// sentences: 해당 영상의 대사 배열
+//   id: 고유 번호 / start,end: 초(또는 mm:ss) / speaker: 화자
+//   jlpt: 난이도 / sk: 검색 키워드 / jp: 후리가나+팝업 HTML
+//   plain: 원문 텍스트 / sound: 발음 / trans: 번역
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const PL=[
+  {
+    videoId:'8PI3xHI-tZU',
+    title:"사랑 가득 행복 만땅 — 위시의 요코하마 일기 | LOG in WISH #YOKOHAMA",
+    date:"2025.03.18",dv:20250318,
+    sentences:[
+      {id:1100,start:965,end:969,speaker:'YUSHI',jlpt:'N4',
+       sk:"ここ 何の 倉庫 やったっけ 여기 무슨 창고였더라 코코 난노 소우코 얏탓케",
+       jp:'<span class="cw" onclick="showWord(\'ここ\')"><ruby>ここ</ruby></span><span class="cw" onclick="showWord(\'何\')"><ruby>何</ruby></span><span class="cw" onclick="showWord(\'の__attr\')">の</span><span class="cw" onclick="showWord(\'倉庫\')"><ruby>倉庫<rt>そうこ</rt></ruby></span><span class="cw" onclick="showWord(\'やっ\')">やっ</span><span class="cw" onclick="showWord(\'たっけ\')">たっけ</span>？',
+       plain:"ここ何の倉庫やったっけ？",sound:"코코 난노 소우코 얏탓케",trans:"여기 무슨 창고였더라?"},
+      {id:1101,start:1019,end:1023,speaker:'YUSHI',jlpt:'N4',
+       sk:"お金 持って 来れば よかった なぁ 돈 가져올걸 오카네 모떼 쿠레바",
+       jp:'<span class="cw" onclick="showWord(\'お金\')"><ruby>お金<rt>おかね</rt></ruby></span><span class="cw" onclick="showWord(\'持って\')">持って</span><span class="cw" onclick="showWord(\'来れば\')"><ruby>来<rt>く</rt></ruby>れば</span><span class="cw" onclick="showWord(\'よかった\')">よかった</span><span class="cw" onclick="showWord(\'なぁ\')">なぁ</span>',
+       plain:"お金持って来ればよかったなぁ",sound:"오카네 못떼 쿠레바 요캇타나아",trans:"돈 가져올 걸 그랬다…"},
+      {id:1102,start:1317,end:1321,speaker:'YUSHI',jlpt:'N4',
+       sk:"どういう つもり 무슨 생각이야 도우이우 츠모리",
+       jp:'<span class="cw" onclick="showWord(\'どういう\')">どういう</span><span class="cw" onclick="showWord(\'つもり\')">つもり</span>？',
+       plain:"どういうつもり？",sound:"도우이우 츠모리?",trans:"무슨 생각이야?"}
+    ]
+  },
+  {
+    videoId:'Xvgylx950lE',
+    title:"神戸牛モッパン — とってもおいしいです | NCT NEW TEAM in KOBE",
+    date:"2023.11.07",dv:20231107,
+    sentences:[
+      {id:231107001,start:19,end:20,speaker:'RIKU',jlpt:'',
+       sk:"DAEYOUNGさん頑張ってます",
+       jp:'<span class="jp-name">DAEYOUNG</span><span class="cw" onclick="showWord(\'さん\')">さん</span><span class="cw" onclick="showWord(\'頑張る\')"><ruby>頑張<rt>がんば</rt></ruby>って</span><span class="cw" onclick="showWord(\'ます\')">ます！</span>',
+       plain:"DAEYOUNGさん頑張ってます！",sound:"다에용상 간밧테마스",trans:"DAEYOUNG씨 열심히 하고 있어요!"},
+      {id:231107002,start:21,end:22,speaker:'RIKU',jlpt:'',
+       sk:"DAEYOUNGさん頑張って",
+       jp:'<span class="jp-name">DAEYOUNG</span><span class="cw" onclick="showWord(\'さん\')">さん</span><span class="cw" onclick="showWord(\'頑張る\')"><ruby>頑張<rt>がんば</rt></ruby>って</span>',
+       plain:"DAEYOUNGさん頑張って",sound:"다에용상 간밧테",trans:"DAEYOUNG씨 힘내"},
+      {id:231107003,start:25,end:26,speaker:'RIKU',jlpt:'N4',
+       sk:"DAEYOUNG お勧め 何 추천 뭐 오스스메 나니",
+       jp:'<span class="jp-name">DAEYOUNG</span><span class="jp-plain">、</span><span class="cw" onclick="showWord(\'お勧め\')">お<ruby>勧<rt>すす</rt></ruby>め</span><span class="cw" onclick="showWord(\'何\')"><ruby>何<rt>なに</rt></ruby></span><span class="jp-plain">？</span>',
+       plain:"DAEYOUNG、お勧め何？",sound:"다에용 오스스메 나니",trans:"DAEYOUNG, 추천 뭐야?"},
+      {id:231107004,start:30,end:34,speaker:'RIKU',jlpt:'N5',
+       sk:"カルピス カルピスソーダ 칼피스 칼피스소다",
+       jp:'<span class="cw" onclick="showWord(\'カルピス\')">カルピス</span><span class="cw" onclick="showWord(\'と\')">と</span><span class="cw" onclick="showWord(\'カルピス\')">カルピスソーダ</span><span class="jp-plain">？</span>',
+       plain:"カルピスとカルピスソーダ？",sound:"카루피스토 카루피스소다",trans:"칼피스랑 칼피스소다?"},
+      {id:231107005,start:46,end:47,speaker:'RIKU',jlpt:'N5',
+       sk:"挨拶して 인사해 아이사츠시테",
+       jp:'<span class="cw" onclick="showWord(\'挨拶\')"><ruby>挨拶<rt>あいさつ</rt></ruby></span><span class="cw" onclick="showWord(\'して\')">して</span><span class="cw" onclick="showWord(\'挨拶\')"><ruby>挨拶<rt>あいさつ</rt></ruby></span>',
+       plain:"挨拶して挨拶",sound:"아이사츠시테 아이사츠",trans:"인사해 인사!"},
+      {id:231107006,start:48,end:49,speaker:'SAKUYA',jlpt:'N5',
+       sk:"おっす 안녕 옷스",
+       jp:'<span class="cw" onclick="showWord(\'おっす\')">おっす</span>',
+       plain:"おっす",sound:"옷스",trans:"안녕!"},
+      {id:231107007,start:62,end:63,speaker:'YUSHI',jlpt:'N5',
+       sk:"誰がやるの 누가 할거야 다레가 야루노",
+       jp:'<span class="cw" onclick="showWord(\'誰\')"><ruby>誰<rt>だれ</rt></ruby></span><span class="cw" onclick="showWord(\'が\')">が</span><span class="cw" onclick="showWord(\'やる\')">やる</span><span class="cw" onclick="showWord(\'の__q\')">の</span>？',
+       plain:"誰がやるの？",sound:"다레가 야루노?",trans:"누가 할 거야?"},
+      {id:231107008,start:63,end:64,speaker:'SAKUYA',jlpt:'N5',
+       sk:"俺やるよ 내가 할게 오레 야루요",
+       jp:'<span class="cw" onclick="showWord(\'俺\')"><ruby>俺<rt>おれ</rt></ruby></span><span class="cw" onclick="showWord(\'やる\')">やる</span><span class="cw" onclick="showWord(\'よ\')">よ</span>、<span class="cw" onclick="showWord(\'俺\')"><ruby>俺<rt>おれ</rt></ruby></span><span class="cw" onclick="showWord(\'やる\')">やる</span><span class="cw" onclick="showWord(\'よ\')">よ</span>',
+       plain:"俺やるよ、俺やるよ",sound:"오레 야루요 오레 야루요",trans:"내가 할게 내가 할게"},
+      {id:231107009,start:64,end:65,speaker:'YUSHI',jlpt:'N5',
+       sk:"じゃんけん 가위바위보 쟝켄",
+       jp:'<span class="cw" onclick="showWord(\'じゃんけん\')">じゃんけん</span>',
+       plain:"じゃんけん",sound:"쟝켄",trans:"가위바위보"},
+      {id:231107010,start:66,end:67,speaker:'RIKU',jlpt:'N5',
+       sk:"違う俺やるよ 아니야 내가 치가우 오레",
+       jp:'<span class="cw" onclick="showWord(\'違う\')"><ruby>違<rt>ちが</rt></ruby>う</span> <span class="cw" onclick="showWord(\'俺\')"><ruby>俺<rt>おれ</rt></ruby></span><span class="cw" onclick="showWord(\'やる\')">やる</span><span class="cw" onclick="showWord(\'よ\')">よ</span>、<span class="cw" onclick="showWord(\'俺\')"><ruby>俺<rt>おれ</rt></ruby></span><span class="cw" onclick="showWord(\'やる\')">やる</span><span class="cw" onclick="showWord(\'よ\')">よ</span>',
+       plain:"違う俺やるよ、俺やるよ",sound:"치가우 오레 야루요 오레 야루요",trans:"아니야 내가 할게 내가 할게"},
+      {id:231107011,start:68,end:69,speaker:'SAKUYA',jlpt:'N5',
+       sk:"俺がやる 내가 할거야 오레가 야루",
+       jp:'<span class="cw" onclick="showWord(\'俺\')"><ruby>俺<rt>おれ</rt></ruby></span><span class="cw" onclick="showWord(\'が\')">が</span><span class="cw" onclick="showWord(\'やる\')">やる</span>？',
+       plain:"俺がやる？",sound:"오레가 야루?",trans:"내가 할 거야?"},
+      {id:231107012,start:69,end:70,speaker:'SAKUYA',jlpt:'N5',
+       sk:"俺やる 내가 할게 오레 야루",
+       jp:'<span class="cw" onclick="showWord(\'俺\')"><ruby>俺<rt>おれ</rt></ruby></span><span class="cw" onclick="showWord(\'やる\')">やる</span>？',
+       plain:"俺やる？",sound:"오레 야루?",trans:"내가 할 거야?"},
+      {id:231107013,start:75,end:75,speaker:'YUSHI',jlpt:'N5',
+       sk:"俺やるよ 내가 할게 오레 야루요",
+       jp:'<span class="cw" onclick="showWord(\'俺\')"><ruby>俺<rt>おれ</rt></ruby></span><span class="cw" onclick="showWord(\'やる\')">やる</span><span class="cw" onclick="showWord(\'よ\')">よ</span>',
+       plain:"俺やるよ",sound:"오레 야루요",trans:"내가 할게"},
+      {id:231107014,start:76,end:76,speaker:'SAKUYA',jlpt:'N5',
+       sk:"どうぞどうぞ 먼저 하세요 도우조",
+       jp:'<span class="cw" onclick="showWord(\'どうぞ\')">どうぞ</span><span class="cw" onclick="showWord(\'どうぞ\')">どうぞ</span>',
+       plain:"どうぞどうぞ",sound:"도우조 도우조",trans:"먼저 해요 먼저 해요"},
+      {id:231107015,start:84,end:86,speaker:'RIKU',jlpt:'N4',
+       sk:"サクちゃん レモン 食べていいよ 사쿠야 레몬 먹어도 돼",
+       jp:'<span class="jp-name">サク</span><span class="cw" onclick="showWord(\'ちゃん\')">ちゃん</span><span class="cw" onclick="showWord(\'レモン\')">レモン</span><span class="cw" onclick="showWord(\'食べる\')"><ruby>食<rt>た</rt></ruby>べて</span><span class="cw" onclick="showWord(\'いい\')">いいよ</span>',
+       plain:"サクちゃんレモン食べていいよ",sound:"사쿠쨩 레몬 타베테 이이요",trans:"사쿠야 레몬 먹어도 돼"},
+      {id:231107016,start:87,end:87,speaker:'SAKUYA',jlpt:'N4',
+       sk:"いや まだ 早い 아직 일러 이야 마다 하야이",
+       jp:'<span class="cw" onclick="showWord(\'いや\')">いや</span><span class="jp-plain">、</span><span class="cw" onclick="showWord(\'まだ\')">まだ</span><span class="cw" onclick="showWord(\'早い\')"><ruby>早<rt>はや</rt></ruby>い</span>',
+       plain:"いや、まだ早い",sound:"이야 마다 하야이",trans:"아니, 아직 일러"},
+      {id:231107017,start:89,end:91,speaker:'RIKU',jlpt:'N3',
+       sk:"これ マジ 教えてあげたい ファン 알려주고 싶어 진짜",
+       jp:'<span class="cw" onclick="showWord(\'これ\')">これ</span><span class="cw" onclick="showWord(\'マジ\')">マジ</span><span class="cw" onclick="showWord(\'教える\')"><ruby>教<rt>おし</rt></ruby>えて</span><span class="cw" onclick="showWord(\'あげる\')">あげたい</span><span class="cw" onclick="showWord(\'ファン\')">ファン</span><span class="cw" onclick="showWord(\'の__title\')">の</span><span class="cw" onclick="showWord(\'方\')"><ruby>方<rt>かた</rt></ruby></span><span class="cw" onclick="showWord(\'に\')">に</span>',
+       plain:"これマジ教えてあげたいファンの方に",sound:"코레 마지 오시에테 아게타이 환노 카타니",trans:"팬분들한테 진짜 알려주고 싶다"},
+      {id:231107018,start:91,end:91,speaker:'SAKUYA',jlpt:'N5',
+       sk:"なんで 왜 난데",
+       jp:'<span class="cw" onclick="showWord(\'なんで\')">なんで</span>？',
+       plain:"なんで？",sound:"난데?",trans:"왜?"},
+      {id:231107019,start:92,end:94,speaker:'RIKU',jlpt:'N3',
+       sk:"レモン 食べる人 あんまりいない 레몬 먹는 사람 별로 없잖아",
+       jp:'<span class="cw" onclick="showWord(\'レモン\')">レモン</span><span class="cw" onclick="showWord(\'食べる\')"><ruby>食<rt>た</rt></ruby>べる</span><span class="cw" onclick="showWord(\'人\')"><ruby>人<rt>ひと</rt></ruby></span><span class="cw" onclick="showWord(\'あんまり\')">あんまり</span><span class="cw" onclick="showWord(\'いない\')">いない</span><span class="cw" onclick="showWord(\'でしょ\')">でしょ</span>',
+       plain:"レモン食べる人あんまりいないでしょ",sound:"레몬 타베루 히토 안마리 이나이데쇼",trans:"레몬 먹는 사람 별로 없잖아요"},
+      {id:231107020,start:109,end:110,speaker:'SAKUYA',jlpt:'N4',
+       sk:"本当に 焼けてる 진짜 구워지고 있어 혼토니 야케테루",
+       jp:'<span class="cw" onclick="showWord(\'本当に\')"><ruby>本当<rt>ほんとう</rt></ruby>に</span><span class="cw" onclick="showWord(\'焼ける\')"><ruby>焼<rt>や</rt></ruby>けてる</span>、<span class="cw" onclick="showWord(\'これ\')">これ</span>？',
+       plain:"本当に焼けてる、これ？",sound:"혼토니 야케테루 코레?",trans:"진짜 구워지고 있는 거야, 이게?"},
+      {id:231107021,start:110,end:110,speaker:'YUSHI',jlpt:'N4',
+       sk:"焼けてます 구워지고 있어요 야케테마스",
+       jp:'<span class="cw" onclick="showWord(\'焼ける\')"><ruby>焼<rt>や</rt></ruby>けてます</span>',
+       plain:"焼けてます",sound:"야케테마스",trans:"구워지고 있어요"},
+      {id:231107022,start:111,end:112,speaker:'YUSHI',jlpt:'N4',
+       sk:"さっき 10回 やった 아까 10번 했거든 삿키 쥬우카이",
+       jp:'<span class="cw" onclick="showWord(\'さっき\')">さっき</span><span class="jp-plain">10</span><span class="cw" onclick="showWord(\'回\')"><ruby>回<rt>かい</rt></ruby></span><span class="cw" onclick="showWord(\'やる\')">やったんで</span>',
+       plain:"さっき10回やったんで",sound:"삿키 쥬우카이 얏탄데",trans:"아까 10번 했거든요"},
+      {id:231107023,start:113,end:114,speaker:'YUSHI',jlpt:'N4',
+       sk:"10回 やった 10번 했거든 쥬우카이",
+       jp:'<span class="jp-plain">10</span><span class="cw" onclick="showWord(\'回\')"><ruby>回<rt>かい</rt></ruby></span><span class="cw" onclick="showWord(\'やる\')">やったんで</span>',
+       plain:"10回やったんで",sound:"쥬우카이 얏탄데",trans:"10번 했거든요"},
+      {id:231107024,start:115,end:116,speaker:'YUSHI',jlpt:'N4',
+       sk:"もう 10回 行こう 10번 더 하자 모우 쥬우카이 이코우",
+       jp:'<span class="cw" onclick="showWord(\'もう\')">もう</span><span class="jp-plain">10</span><span class="cw" onclick="showWord(\'回\')"><ruby>回<rt>かい</rt></ruby></span><span class="cw" onclick="showWord(\'行く\')"><ruby>行<rt>い</rt></ruby>こう</span>',
+       plain:"もう10回行こう",sound:"모우 쥬우카이 이코우",trans:"10번 더 하자"},
+      {id:231107025,start:119,end:120,speaker:'RIKU',jlpt:'N5',
+       sk:"食べる 먹다 타베루",
+       jp:'<span class="cw" onclick="showWord(\'食べる\')"><ruby>食<rt>た</rt></ruby>べる</span>',
+       plain:"食べる",sound:"타베루",trans:"먹다"},
+      {id:231107026,start:155,end:156,speaker:'RIKU',jlpt:'N4',
+       sk:"これが 噂の 神戸牛 이게 유명한 고베 소고기 코레가 우와사노 코베규",
+       jp:'<span class="cw" onclick="showWord(\'これ\')">これ</span><span class="cw" onclick="showWord(\'が__subj\')">が</span><span class="cw" onclick="showWord(\'噂\')"><ruby>噂<rt>うわさ</rt></ruby></span><span class="cw" onclick="showWord(\'の__title\')">の</span><span class="cw" onclick="showWord(\'神戸牛\')"><ruby>神戸牛<rt>こうべぎゅう</rt></ruby></span>',
+       plain:"これが噂の神戸牛",sound:"코레가 우와사노 코베규",trans:"이게 그 유명한 고베 소고기"},
+      {id:231107027,start:156,end:157,speaker:'SAKUYA',jlpt:'N4',
+       sk:"神戸牛 これ 고베 소고기 코베규 코레",
+       jp:'<span class="cw" onclick="showWord(\'神戸牛\')"><ruby>神戸牛<rt>こうべぎゅう</rt></ruby></span><span class="cw" onclick="showWord(\'これ\')">これ</span>？',
+       plain:"神戸牛これ？",sound:"코베규 코레?",trans:"고베 소고기야, 이게?"},
+      {id:231107028,start:159,end:160,speaker:'RIKU',jlpt:'N4',
+       sk:"ユウちゃんから いこう 유우부터 가자 유우짱카라 이코우",
+       jp:'<span class="jp-name">ユウ</span><span class="cw" onclick="showWord(\'ちゃん\')">ちゃん</span><span class="cw" onclick="showWord(\'から\')">から</span><span class="cw" onclick="showWord(\'行く\')"><ruby>行<rt>い</rt></ruby>こう</span>',
+       plain:"ユウちゃんからいこう",sound:"유우짱카라 이코우",trans:"유우부터 가자"},
+      {id:231107029,start:161,end:162,speaker:'RIKU',jlpt:'N5',
+       sk:"はい いきます 네 갑니다 하이 이키마스",
+       jp:'<span class="cw" onclick="showWord(\'はい\')">はい</span>、<span class="cw" onclick="showWord(\'いきます\')"><ruby>行<rt>い</rt></ruby>きます</span>',
+       plain:"はい、いきます",sound:"하이 이키마스",trans:"네, 갑니다"},
+      {id:231107030,start:163,end:164,speaker:'RIKU',jlpt:'N4',
+       sk:"お勧めの 食べ方 추천 먹는 법 오스스메노 타베카타",
+       jp:'<span class="cw" onclick="showWord(\'お勧め\')">お<ruby>勧<rt>すす</rt></ruby>めの</span><span class="cw" onclick="showWord(\'食べ方\')"><ruby>食<rt>た</rt></ruby>べ<ruby>方<rt>かた</rt></ruby></span>',
+       plain:"お勧めの食べ方",sound:"오스스메노 타베카타",trans:"추천 먹는 법"},
+      {id:231107031,start:166,end:167,speaker:'RIKU',jlpt:'N5',
+       sk:"おいしい やばい 맛있어 대박 오이시이 야바이",
+       jp:'<span class="cw" onclick="showWord(\'おいしい\')">おいしい</span>、<span class="cw" onclick="showWord(\'やばい\')">やばい</span>？',
+       plain:"おいしい、やばい？",sound:"오이시이 야바이?",trans:"맛있어, 대박이지?"},
+      {id:231107032,start:168,end:169,speaker:'SAKUYA',jlpt:'N5',
+       sk:"やばいでしょ 대박이지 야바이데쇼",
+       jp:'<span class="cw" onclick="showWord(\'やばい\')">やばい</span><span class="cw" onclick="showWord(\'でしょ\')">でしょ</span>？',
+       plain:"やばいでしょ？",sound:"야바이데쇼?",trans:"대박이지?"},
+      {id:231107033,start:172,end:173,speaker:'RIKU',jlpt:'N5',
+       sk:"いただきます 잘 먹겠습니다 이타다키마스",
+       jp:'<span class="cw" onclick="showWord(\'いただきます\')">いただきます</span>',
+       plain:"いただきます",sound:"이타다키마스",trans:"잘 먹겠습니다"},
+      {id:231107034,start:187,end:189,speaker:'RIKU',jlpt:'N4',
+       sk:"これ 震える テレビ 이거 떨려 TV 코레 후루에루 테레비",
+       jp:'<span class="cw" onclick="showWord(\'これ\')">これ</span><span class="cw" onclick="showWord(\'震える\')"><ruby>震<rt>ふる</rt></ruby>えるよね</span><span class="jp-plain">、</span><span class="cw" onclick="showWord(\'テレビ\')">テレビ</span><span class="cw" onclick="showWord(\'って\')">って</span>',
+       plain:"これ震えるよね、テレビって",sound:"코레 후루에루요네 테레비떼",trans:"이거 떨리지, TV라니"},
+      {id:231107035,start:191,end:192,speaker:'YUSHI',jlpt:'N4',
+       sk:"始めてないよ 시작 안 했잖아 하지메테나이요",
+       jp:'<span class="cw" onclick="showWord(\'始める\')"><ruby>始<rt>はじ</rt></ruby>めてないよ</span>',
+       plain:"始めてないよ",sound:"하지메테나이요",trans:"시작 안 했잖아"},
+      {id:231107036,start:192,end:193,speaker:'RIKU',jlpt:'N4',
+       sk:"これ 部位 違うの 이거 부위 다른 거야 코레 부이 치가우노",
+       jp:'<span class="cw" onclick="showWord(\'これ\')">これ</span><span class="cw" onclick="showWord(\'部位\')"><ruby>部位<rt>ぶい</rt></ruby></span><span class="cw" onclick="showWord(\'違う\')"><ruby>違<rt>ちが</rt></ruby>うの</span>？',
+       plain:"これ部位違うの？",sound:"코레 부이 치가우노?",trans:"이거 부위 다른 거야?"},
+      {id:231107037,start:194,end:195,speaker:'YUSHI',jlpt:'N5',
+       sk:"違う 다르다 치가우",
+       jp:'<span class="cw" onclick="showWord(\'違う\')"><ruby>違<rt>ちが</rt></ruby>う</span>',
+       plain:"違う",sound:"치가우",trans:"달라"},
+      {id:231107038,start:195,end:196,speaker:'RIKU',jlpt:'N4',
+       sk:"さっきのやつ これ 아까 것 이거 삿키노 코레",
+       jp:'<span class="cw" onclick="showWord(\'さっきの\')">さっきの</span><span class="cw" onclick="showWord(\'やつ\')">やつ</span>、<span class="cw" onclick="showWord(\'これ\')">これ</span>？',
+       plain:"さっきのやつ、これ？",sound:"삿키노 야츠 코레?",trans:"아까 것이랑 이게?"},
+      {id:231107039,start:200,end:201,speaker:'SAKUYA',jlpt:'N5',
+       sk:"やばいやばい 대박대박 야바이",
+       jp:'<span class="cw" onclick="showWord(\'やばい\')">やばい</span><span class="cw" onclick="showWord(\'やばい\')">やばい</span>',
+       plain:"やばいやばい",sound:"야바이 야바이",trans:"대박 대박"},
+      {id:231107040,start:201,end:202,speaker:'RIKU',jlpt:'N4',
+       sk:"焼いたら 変わらん 구워도 안 변해 야이타라 카와란",
+       jp:'<span class="cw" onclick="showWord(\'焼く\')"><ruby>焼<rt>や</rt></ruby>いたら</span><span class="cw" onclick="showWord(\'変わる\')"><ruby>変<rt>か</rt></ruby>わらん</span>',
+       plain:"焼いたら変わらん",sound:"야이타라 카와란",trans:"구워도 안 변하네"},
+      {id:231107041,start:203,end:204,speaker:'YUSHI',jlpt:'N4',
+       sk:"合ってるよ 맞아요 앗테루요",
+       jp:'<span class="cw" onclick="showWord(\'合う\')"><ruby>合<rt>あ</rt></ruby>ってるよ</span>',
+       plain:"合ってるよ",sound:"앗테루요",trans:"맞아요"}
+    ]
+  }
+];
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 전체 문장 배열 — PL을 펼쳐서 만든 플랫 배열 (필터/랜덤에 사용)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const ALL=[];
+PL.forEach((v,vi)=>v.sentences.forEach(s=>ALL.push({...s,videoId:v.videoId,vi,dv:v.dv})));
+
+// ── 앱 상태 변수 ──────────────────────────────────
+// todayS: 오늘의 랜덤 문장 객체
+// selVI: 현재 선택된 영상 인덱스 (PL 배열 기준)
+// prevTab: 뒤로가기 시 돌아갈 탭
+let todayS=null,selVI=0,prevTab='vlist';
+// todayP: 랜덤 문장 탭 유튜브 플레이어 인스턴스
+// detailP: 영상 상세 탭 유튜브 플레이어 인스턴스
+let todayP=null,detailP=null;
+// todayTick: 랜덤 탭 구간반복 인터벌 ID
+// detailTick: 상세 탭 구간반복 인터벌 ID
+let todayTick=null,detailTick=null;
+// todayLoop/detailLoop: 구간반복 활성 여부
+// dLoopId: 상세 탭에서 반복 중인 문장 id
+let todayLoop=false,detailLoop=false,dLoopId=null;
+// vSort: 영상 목록 정렬 기준 ('newest' | 'oldest')
+let vSort='newest';
+// AF: 전체 문장 탭 활성 필터 (멤버/JLPT)
+const AF={member:new Set(),jlpt:new Set()};
+// tTog: 랜덤 문장 탭 토글 상태 (요미가나/발음/의미)
+let tTog={ruby:true,sound:false,meaning:false};
+// activeSentTick: 재생 중 활성 문장 추적 인터벌 ID
+// lastActiveId: 마지막으로 하이라이트된 문장 id
+let activeSentTick=null,lastActiveId=null;
+
+window.addEventListener('DOMContentLoaded',()=>{
+  todayS=ALL[Math.floor(Math.random()*ALL.length)];
+  selVI=todayS.vi;
+  
+  document.getElementById('total-cnt').textContent=ALL.length+'개';
+  
+  renderRandom();
+  renderAll();
+  renderVList();
+  renderTranscript(selVI);
+  changeTab('today');
+
+  const t=document.createElement('script');
+  t.src='https://www.youtube.com/iframe_api';
+  document.head.appendChild(t);
+});
+
+// 유튜브 IFrame API 로드 완료 시 자동 호출 — 플레이어 초기화
+function onYouTubeIframeAPIReady(){
+  todayP=new YT.Player('todayPlayer',{height:'100%',width:'100%',videoId:PL[todayS.vi].videoId,playerVars:{origin:location.origin,controls:1,rel:0,autoplay:0}});
+  detailP=new YT.Player('detailPlayer',{height:'100%',width:'100%',videoId:PL[selVI].videoId,playerVars:{origin:location.origin,controls:1,rel:0,autoplay:0},events:{onStateChange:onDetailStateChange}});
+}
+
+// 상세 탭 플레이어 재생 상태 변경 시 호출 (재생/정지에 따라 자막 추적 on/off)
+function onDetailStateChange(e){
+  if(e.data===YT.PlayerState.PLAYING) startActiveSentTracking();
+  else stopActiveSentTracking();
+}
+
+// 200ms마다 재생 위치를 체크해서 해당 문장 행을 하이라이트
+function startActiveSentTracking(){
+  stopActiveSentTracking();
+  activeSentTick=setInterval(()=>{
+    if(!detailP?.getCurrentTime)return;
+    const cur=detailP.getCurrentTime();
+    const sents=PL[selVI].sentences;
+    let found=null;
+    for(const s of sents){if(cur>=s.start&&cur<s.end){found=s;break;}}
+    if(!found){
+      // 구간반복 중이면 점프/정지 로직 무시 (togRowRep이 직접 제어)
+      if(detailLoop)return;
+      // 현재 대사 없으면 → 다음 대사 시작점으로 점프, 없으면 정지
+      const next=sents.find(s=>toSec(s.start)>cur);
+      if(next){detailP.seekTo(toSec(next.start),true);return;}
+      else{detailP.pauseVideo();stopActiveSentTracking();return;}
+    }
+
+    const newId=found?found.id:null;
+    if(newId!==lastActiveId){
+      if(lastActiveId) document.getElementById('row-'+lastActiveId)?.classList.remove('active');
+      lastActiveId=newId;
+      if(newId){
+        document.getElementById('row-'+newId)?.classList.add('active');
+        scrollToRowInBox(newId, false);
+      }
+    }
+  },200);
+}
+
+// 자막 추적 중지 + 하이라이트 초기화
+function stopActiveSentTracking(){
+  clearInterval(activeSentTick);activeSentTick=null;
+  if(lastActiveId){document.getElementById('row-'+lastActiveId)?.classList.remove('active');lastActiveId=null;}
+}
+
+// 랜덤 문장 탭 — 오늘의 문장 카드 렌더링
+function renderRandom(){
+  const s=todayS;
+  document.getElementById('rnd-meta').innerHTML=
+    `<span class="spkpill" style="background:${MEM[s.speaker]||'#999'}">${s.speaker}</span>
+     <span class="card-vtitle">${PL[s.vi].title}</span>
+     <span class="jbadge">${s.jlpt}</span>`;
+  const cid='cp-rnd-'+s.id;
+  document.getElementById('rnd-body').innerHTML=
+    `<div class="sent-box">
+       <div class="jp-line${tTog.ruby?"": ' no-ruby'}" id="jp-rnd">${s.jp}</div>
+       <button class="cp-btn" id="${cid}" onclick="copyJP(event,'${esc2(s.plain)}','${cid}')">
+         <span class="material-symbols-rounded">content_copy</span>
+       </button>
+     </div>`;
+  document.getElementById('rnd-togs').innerHTML=
+    `<button class="tog on" id="ttog-ruby" onclick="togRnd('ruby')">
+       <span class="material-symbols-rounded">translate</span>요미가나
+     </button>
+     <button class="tog" id="ttog-sound" onclick="togRnd('sound')">
+       <span class="material-symbols-rounded">record_voice_over</span>발음
+     </button>
+     <button class="tog" id="ttog-meaning" onclick="togRnd('meaning')">
+       <span class="material-symbols-rounded">lightbulb</span>의미
+     </button>`;
+  document.getElementById('rnd-hints').innerHTML=
+    `<div class="hint-item" id="thr-sound"><span class="hk">발음</span><span class="hv rv">${s.sound}</span></div>
+     <div class="hint-item" id="thr-meaning"><span class="hk">의미</span><span class="hv">${s.trans}</span></div>`;
+  tTog={ruby:true,sound:false,meaning:false};
+}
+
+// 랜덤 탭 토글 버튼 (요미가나/발음/의미) 클릭 처리
+function togRnd(type){
+  tTog[type]=!tTog[type];
+  document.getElementById('ttog-'+type)?.classList.toggle('on',tTog[type]);
+  if(type==='ruby'){
+    document.getElementById('jp-rnd')?.classList.toggle('no-ruby',!tTog[type]);
+  } else {
+    const el=document.getElementById('thr-'+type);
+    if(el)el.classList.toggle('show',tTog[type]);
+  }
+  document.getElementById('rnd-expand').classList.toggle('open',tTog.sound||tTog.meaning);
+}
+
+// 전체 문장 탭 각 아이템의 본문 HTML 생성
+function sentBox(s,ctx){
+  const cid='c-'+ctx;
+  const plain=esc2(s.plain);
+  return `<div class="sent-box">
+    <div class="jp-line">${s.jp}</div>
+    <button class="cp-btn" id="${cid}" onclick="copyJP(event,'${plain}','${cid}')">
+      <span class="material-symbols-rounded">content_copy</span>
+    </button>
+    <div class="sitem-hints">
+      <div class="sitem-hint-row"><span class="hk">발음</span><span class="hv rv">${s.sound}</span></div>
+      <div class="sitem-hint-row"><span class="hk">의미</span><span class="hv">${s.trans}</span></div>
+    </div>
+  </div>`;
+}
+
+// 전체 문장 탭 렌더링
+function renderAll(){
+  document.getElementById('slist').innerHTML=ALL.map(s=>`
+    <div class="sitem"
+      data-sk="${esc(s.sk)} ${esc(s.sound)} ${esc(s.trans)} ${esc(s.plain)}"
+      data-member="${s.speaker}" data-jlpt="${s.jlpt}">
+      <div class="sitem-head">
+        <span class="spkpill" style="background:${MEM[s.speaker]||'#999'}">${s.speaker}</span>
+        <button class="vlink" onclick="openDetailAt(${s.vi},${s.start},${s.id});event.stopPropagation()">
+          ${PL[s.vi].title}
+        </button>
+        <span class="jbadge">${s.jlpt}</span>
+      </div>
+      <div class="sitem-body">${sentBox(s,'all'+s.id)}</div>
+    </div>`).join('');
+  applyFilters();
+}
+
+// HTML 특수문자 이스케이프 (data-* 속성용)
+function esc(str){return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;')}
+function esc2(str){return String(str).replace(/'/g,"\\'")}
+
+// 영상 목록 탭 렌더링 (검색어 필터 + 정렬 적용)
+function renderVList(){
+  const vsEl=document.getElementById('videoSearch');
+  const srchEl=document.getElementById('srchIn');
+  const isOpen=document.getElementById('srchWrap')?.style.display==='block';
+  const keyword=((vsEl?.value||'')+(isOpen&&document.getElementById('view-vlist')?.style.display==='flex'?srchEl?.value||'':'')).toLowerCase().trim();
+  let arr = PL.map((v,i)=>({...v,i})).filter(v => v.title.toLowerCase().includes(keyword));
+  arr.sort(vSort==='oldest'?(a,b)=>a.dv-b.dv:(a,b)=>b.dv-a.dv);
+  document.getElementById('vlist').innerHTML=arr.map(v=>`
+    <div class="vitem" onclick="openDetail(${v.i})">
+      <div class="vthumb"><img src="https://i.ytimg.com/vi/${v.videoId}/maxresdefault.jpg" alt="" onerror="this.style.background='#222'"></div>
+      <div class="vinfo">
+        <div class="vtitle">${v.title}</div>
+        <div class="vmeta">NCT WISH · ${v.date}</div>
+        <div class="vbrow"><span class="vcnt">${v.sentences.length}개 문장</span></div>
+      </div>
+    </div>`).join('');
+}
+
+// 영상 목록 정렬 기준 변경
+function setVSort(btn){
+  document.querySelectorAll('[data-vs]').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');vSort=btn.dataset.vs;renderVList();
+}
+
+// 상세 탭 자막 목록 렌더링 (vi: PL 인덱스)
+function renderTranscript(vi){
+  const v=PL[vi];
+  document.getElementById('d-title').textContent=v.title;
+  document.getElementById('d-sub').textContent='NCT WISH · '+v.date;
+  document.getElementById('transcript').innerHTML=v.sentences.map(s=>{
+    const mm=Math.floor(s.start/60),ss2=String(s.start%60).padStart(2,'0');
+    const cpid='rcp-'+s.id;
+    return `<div class="srow" id="row-${s.id}" data-speaker="${s.speaker}">
+      <div class="sl">
+        <button class="tbtn" onclick="seekTo(${s.start})">${mm}:${ss2}</button>
+        <button class="sspk" style="background:${MEM[s.speaker]||'#999'}" onclick="filterSpk('${s.speaker}');event.stopPropagation()">${s.speaker}</button>
+      </div>
+      <button class="srow-main" onclick="seekTo(${s.start})">
+        <div class="sr">
+          <span class="sr-jp">${s.jp}</span>
+          <span class="sr-sound">${s.sound}</span>
+          <span class="sr-trans">${s.trans}</span>
+        </div>
+      </button>
+      <div class="srow-rep">
+        <button class="rrep" id="rr-${s.id}" onclick="togRowRep(${s.id},${s.start},${s.end},this)">
+          <span class="material-symbols-rounded">repeat</span>
+        </button>
+        <button class="rcopy" id="${cpid}" onclick="copyJP(event,'${esc2(s.plain)}','cpid')">
+          <span class="material-symbols-rounded">content_copy</span>
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// 전체 문장 탭 필터 칩 토글 (멤버/JLPT)
+function togChip(btn){
+  const f=btn.dataset.f,v=btn.dataset.v;
+  if(AF[f].has(v)){AF[f].delete(v);btn.classList.remove('on');}
+  else{AF[f].add(v);btn.classList.add('on');}
+  applyFilters();
+}
+
+// 검색어 + 필터 칩 조건으로 전체 문장 목록 표시/숨김 처리
+function applyFilters(){
+  const raw=(document.getElementById('srchIn').value||'').trim().toLowerCase();
+  let vis=0;
+  document.querySelectorAll('.sitem').forEach(el=>{
+    const m=AF.member.size===0||AF.member.has(el.dataset.member);
+    const j=AF.jlpt.size===0||AF.jlpt.has(el.dataset.jlpt);
+    const sq=!raw||el.dataset.sk.toLowerCase().includes(raw);
+    const show=m&&j&&sq;
+    el.classList.toggle('hidden',!show);
+    if(show)vis++;
+  });
+  const em=document.getElementById('empty-msg');
+  if(em)em.style.display=vis===0?'block':'none';
+}
+
+// 전체 문장 탭 상단 검색창 열기/닫기
+function toggleSearch(){
+  const w=document.getElementById('srchWrap');
+  const open=w.style.display==='block';
+  const isVlist=document.getElementById('view-vlist').style.display==='flex';
+  w.style.display=open?'none':'block';
+  const inp=document.getElementById('srchIn');
+  if(!open){
+    inp.placeholder=isVlist?'영상 제목 검색':'단어, 발음, 뜻으로 검색';
+    inp.oninput=isVlist?()=>renderVList():()=>applyFilters();
+    // videoSearch 호환
+    const vs=document.getElementById('videoSearch');
+    if(vs) inp.oninput=()=>{if(isVlist)renderVList();else applyFilters();};
+    inp.focus();
+  } else {
+    inp.value='';
+    applyFilters();
+    renderVList();
+  }
+}
+
+// 랜덤 탭 구간 반복 토글
+function toggleTodayRepeat(){
+  if(!todayP?.seekTo)return;
+  if(todayLoop){
+    todayLoop=false;clearInterval(todayTick);todayP.pauseVideo();
+    document.getElementById('btnRep').classList.remove('on');
+  } else {
+    todayLoop=true;
+    todayP.seekTo(todayS.start,true);todayP.playVideo();
+    document.getElementById('btnRep').classList.add('on');
+    clearInterval(todayTick);
+    todayTick=setInterval(()=>{
+      const c=todayP.getCurrentTime?.();
+      if(c>=todayS.end||c<todayS.start-1)todayP.seekTo(todayS.start,true);
+    },100);
+  }
+}
+
+// 랜덤 탭 '처음부터' 버튼 — 영상을 0초부터 재생
+function playFull(){
+  if(!todayP?.seekTo)return;
+  if(todayLoop)toggleTodayRepeat();
+  todayP.seekTo(0,true);todayP.playVideo();
+}
+
+// 랜덤 탭 '전체 영상으로' 버튼 — 오늘의 문장 시작점으로 상세 탭 이동
+function goDetail(){
+  todayLoop=false;clearInterval(todayTick);todayP?.pauseVideo();
+  document.getElementById('btnRep')?.classList.remove('on');
+  openDetailAt(todayS.vi,todayS.start,todayS.id);
+}
+
+// 상세 탭 문장 행의 반복 버튼 토글
+function togRowRep(id,s,e,btn){
+  if(!detailP?.seekTo)return;
+  if(detailLoop&&dLoopId===id){stopDAll();return;}
+  stopDAll();
+  detailLoop=true;dLoopId=id;btn.classList.add('on');
+  detailP.seekTo(s,true);detailP.playVideo();
+  clearInterval(detailTick);
+  detailTick=setInterval(()=>{
+    const c=detailP.getCurrentTime?.();
+    if(c>=e||c<s-1)detailP.seekTo(s,true);
+  },100);
+}
+
+// 상세 탭 구간반복 전체 중지
+function stopDAll(){
+  detailLoop=false;dLoopId=null;clearInterval(detailTick);
+  document.querySelectorAll('.rrep').forEach(b=>b.classList.remove('on'));
+  detailP?.pauseVideo();
+}
+
+// 상세 탭 플레이어를 특정 초로 이동 후 재생
+function seekTo(sec){
+  if(!detailP?.seekTo)return;
+  stopDAll();detailP.seekTo(sec,true);detailP.playVideo();
+}
+
+// 상세 탭에서 특정 화자 대사만 표시
+function filterSpk(name){
+  document.getElementById('dfilter').style.display='flex';
+  document.getElementById('dfilter-lbl').textContent=name+' 대사만 보는 중';
+  document.querySelectorAll('.srow').forEach(r=>{r.style.display=r.dataset.speaker===name?'flex':'none';});
+}
+function clearDFilter(){
+  document.getElementById('dfilter').style.display='none';
+  document.querySelectorAll('.srow').forEach(r=>r.style.display='flex');
+}
+
+// 자막 스크롤 컨테이너 안에서 특정 문장 행이 보이도록 스크롤
+function scrollToRowInBox(id, smooth = true) {
+  const row = document.getElementById('row-' + id);
+  const container = document.querySelector('.transcript-scroll');
+  if (!row || !container) return;
+  const targetTop = row.offsetTop - container.offsetTop - 30;
+  container.scrollTo({
+    top: targetTop,
+    behavior: smooth ? 'smooth' : 'auto'
+  });
+}
+
+// 특정 문장 행으로 스크롤 + 잠깐 하이라이트
+function scrollToRow(id){
+  const row=document.getElementById('row-'+id);
+  if(!row)return;
+  document.querySelectorAll('.srow.hl').forEach(r=>r.classList.remove('hl'));
+  row.classList.add('hl');
+  setTimeout(()=>scrollToRowInBox(id, true), 300);
+  setTimeout(()=>row.classList.remove('hl'), 2500);
+}
+
+// 뒤로가기 버튼 — 이전 탭으로 복귀
+function handleBack(){
+  stopActiveSentTracking();
+  changeTab(prevTab);
+  localStorage.setItem('currentTab', prevTab); 
+}
+
+// 탭 전환 — 모든 뷰/탭 초기화 후 대상 탭 활성화
+function changeTab(tab){
+  ['today','all','vlist'].forEach(id=>document.getElementById('view-'+id).style.display='none');
+  document.getElementById('view-detail').style.display='none';
+  ['today','all','vlist'].forEach(id=>document.getElementById('tab-'+id)?.classList.remove('on'));
+  document.getElementById('btnBack').style.visibility='hidden';
+  document.getElementById('btnSearch').style.display='none';
+  if(todayP?.pauseVideo)todayP.pauseVideo();
+  if(todayLoop){todayLoop=false;clearInterval(todayTick);document.getElementById('btnRep')?.classList.remove('on');}
+  stopDAll();clearDFilter();stopActiveSentTracking();
+  if(['today','all','vlist'].includes(tab)){
+    document.getElementById('view-'+tab).style.display='flex';
+    document.getElementById('tab-'+tab)?.classList.add('on');
+  }
+  if(tab==='all') document.getElementById('btnSearch').style.display='flex';
+  if(tab==='vlist') document.getElementById('btnSearch').style.display='flex';
+
+  if(tab !== 'detail') {
+    localStorage.setItem('currentTab', tab);
+  }
+}
+
+// 영상 목록에서 영상 클릭 시 상세 탭으로 이동
+function openDetail(vi){openDetailAt(vi,null,null)}
+
+// 특정 영상(vi), 특정 초(seekSec), 특정 문장(sentId)으로 상세 탭 열기
+function openDetailAt(vi,seekSec,sentId){
+  const cur=['today','all','vlist'].find(id=>{const el=document.getElementById('view-'+id);return el&&el.style.display==='flex';});
+  if(cur)prevTab=cur;
+  const changed=vi!==undefined&&selVI!==vi;
+  if(changed){
+    selVI=vi;renderTranscript(vi);stopActiveSentTracking();
+    if(detailP && typeof detailP.loadVideoById === 'function'){
+      detailP.loadVideoById({videoId:PL[vi].videoId,startSeconds:seekSec??0});
+    }
+  }
+  clearDFilter();
+  ['today','all','vlist'].forEach(id=>{document.getElementById('view-'+id).style.display='none';document.getElementById('tab-'+id)?.classList.remove('on');});
+  document.getElementById('view-detail').style.display='flex';
+  document.getElementById('btnBack').style.visibility='visible';
+  document.getElementById('btnSearch').style.display='none';
+  if(seekSec!=null&&!changed)setTimeout(()=>seekTo(seekSec),200);
+  if(sentId!=null)setTimeout(()=>scrollToRow(sentId),400);
+
+  localStorage.setItem('currentTab', 'detail');
+  localStorage.setItem('selectedVI', vi);
+}
+
+// 단어 팝업 열기 — WDB에서 key로 검색해서 하단 시트 표시
+function showWord(w){
+  const d=WDB[w];if(!d)return;
+  document.getElementById('pWord').textContent=w.replace(/__\w+$/,'');
+  document.getElementById('pRead').textContent=d.r||'';
+  document.getElementById('pMean').textContent=d.m||'';
+  document.getElementById('pTags').innerHTML=(d.tags||[]).map(t=>{
+    if(t.t)return`<span class="ptag type">${t.t}</span>`;
+    if(t.g)return`<span class="ptag grp">${t.g}</span>`;
+    if(t.f)return`<span class="ptag form">${t.f}</span>`;
+    if(t.n)return`<span class="ptag note">${t.n}</span>`;
+    return'';
+  }).join('');
+  const pn=document.getElementById('pNote');
+  if(d.note){pn.style.display='block';pn.textContent=d.note;}
+  else pn.style.display='none';
+  document.getElementById('popup').classList.add('open');
+}
+// 단어 팝업 닫기
+function closePop(){document.getElementById('popup').classList.remove('open')}
+function maybeClosePop(e){if(e.target===document.getElementById('popup'))closePop()}
+
+// 일본어 원문 클립보드 복사 + 완료 아이콘 잠깐 표시
+function copyJP(e,text,id){
+  e.stopPropagation();
+  navigator.clipboard.writeText(text).then(()=>{
+    const b=document.getElementById(id);if(!b)return;
+    b.classList.add('done');
+    b.innerHTML='<span class="material-symbols-rounded">check</span>';
+    setTimeout(()=>{b.classList.remove('done');b.innerHTML='<span class="material-symbols-rounded">content_copy</span>';},1400);
+  });
+}
+
+// 재생 속도 (0.25 ~ 3.0)
+let playbackRate = 1;
+// 처음 대사부터 다시 시작
+function restartTranscript(){
+  if(!detailP?.seekTo)return;
+  const sents=PL[selVI].sentences;
+  if(!sents||!sents.length)return;
+  stopDAll();
+  detailP.seekTo(toSec(sents[0].start),true);
+  detailP.playVideo();
+}
+
+// 재생 속도 조절 버튼 (+/- 0.25씩)
+function changeSpeed(diff){
+  playbackRate += diff;
+  if(playbackRate < 0.25) playbackRate = 0.25;
+  if(playbackRate > 3) playbackRate = 3;
+  playbackRate = Math.round(playbackRate * 100) / 100;
+  if(detailP && typeof detailP.setPlaybackRate === 'function') {
+    detailP.setPlaybackRate(playbackRate);
+  }
+  document.getElementById('speedLabel').textContent = playbackRate.toFixed(2) + 'x';
+}
+</script>
+</body>
+</html>
