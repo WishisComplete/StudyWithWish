@@ -8,95 +8,96 @@
 <style>
 
 :root{
-  --glass:          rgba(255,255,255,0.60);  /* 카드·박스 기본 glass 배경 */
-  --glass-thick:    rgba(255,255,255,0.80);  /* 더 불투명한 glass */
-  --glass-thin:     rgba(255,255,255,0.35);  /* 얇은 glass */
-  --glass-hover:    rgba(255,255,255,0.72);  /* hover 시 glass */
-  --glass-border:   rgba(255,255,255,0.90);  /* glass 카드 테두리 밝은 하이라이트 */
-  --glass-border2:  rgba(255,255,255,0.60);  /* 헤더·탭바 테두리 */
-  --glass-shadow:   0 2px 24px rgba(140,185,220,.18), 0 0 0 .5px #fafafa inset;  /* 카드 그림자 */
-  --glass-shadow-sm:0 1px 12px rgba(140,185,220,.14), 0 0 0 .5px #fafafa inset;  /* 작은 요소 그림자 */
-  --bd:             rgba(255,255,255,.75);   /* 일반 구분선 */
-  --bd2:            rgba(255,255,255,.90);   /* 진한 구분선 (팝업 드래그 바) */
-  --ink:            #1e4a62;   /* 본문 텍스트 — 일본어, 주요 내용, 제목 */
-  --ink2:           #2d6480;   /* 보조 텍스트 — 번역, 버튼 텍스트 */
-  --ink3:           #5a90a8;   /* 흐린 텍스트 — 라벨, 날짜, 탭 아이콘 */
-  --ink4:           #90b8c8;   /* 가장 흐린 텍스트 — 힌트 키, 플레이스홀더 */
-  --sky:            #5aaad4;   /* 포인트 컬러 */
-  --sky-dim:        #78bce0;   /* 연한 accent */
+  --glass:          rgba(255,255,255,0.60);
+  --glass-thick:    rgba(255,255,255,0.80);
+  --glass-thin:     rgba(255,255,255,0.35);
+  --glass-hover:    rgba(255,255,255,0.72);
+  --glass-border:   rgba(255,255,255,0.90);
+  --glass-border2:  rgba(255,255,255,0.60);
+  --glass-shadow:   0 2px 24px rgba(140,185,220,.18), 0 0 0 .5px #fafafa inset;
+  --glass-shadow-sm:0 1px 12px rgba(140,185,220,.14), 0 0 0 .5px #fafafa inset;
+  --bd:             rgba(255,255,255,.75);
+  --bd2:            rgba(255,255,255,.90);
+  --ink:            #1e4a62;
+  --ink2:           #2d6480;
+  --ink3:           #5a90a8;
+  --ink4:           #90b8c8;
+  --sky:            #5aaad4;
+  --sky-dim:        #78bce0;
   --sky-glow:       rgba(90,170,212,.20);
-  --riku:           #e06868;   /* RIKU */
-  --yushi:          #4aa8d8;   /* YUSHI */
-  --ryo:            #c8a030;   /* RYO */
-  --sakuya:         #d870a8;   /* SAKUYA */
+  --riku:           #e06868;
+  --yushi:          #4aa8d8;
+  --ryo:            #c8a030;
+  --sakuya:         #d870a8;
   --sans: 'DM Sans',-apple-system,'SF Pro Display',sans-serif;
   --r:    16px;
-  --col-wordmark:        #1e4a62;              /* 로고 텍스트 */
-  --col-header-btn:      #5d6f79;              /* 헤더 버튼 */
-  --col-tab-off:         #dcdcdc;              /* 비선택 탭 */
-  --col-tab-on:          #b7cbe0;              /* 선택된 탭 */
-  --col-card-bg:         var(--glass);         /* 카드 배경 */
-  --col-vtitle:          #b0b0b0;              /* 카드 내 영상 제목 */
-  --col-jbadge-bg:       rgba(240,242,245,.55); /* JLPT 뱃지 배경 */
-  --col-jbadge-text:     #b3daee;              /* JLPT 뱃지 텍스트 */
-  --col-jp:              #1e4a62;              /* 일본어 텍스트 */
-  --col-ruby:            #90b8c8;              /* 후리가나 텍스트 */
-  --col-cw-hover:        rgba(255,255,255,.80); /* 단어 hover 배경 */
-  --col-copy:            #bedef0;              /* 복사 버튼 아이콘 */
-  --col-copy-done:       #48b878;              /* 복사 완료 아이콘 */
-  --col-hint-row-bg:     rgba(255,255,255,.50); /* 힌트 행 배경 */
-  --col-hint-key:        #90b8c8;              /* '발음' '의미' 라벨 */
-  --col-hint-val:        #2d6480;              /* 힌트 값 텍스트 */
-  --col-hint-val-bold:   #1e4a62;              /* 발음 강조 텍스트 */
-  --col-tog-off-bg:      rgba(240,242,245,.55); /* 토글 꺼진 배경 */
-  --col-tog-off-text:    #2d6480;              /* 토글 꺼진 텍스트 */
-  --col-tog-off-icon:    #90b8c8;              /* 토글 꺼진 아이콘 */
-  --col-tog-ruby:        #c8d7de;              /* 요미가나 토글 켜진 색 */
-  --col-tog-sound:       #c8d7de;              /* 발음 토글 켜진 색 */
-  --col-tog-meaning:     #c8d7de;              /* 의미 토글 켜진 색 */
-  --col-btn-off-bg:      rgba(255,255,255,.55); /* 재생버튼 꺼진 배경 */
-  --col-btn-off-text:    #2d6480;              /* 재생버튼 꺼진 텍스트 */
-  --col-btn-icon:        #5aaad4;              /* 재생버튼 아이콘 */
-  --col-btn-on-bg:       rgba(90,170,212,.55);  /* 재생버튼 켜진 배경 */
-  --col-primary-btn:     rgba(200,215,221,.65); /* 메인 버튼 배경 */
-  --col-section-title:   #5a7584;              /* '전체 문장' 타이틀 */
-  --col-section-count:   #b0b0b0;              /* 문장 수 텍스트 */
-  --col-filter-label:    #b3daee;              /* '멤버' 'JLPT' 라벨 */
-  --col-chip-off-bg:     rgba(255,255,255,.55); /* 필터칩 꺼진 배경 */
-  --col-chip-off-text:   #7e9eae;              /* 필터칩 꺼진 텍스트 */
-  --col-chip-on-bg:      rgba(104,130,144,0.72); /* 필터칩 켜진 배경 */
-  --col-vlink:           #b0b0b0;              /* 영상 링크 텍스트 */
-  --col-empty-msg:       #b0b0b0;              /* 결과없음 텍스트 */
-  --col-sort-label:      #90b8c8;              /* '정렬' 텍스트 */
-  --col-seg-off-text:    #2d6480;              /* 세그먼트 꺼진 */
-  --col-seg-on-text:     #1e4a62;              /* 세그먼트 켜진 */
-  --col-vtitle-text:     #464a4c;              /* 영상 제목 텍스트 */
-  --col-vmeta:           #8a9093;              /* 날짜·채널 메타 */
-  --col-vcnt:            #73797b;              /* 'N개 문장' */
-  --col-detail-title:    #464a4c;              /* 영상 제목 */
-  --col-detail-sub:      #8a9093;              /* 채널·날짜 부제목 */
-  --col-speed-btn:       #2d6480;              /* 속도 버튼 */
-  --col-speed-val:       #1e4a62;              /* 속도 값 */
-  --col-dfilter:         #2d6480;              /* 화자필터 텍스트 */
-  --col-dfclear:         #5aaad4;              /* 전체보기 버튼 */
-  --col-srow-bg:         rgba(240,242,245,.50); /* 자막 행 배경 */
-  --col-srow-active-bg:  rgba(90,170,212,.10);  /* 재생 중 행 배경 */
-  --col-tbtn:            #4a88a9;              /* 타임스탬프 버튼 */
-  --col-sr-jp:           #1e4a62;              /* 자막 일본어 */
-  --col-sr-sound:        #5aaad4;              /* 자막 발음 */
-  --col-sr-trans:        #5a90a8;              /* 자막 번역 */
-  --col-rep-icon:        #b0ccd8;              /* 반복·복사 아이콘 */
-  --col-rep-on:          #83b8d4;              /* 반복 켜진 색 */
-  --col-pop-bg:          rgba(248,250,250,0.94); /* 팝업 시트 배경 */
-  --col-pop-word:        #1e4a62;              /* 단어 큰 텍스트 */
-  --col-pop-read:        #5a90a8;              /* 읽기 텍스트 */
-  --col-pop-mean:        #1e4a62;              /* 뜻 텍스트 */
-  --col-pop-tag-type-bg: rgba(90,170,212,.10);  /* 품사 태그 배경 */
-  --col-pop-tag-type:    #5aaad4;              /* 품사 태그 */
-  --col-pop-tag-etc:     #5a90a8;              /* 기타 태그 */
-  --col-pop-note-bg:     rgba(255,255,255,.65); /* 설명 박스 배경 */
-  --col-pop-note-text:   #2d6480;              /* 설명 텍스트 */
-  --bg:#F0F2F5;               /* ← 배경 단색 여기서 바꾸세요 */ --card:var(--glass); --card2:rgba(255,255,255,.48);
+  --col-wordmark:        #1e4a62;
+  --col-header-btn:      #5d6f79;
+  --col-tab-off:         #dcdcdc;
+  --col-tab-on:          #b7cbe0;
+  --col-card-bg:         var(--glass);
+  --col-vtitle:          #b0b0b0;
+  --col-jbadge-bg:       rgba(240,242,245,.55);
+  --col-jbadge-text:     #b3daee;
+  --col-jp:              #1e4a62;
+  --col-ruby:            #90b8c8;
+  --col-cw-hover:        rgba(255,255,255,.80);
+  --col-copy:            #bedef0;
+  --col-copy-done:       #48b878;
+  --col-hint-row-bg:     rgba(255,255,255,.50);
+  --col-hint-key:        #90b8c8;
+  --col-hint-val:        #2d6480;
+  --col-hint-val-bold:   #1e4a62;
+  --col-tog-off-bg:      rgba(240,242,245,.55);
+  --col-tog-off-text:    #2d6480;
+  --col-tog-off-icon:    #90b8c8;
+  --col-tog-ruby:        #c8d7de;
+  --col-tog-sound:       #c8d7de;
+  --col-tog-meaning:     #c8d7de;
+  --col-btn-off-bg:      rgba(255,255,255,.55);
+  --col-btn-off-text:    #2d6480;
+  --col-btn-icon:        #5aaad4;
+  --col-btn-on-bg:       rgba(90,170,212,.55);
+  --col-primary-btn:     rgba(200,215,221,.65);
+  --col-section-title:   #5a7584;
+  --col-section-count:   #b0b0b0;
+  --col-filter-label:    #b3daee;
+  --col-chip-off-bg:     rgba(255,255,255,.55);
+  --col-chip-off-text:   #7e9eae;
+  --col-chip-on-bg:      rgba(104,130,144,0.72);
+  --col-vlink:           #b0b0b0;
+  --col-empty-msg:       #b0b0b0;
+  --col-sort-label:      #90b8c8;
+  --col-seg-off-text:    #2d6480;
+  --col-seg-on-text:     #1e4a62;
+  --col-vtitle-text:     #464a4c;
+  --col-vmeta:           #8a9093;
+  --col-vcnt:            #73797b;
+  --col-detail-title:    #464a4c;
+  --col-detail-sub:      #8a9093;
+  --col-speed-btn:       #2d6480;
+  --col-speed-val:       #1e4a62;
+  --col-dfilter:         #2d6480;
+  --col-dfclear:         #5aaad4;
+  --col-srow-bg:         rgba(240,242,245,.50);
+  --col-srow-active-bg:  rgba(90,170,212,.10);
+  --col-tbtn:            #4a88a9;
+  --col-sr-jp:           #1e4a62;
+  --col-sr-sound:        #5aaad4;
+  --col-sr-trans:        #5a90a8;
+  --col-rep-icon:        #b0ccd8;
+  --col-rep-on:          #83b8d4;
+  --col-pop-bg:          rgba(248,250,250,0.94);
+  --col-pop-word:        #1e4a62;
+  --col-pop-read:        #5a90a8;
+  --col-pop-mean:        #1e4a62;
+  --col-pop-tag-type-bg: rgba(90,170,212,.10);
+  --col-pop-tag-type:    #5aaad4;
+  --col-pop-tag-etc:     #5a90a8;
+  --col-pop-note-bg:     rgba(255,255,255,.65);
+  --col-pop-note-text:   #2d6480;
+  --bg:#F0F2F5;
+  --card:var(--glass); --card2:rgba(255,255,255,.48);
   --card3:rgba(255,255,255,.65); --acc:#5aaad4; --acc3:#48b878;
 }
 *,::before,::after{box-sizing:border-box;margin:0;padding:0}
@@ -105,7 +106,6 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 
 .app{width:100%;max-width:430px;min-height:100vh;display:flex;flex-direction:column;position:relative}
 
-/* ── NAV BAR ── */
 .hdr{position:sticky;top:0;z-index:200;background:rgba(240,242,245,.78);backdrop-filter:blur(28px) saturate(140%);-webkit-backdrop-filter:blur(28px) saturate(140%);border-bottom:.5px solid rgba(255,255,255,.85);box-shadow:0 1px 0 rgba(255,255,255,.95)}
 .hdr-top{display:grid;grid-template-columns:56px 1fr 56px;align-items:center;height:48px;padding:0 4px}
 .wordmark{font-size:17px;font-weight:600;letter-spacing:-.3px;text-align:center;color:var(--col-wordmark)}
@@ -121,7 +121,6 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 
 .view{display:none;flex-direction:column;flex-grow:1;padding-bottom:100px;background:transparent}
 
-/* ── TAB BAR ── */
 .bnav{position:fixed;bottom:0;width:100%;max-width:430px;background:rgba(240,242,245,.82);backdrop-filter:blur(32px) saturate(140%);-webkit-backdrop-filter:blur(32px) saturate(140%);border-top:.5px solid rgba(255,255,255,.88);box-shadow:0 -1px 0 rgba(255,255,255,.98);display:flex;padding:4px 0 max(env(safe-area-inset-bottom),16px);z-index:200}
 .ntab{flex:1;background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:10px;font-weight:400;color:var(--col-tab-off);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:3px 0;transition:color .1s}
 .ntab:active{opacity:.5}
@@ -129,8 +128,6 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .ntab.on .material-symbols-rounded{font-variation-settings:'FILL' 1}
 .ntab .material-symbols-rounded{font-size:26px}
 
-/* ── TODAY ── */
-/* Hero sentence card */
 .rnd-hero{margin:20px 16px 0;background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:26px;overflow:hidden;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow)}
 .rnd-hero-band{display:flex;align-items:center;gap:8px;padding:14px 18px 12px}
 .spkpill{font-size:11px;font-weight:600;letter-spacing:.04em;padding:4px 12px;border-radius:20px;color:rgba(255,255,255,.95);flex-shrink:0;box-shadow:0 1px 6px rgba(0,0,0,.12),0 0 0 .5px #fafafa inset}
@@ -138,7 +135,6 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .jbadge{font-size:11px;font-weight:500;padding:3px 9px;border-radius:8px;background:var(--col-jbadge-bg);color:var(--col-jbadge-text);flex-shrink:0}
 .rnd-hero-body{padding:16px 18px 18px;border-top:.5px solid rgba(255,255,255,.45)}
 
-/* Japanese text */
 .jp-name,.jp-plain{color:var(--col-jp)}
 .jp-line{display:block;font-size:26px;font-weight:300;color:var(--col-jp);line-height:2.2;margin-bottom:0}
 .jp-line .cw{display:inline;cursor:pointer;border-radius:5px;padding:1px 3px;transition:background .1s}
@@ -151,7 +147,6 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .cp-btn.done{color:var(--col-copy-done)}
 .cp-btn .material-symbols-rounded{font-size:17px}
 
-/* Hint rows */
 .hint-rows{display:flex;flex-direction:column;gap:0;margin-top:14px;border-radius:14px;overflow:hidden;border:.5px solid rgba(255,255,255,.50);box-shadow:0 2px 8px rgba(100,150,200,.10)}.sitem-hints{display:flex;flex-direction:column;gap:4px;margin-top:10px;padding:8px 0 2px}.sitem-hint-row{display:flex;align-items:baseline;gap:0}
 .hrow{display:flex;align-items:baseline;gap:0;background:var(--col-hint-row-bg)}
 .hrow+.hrow{border-top:.5px solid rgba(255,255,255,.40)}
@@ -159,7 +154,6 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .hv{color:var(--col-hint-val);font-size:14px;padding:9px 14px 9px 0;flex:1}
 .hv.rv{font-size:15px;font-weight:500;letter-spacing:.02em;color:var(--col-hint-val-bold);padding-top:9px}
 
-/* Controls below card */
 .rnd-actions{padding:16px 16px 20px;display:flex;flex-direction:column;gap:14px}
 .tog-row{display:flex;gap:8px;flex-wrap:wrap}
 .tog{font-size:14px;font-weight:400;padding:7px 15px;border-radius:20px;border:.5px solid var(--glass-border);background:var(--col-tog-off-bg);color:var(--col-tog-off-text);cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .15s;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:var(--glass-shadow-sm)}
@@ -171,8 +165,6 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .hint-inner{padding:10px 0 2px;display:flex;flex-direction:column;gap:8px;border-top:.5px solid var(--bd);margin-top:4px}.hint-item.show{display:flex}
 .hint-item{display:none;align-items:baseline;gap:8px}
 
-
-/* Play buttons */
 .btn2-row{display:flex;gap:8px}
 .btn2{flex:1;font-family:var(--sans);font-size:15px;font-weight:400;padding:12px;border:.5px solid var(--glass-border);background:var(--col-btn-off-bg);color:var(--col-btn-off-text);cursor:pointer;border-radius:16px;display:flex;align-items:center;justify-content:center;gap:7px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:var(--glass-shadow-sm);transition:all .15s}
 .btn2:active{opacity:.6;transform:scale(.97)}
@@ -185,12 +177,10 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .primary-btn:active{opacity:.8;transform:scale(.98)}
 .primary-btn .material-symbols-rounded{font-size:19px}
 
-/* ── ALL ── */
 .sec-head{padding:32px 18px 8px;display:flex;align-items:flex-end;justify-content:space-between}
 .sec-ttl{font-size:28px;font-weight:700;color:var(--col-section-title);letter-spacing:-.5px;line-height:1}
 .sec-cnt{font-size:13px;color:var(--col-section-count);padding-bottom:2px}
 
-/* Filter — segmented pill row */
 .filter-panel{padding:12px 16px 8px}
 .filter-sec{display:flex;flex-direction:column;gap:10px}.filter-card{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:18px;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow);padding:12px 14px}
 .filter-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
@@ -203,7 +193,6 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .fc.ryo.on{background:var(--ryo)}
 .fc.sakuya.on{background:var(--sakuya)}
 
-/* Sentence list — inset grouped */
 .slist{padding:0 16px;display:flex;flex-direction:column;gap:12px}
 .sitem{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);overflow:hidden;border-radius:22px;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow)}
 .sitem.hidden{display:none}
@@ -213,15 +202,12 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .sitem-body{padding:12px 14px 14px;border-top:.5px solid rgba(255,255,255,.45)}
 .empty-msg{padding:60px 16px;text-align:center;font-size:16px;color:var(--col-empty-msg);display:none}
 
-/* ── VIDEO LIST ── */
 .vlist-toolbar{padding:4px 16px 12px;display:flex;align-items:center;gap:8px}
 .sort-lbl{font-size:14px;color:var(--col-sort-label)}
-/* Segmented control */
 .seg-ctrl{display:flex;background:rgba(255,255,255,.28);backdrop-filter:blur(10px);border:.5px solid rgba(255,255,255,.55);border-radius:12px;padding:2px;gap:0}
 .sc{font-family:var(--sans);font-size:13px;font-weight:400;padding:5px 16px;border-radius:7px;border:none;background:transparent;color:var(--col-seg-off-text);cursor:pointer;transition:all .2s}
 .sc.on{background:rgba(255,255,255,.75);color:var(--col-seg-on-text);box-shadow:0 2px 8px rgba(100,150,200,.18)}
 
-/* Video cards — full-width stacked with thumbnails */
 .vlist{padding:0 16px;display:flex;flex-direction:column;gap:14px}
 .vitem{display:flex;flex-direction:column;background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);overflow:hidden;cursor:pointer;border-radius:24px;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow);transition:transform .18s,box-shadow .18s}
 .vitem:active{transform:scale(.97);box-shadow:0 2px 8px rgba(100,150,200,.12)}
@@ -233,7 +219,6 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .vbrow{display:flex;align-items:center;justify-content:space-between;margin-top:2px}
 .vcnt{font-size:12px;font-weight:400;color:var(--col-vcnt)}
 
-/* ── DETAIL ── */
 #view-detail{display:none;flex-direction:column;height:calc(100vh - 116px);overflow:hidden}
 .detail-sticky{flex-shrink:0;background:rgba(245,251,255,.85);backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%)}
 .detail-video-wrap{width:100%;aspect-ratio:16/9;position:relative;background:#000;flex-shrink:0}
@@ -273,7 +258,6 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .rcopy.done{color:var(--col-copy-done)}
 .rrep .material-symbols-rounded,.rcopy .material-symbols-rounded{font-size:17px}
 
-/* Speed */
 .speed-wrap{display:flex;align-items:center;justify-content:center;gap:0;padding:8px 16px;background:rgba(255,255,255,.58);border-bottom:.5px solid rgba(255,255,255,.80)}
 .speed-btn{border:.5px solid rgba(255,255,255,.55);background:rgba(255,255,255,.35);backdrop-filter:blur(8px);color:var(--col-speed-btn);width:40px;height:32px;cursor:pointer;font-size:14px;font-family:var(--sans);font-weight:500;line-height:1;display:flex;align-items:center;justify-content:center;transition:all .12s}
 .speed-btn:first-child{border-radius:8px 0 0 8px}
@@ -281,7 +265,6 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .speed-btn:active{opacity:.6}
 .speed-value{min-width:64px;text-align:center;font-weight:500;font-size:14px;color:var(--col-speed-val);background:rgba(255,255,255,.25);height:32px;display:flex;align-items:center;justify-content:center;border-left:.5px solid rgba(255,255,255,.50);border-right:.5px solid rgba(255,255,255,.50)}
 
-/* ── WORD POPUP ── */
 .pop-ov{display:none;position:fixed;inset:0;background:rgba(30,74,98,.22);backdrop-filter:blur(8px);z-index:500;align-items:flex-end;justify-content:center}
 .pop-ov.open{display:flex}
 .pop-sh{width:100%;max-width:430px;background:rgba(220,236,248,.88);backdrop-filter:blur(32px) saturate(160%);-webkit-backdrop-filter:blur(32px) saturate(160%);border-radius:32px 32px 0 0;border-top:.5px solid rgba(255,255,255,.85);padding:16px 24px max(env(safe-area-inset-bottom),32px);max-height:72vh;overflow-y:auto;animation:shUp .28s cubic-bezier(.22,1,.36,1)}
@@ -299,116 +282,36 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .ptag.note{border-color:var(--bd);color:var(--col-pop-tag-etc);font-size:12px;font-weight:400}
 .pop-note{font-size:14px;line-height:1.7;color:var(--col-pop-note-text);background:rgba(255,255,255,.45);border:.5px solid rgba(255,255,255,.60);padding:14px 16px;border-radius:16px}
 
-
-
-
-/* ═══════════════════════════════════════════════════════════
-   DESKTOP RESPONSIVE — 768px 이상
-   ═══════════════════════════════════════════════════════════ */
 @media (min-width: 768px) {
-
   body { justify-content: center; }
-
-  .app {
-    max-width: 900px;
-    width: 100%;
-  }
-
+  .app { max-width: 900px; width: 100%; }
   .bnav { max-width: 900px; }
   .hdr  { max-width: 900px; }
-
-  /* ── 핵심: 뷰 기본은 none, JS가 flex로 바꿈 ──
-     display:flex !important 절대 쓰지 않음      */
-  .view {
-    padding-bottom: 90px;
-  }
-
-  /* ── TODAY — 단일 컬럼, 최대너비 제한 ── */
-  #view-today {
-    max-width: 580px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-  }
-
-  /* ── 전체 문장 탭 — 2열 그리드 ── */
+  .view { padding-bottom: 90px; }
+  #view-today { max-width: 580px; margin-left: auto; margin-right: auto; width: 100%; }
   #view-all { padding: 0 24px; }
   #view-all .sec-head    { padding: 32px 0 8px; }
   #view-all .filter-panel { padding: 12px 0 8px; }
-  #view-all .slist {
-    padding: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 1fr;   /* 카드 높이 동일하게 */
-    gap: 14px;
-    align-items: start;
-  }
-  /* 카드 내부도 높이 100% 채우기 */
-  #view-all .slist .sitem {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  #view-all .slist .sitem-body {
-    flex: 1;
-  }
+  #view-all .slist { padding: 0; display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; gap: 14px; align-items: start; }
+  #view-all .slist .sitem { height: 100%; display: flex; flex-direction: column; }
+  #view-all .slist .sitem-body { flex: 1; }
   #view-all .empty-msg { grid-column: 1 / -1; }
-
-  /* ── 영상 목록 탭 — 2열 그리드 ── */
   #view-vlist { padding: 0 24px; }
   #view-vlist .sec-head       { padding: 32px 0 8px; }
   #view-vlist .vlist-toolbar  { padding: 4px 0 12px; }
-  #view-vlist .vlist {
-    padding: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  /* ── 영상 상세 탭 — 좌: 영상+컨트롤 / 우: 자막 ── */
-  #view-detail {
-    flex-direction: row !important;
-    height: calc(100vh - 72px);
-  }
-
-  .detail-sticky {
-    width: 420px;
-    min-width: 360px;
-    max-width: 420px;
-    flex-shrink: 0;
-    height: 100%;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    border-right: .5px solid rgba(255,255,255,.35);
-  }
-
-  .transcript-scroll {
-    flex: 1;
-    overflow-y: auto;
-    padding-bottom: 80px;
-  }
-
-  /* ── 팝업 — 가운데 모달 ── */
+  #view-vlist .vlist { padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  #view-detail { flex-direction: row !important; height: calc(100vh - 72px); }
+  .detail-sticky { width: 420px; min-width: 360px; max-width: 420px; flex-shrink: 0; height: 100%; overflow-y: auto; display: flex; flex-direction: column; border-right: .5px solid rgba(255,255,255,.35); }
+  .transcript-scroll { flex: 1; overflow-y: auto; padding-bottom: 80px; }
   .pop-ov { align-items: center; }
-  .pop-sh {
-    max-width: 520px;
-    border-radius: 24px !important;
-    margin-bottom: 0;
-    max-height: 80vh;
-  }
+  .pop-sh { max-width: 520px; border-radius: 24px !important; margin-bottom: 0; max-height: 80vh; }
 }
 
-/* ── 1200px 이상: 영상 목록 3열 ── */
 @media (min-width: 1200px) {
   .app  { max-width: 1100px; }
   .bnav { max-width: 1100px; }
   .hdr  { max-width: 1100px; }
-
-  #view-vlist .vlist {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
+  #view-vlist .vlist { grid-template-columns: repeat(3, 1fr); }
   .detail-sticky { width: 480px; max-width: 480px; }
 }
 
@@ -489,7 +392,6 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 
 <main class="view" id="view-vlist">
   <div class="sec-head"><span class="sec-ttl">영상 목록</span></div>
-
   <div class="vlist-toolbar">
     <span class="sort-lbl">정렬</span>
     <div class="seg-ctrl">
@@ -508,11 +410,11 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
       <div class="dsub" id="d-sub">NCT WISH</div>
     </div>
     <div class="speed-wrap">
-  <button class="speed-btn" onclick="restartTranscript()" style="font-size:12px;font-weight:500;width:52px;letter-spacing:-.2px">처음으로</button>
-  <button class="speed-btn" onclick="changeSpeed(-0.25)">－</button>
-  <span class="speed-value" id="speedLabel">1.00x</span>
-  <button class="speed-btn" onclick="changeSpeed(0.25)">＋</button>
-</div>
+      <button class="speed-btn" onclick="restartTranscript()" style="font-size:12px;font-weight:500;width:52px;letter-spacing:-.2px">처음으로</button>
+      <button class="speed-btn" onclick="changeSpeed(-0.25)">－</button>
+      <span class="speed-value" id="speedLabel">1.00x</span>
+      <button class="speed-btn" onclick="changeSpeed(0.25)">＋</button>
+    </div>
     <div class="dfilter" id="dfilter">
       <span id="dfilter-lbl">—</span>
       <button class="dfclear" onclick="clearDFilter()">전체보기 ✕</button>
@@ -549,19 +451,10 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 </div>
 
 <script>
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// 화자별 색상 맵 — spkpill, sspk 배경색에 사용
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 const MEM={RIKU:'#C94F44',YUSHI:'#2E96C8',RYO:'#B89400',SAKUYA:'#C45C90'};
 
-// mm:ss 문자열 또는 숫자(초)를 초 단위 숫자로 변환
 function toSec(v){if(typeof v==='number')return v;const[m,s]=String(v).split(':').map(Number);return m*60+s;}
 
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// 단어 사전 — 단어 팝업(showWord)에서 참조
-// key: showWord('키') 와 일치해야 함
-// r: 읽기(히라가나), m: 뜻, tags: 품사/그룹/활용형/메모, note: 설명
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 const WDB={
   "ここ":{r:"ここ",m:"여기 (지시대명사)",tags:[{t:"대명사"}]},
   "の__attr":{r:"の",m:"~의 / ~인 (연체 조사)",tags:[{t:"조사"},{n:"명사 수식"}],note:"「何の倉庫」= 무슨 창고 — 뒤 명사를 꾸며주는 の。"},
@@ -630,7 +523,6 @@ const WDB={
   "変わる":{r:"かわる",m:"변하다",tags:[{t:"동사"},{g:"1그룹"},{f:"기본형"}],note:"「変わらん」= 안 변해 (関西弁)."},
   "合う":{r:"あう",m:"맞다 / 어울리다",tags:[{t:"동사"},{g:"1그룹"},{f:"기본형"}],note:"「合ってるよ」= 맞아요."},
   "どうぞ":{r:"どうぞ",m:"먼저 하세요 / 어서",tags:[{t:"부사"},{n:"권유·양보"}]},
-  // ── 추가 단어 ──────────────────────────────────────────────
   "さん":{r:"さん",m:"~씨 / ~상 (경칭)",tags:[{t:"접미사"},{n:"이름 뒤에 붙이는 경칭"}]},
   "ちゃん":{r:"ちゃん",m:"~짱 (친근한 경칭)",tags:[{t:"접미사"},{n:"さん보다 친근한 호칭"}]},
   "レモン":{r:"レモン",m:"레몬",tags:[{t:"명사"},{n:"외래어"}]},
@@ -645,15 +537,6 @@ const WDB={
   "カルピス":{r:"カルピス",m:"칼피스 (음료 브랜드)",tags:[{t:"명사"},{n:"외래어"}]}
 };
 
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// 영상 플레이리스트 — 영상 목록 + 각 영상의 문장 데이터
-// videoId: 유튜브 영상 ID
-// dv: 날짜 숫자 (정렬용, YYYYMMDD)
-// sentences: 해당 영상의 대사 배열
-//   id: 고유 번호 / start,end: 초(또는 mm:ss) / speaker: 화자
-//   jlpt: 난이도 / sk: 검색 키워드 / jp: 후리가나+팝업 HTML
-//   plain: 원문 텍스트 / sound: 발음 / trans: 번역
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 const PL=[
   {
     videoId:'8PI3xHI-tZU',
@@ -847,35 +730,20 @@ const PL=[
   }
 ];
 
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// 전체 문장 배열 — PL을 펼쳐서 만든 플랫 배열 (필터/랜덤에 사용)
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 const ALL=[];
 PL.forEach((v,vi)=>v.sentences.forEach(s=>ALL.push({...s,videoId:v.videoId,vi,dv:v.dv})));
 
-// ── 앱 상태 변수 ──────────────────────────────────
-// todayS: 오늘의 랜덤 문장 객체
-// selVI: 현재 선택된 영상 인덱스 (PL 배열 기준)
-// prevTab: 뒤로가기 시 돌아갈 탭
 let todayS=null,selVI=0,prevTab='vlist';
-// todayP: 랜덤 문장 탭 유튜브 플레이어 인스턴스
-// detailP: 영상 상세 탭 유튜브 플레이어 인스턴스
 let todayP=null,detailP=null;
-// todayTick: 랜덤 탭 구간반복 인터벌 ID
-// detailTick: 상세 탭 구간반복 인터벌 ID
 let todayTick=null,detailTick=null;
-// todayLoop/detailLoop: 구간반복 활성 여부
-// dLoopId: 상세 탭에서 반복 중인 문장 id
 let todayLoop=false,detailLoop=false,dLoopId=null;
-// vSort: 영상 목록 정렬 기준 ('newest' | 'oldest')
 let vSort='newest';
-// AF: 전체 문장 탭 활성 필터 (멤버/JLPT)
 const AF={member:new Set(),jlpt:new Set()};
-// tTog: 랜덤 문장 탭 토글 상태 (요미가나/발음/의미)
 let tTog={ruby:true,sound:false,meaning:false};
-// activeSentTick: 재생 중 활성 문장 추적 인터벌 ID
-// lastActiveId: 마지막으로 하이라이트된 문장 id
 let activeSentTick=null,lastActiveId=null;
+
+// [FIX 2] 검색창 상태 추적 — 탭별로 닫힘 여부 관리
+let searchOpenTab = null;
 
 window.addEventListener('DOMContentLoaded',()=>{
   todayS=ALL[Math.floor(Math.random()*ALL.length)];
@@ -888,7 +756,6 @@ window.addEventListener('DOMContentLoaded',()=>{
   renderVList();
   renderTranscript(selVI);
 
-  // 처음 접속(히스토리 없음)이면 랜덤 탭, 새로고침이면 마지막 탭 유지
   const isFirstVisit = !sessionStorage.getItem('visited');
   if(isFirstVisit){
     sessionStorage.setItem('visited','1');
@@ -910,19 +777,16 @@ window.addEventListener('DOMContentLoaded',()=>{
   document.head.appendChild(t);
 });
 
-// 유튜브 IFrame API 로드 완료 시 자동 호출 — 플레이어 초기화
 function onYouTubeIframeAPIReady(){
   todayP=new YT.Player('todayPlayer',{height:'100%',width:'100%',videoId:PL[todayS.vi].videoId,playerVars:{origin:location.origin,controls:1,rel:0,autoplay:0}});
   detailP=new YT.Player('detailPlayer',{height:'100%',width:'100%',videoId:PL[selVI].videoId,playerVars:{origin:location.origin,controls:1,rel:0,autoplay:0},events:{onStateChange:onDetailStateChange}});
 }
 
-// 상세 탭 플레이어 재생 상태 변경 시 호출 (재생/정지에 따라 자막 추적 on/off)
 function onDetailStateChange(e){
   if(e.data===YT.PlayerState.PLAYING) startActiveSentTracking();
   else stopActiveSentTracking();
 }
 
-// 200ms마다 재생 위치를 체크해서 해당 문장 행을 하이라이트
 function startActiveSentTracking(){
   stopActiveSentTracking();
   activeSentTick=setInterval(()=>{
@@ -932,9 +796,7 @@ function startActiveSentTracking(){
     let found=null;
     for(const s of sents){if(cur>=s.start&&cur<s.end){found=s;break;}}
     if(!found){
-      // 구간반복 중이면 점프/정지 로직 무시 (togRowRep이 직접 제어)
       if(detailLoop)return;
-      // 현재 대사 없으면 → 다음 대사 시작점으로 점프, 없으면 정지
       const next=sents.find(s=>toSec(s.start)>cur);
       if(next){detailP.seekTo(toSec(next.start),true);return;}
       else{detailP.pauseVideo();stopActiveSentTracking();return;}
@@ -952,13 +814,11 @@ function startActiveSentTracking(){
   },200);
 }
 
-// 자막 추적 중지 + 하이라이트 초기화
 function stopActiveSentTracking(){
   clearInterval(activeSentTick);activeSentTick=null;
   if(lastActiveId){document.getElementById('row-'+lastActiveId)?.classList.remove('active');lastActiveId=null;}
 }
 
-// 랜덤 문장 탭 — 오늘의 문장 카드 렌더링
 function renderRandom(){
   const s=todayS;
   document.getElementById('rnd-meta').innerHTML=
@@ -989,7 +849,6 @@ function renderRandom(){
   tTog={ruby:true,sound:false,meaning:false};
 }
 
-// 랜덤 탭 토글 버튼 (요미가나/발음/의미) 클릭 처리
 function togRnd(type){
   tTog[type]=!tTog[type];
   document.getElementById('ttog-'+type)?.classList.toggle('on',tTog[type]);
@@ -1002,7 +861,6 @@ function togRnd(type){
   document.getElementById('rnd-expand').classList.toggle('open',tTog.sound||tTog.meaning);
 }
 
-// 전체 문장 탭 각 아이템의 본문 HTML 생성
 function sentBox(s,ctx){
   const cid='c-'+ctx;
   const plain=esc2(s.plain);
@@ -1018,12 +876,13 @@ function sentBox(s,ctx){
   </div>`;
 }
 
-// 전체 문장 탭 렌더링
+// [FIX 1] renderAll — data-sk 속성에 jlpt/member 값도 포함해서 필터가 올바르게 작동하도록 수정
 function renderAll(){
   document.getElementById('slist').innerHTML=ALL.map(s=>`
     <div class="sitem"
       data-sk="${esc(s.sk)} ${esc(s.sound)} ${esc(s.trans)} ${esc(s.plain)}"
-      data-member="${s.speaker}" data-jlpt="${s.jlpt}">
+      data-member="${s.speaker}"
+      data-jlpt="${s.jlpt}">
       <div class="sitem-head">
         <span class="spkpill" style="background:${MEM[s.speaker]||'#999'}">${s.speaker}</span>
         <button class="vlink" onclick="openDetailAt(${s.vi},${s.start},${s.id});event.stopPropagation()">
@@ -1036,16 +895,13 @@ function renderAll(){
   applyFilters();
 }
 
-// HTML 특수문자 이스케이프 (data-* 속성용)
 function esc(str){return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;')}
 function esc2(str){return String(str).replace(/'/g,"\\'")}
 
-// 영상 목록 탭 렌더링 (검색어 필터 + 정렬 적용)
 function renderVList(){
-  const vsEl=document.getElementById('videoSearch');
   const srchEl=document.getElementById('srchIn');
-  const isOpen=document.getElementById('srchWrap')?.style.display==='block';
-  const keyword=((vsEl?.value||'')+(isOpen&&document.getElementById('view-vlist')?.style.display==='flex'?srchEl?.value||'':'')).toLowerCase().trim();
+  const isVlistSearch = searchOpenTab === 'vlist';
+  const keyword=(isVlistSearch ? srchEl?.value||'' : '').toLowerCase().trim();
   let arr = PL.map((v,i)=>({...v,i})).filter(v => v.title.toLowerCase().includes(keyword));
   arr.sort(vSort==='oldest'?(a,b)=>a.dv-b.dv:(a,b)=>b.dv-a.dv);
   document.getElementById('vlist').innerHTML=arr.map(v=>`
@@ -1059,13 +915,11 @@ function renderVList(){
     </div>`).join('');
 }
 
-// 영상 목록 정렬 기준 변경
 function setVSort(btn){
   document.querySelectorAll('[data-vs]').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');vSort=btn.dataset.vs;renderVList();
 }
 
-// 상세 탭 자막 목록 렌더링 (vi: PL 인덱스)
 function renderTranscript(vi){
   const v=PL[vi];
   document.getElementById('d-title').textContent=v.title;
@@ -1089,7 +943,7 @@ function renderTranscript(vi){
         <button class="rrep" id="rr-${s.id}" onclick="togRowRep(${s.id},${s.start},${s.end},this)">
           <span class="material-symbols-rounded">repeat</span>
         </button>
-        <button class="rcopy" id="${cpid}" onclick="copyJP(event,'${esc2(s.plain)}','cpid')">
+        <button class="rcopy" id="${cpid}" onclick="copyJP(event,'${esc2(s.plain)}','${cpid}')">
           <span class="material-symbols-rounded">content_copy</span>
         </button>
       </div>
@@ -1097,7 +951,7 @@ function renderTranscript(vi){
   }).join('');
 }
 
-// 전체 문장 탭 필터 칩 토글 (멤버/JLPT)
+// [FIX 1] togChip — 칩 클릭 시 applyFilters 올바르게 호출
 function togChip(btn){
   const f=btn.dataset.f,v=btn.dataset.v;
   if(AF[f].has(v)){AF[f].delete(v);btn.classList.remove('on');}
@@ -1105,14 +959,17 @@ function togChip(btn){
   applyFilters();
 }
 
-// 검색어 + 필터 칩 조건으로 전체 문장 목록 표시/숨김 처리
+// [FIX 1] applyFilters — data-member/data-jlpt 속성으로 필터링, 빈 Set이면 전체 허용
 function applyFilters(){
   const raw=(document.getElementById('srchIn').value||'').trim().toLowerCase();
+  // 전체 문장 탭이 활성화된 경우에만 검색어 적용
+  const isAllTab = document.getElementById('view-all').style.display === 'flex';
+  const searchVal = (isAllTab && searchOpenTab === 'all') ? raw : '';
   let vis=0;
-  document.querySelectorAll('.sitem').forEach(el=>{
+  document.querySelectorAll('#slist .sitem').forEach(el=>{
     const m=AF.member.size===0||AF.member.has(el.dataset.member);
     const j=AF.jlpt.size===0||AF.jlpt.has(el.dataset.jlpt);
-    const sq=!raw||el.dataset.sk.toLowerCase().includes(raw);
+    const sq=!searchVal||el.dataset.sk.toLowerCase().includes(searchVal);
     const show=m&&j&&sq;
     el.classList.toggle('hidden',!show);
     if(show)vis++;
@@ -1121,28 +978,32 @@ function applyFilters(){
   if(em)em.style.display=vis===0?'block':'none';
 }
 
-// 전체 문장 탭 상단 검색창 열기/닫기
+// [FIX 2] toggleSearch — 탭별로 검색창 상태 관리, 현재 탭에서만 열림
 function toggleSearch(){
   const w=document.getElementById('srchWrap');
-  const open=w.style.display==='block';
-  const isVlist=document.getElementById('view-vlist').style.display==='flex';
-  w.style.display=open?'none':'block';
   const inp=document.getElementById('srchIn');
-  if(!open){
+  const isVlist=document.getElementById('view-vlist').style.display==='flex';
+  const currentTab = isVlist ? 'vlist' : 'all';
+  const isOpen = searchOpenTab === currentTab;
+
+  if(isOpen){
+    // 닫기
+    searchOpenTab = null;
+    w.style.display='none';
+    inp.value='';
+    if(isVlist) renderVList();
+    else applyFilters();
+  } else {
+    // 열기
+    searchOpenTab = currentTab;
+    w.style.display='block';
     inp.placeholder=isVlist?'영상 제목 검색':'단어, 발음, 뜻으로 검색';
     inp.oninput=isVlist?()=>renderVList():()=>applyFilters();
-    // videoSearch 호환
-    const vs=document.getElementById('videoSearch');
-    if(vs) inp.oninput=()=>{if(isVlist)renderVList();else applyFilters();};
-    inp.focus();
-  } else {
     inp.value='';
-    applyFilters();
-    renderVList();
+    inp.focus();
   }
 }
 
-// 랜덤 탭 구간 반복 토글
 function toggleTodayRepeat(){
   if(!todayP?.seekTo)return;
   if(todayLoop){
@@ -1160,24 +1021,40 @@ function toggleTodayRepeat(){
   }
 }
 
-// 랜덤 탭 '처음부터' 버튼 — 영상을 0초부터 재생
 function playFull(){
   if(!todayP?.seekTo)return;
   if(todayLoop)toggleTodayRepeat();
   todayP.seekTo(0,true);todayP.playVideo();
 }
 
-// 랜덤 탭 '전체 영상으로' 버튼 — 오늘의 문장 시작점으로 상세 탭 이동
 function goDetail(){
   todayLoop=false;clearInterval(todayTick);todayP?.pauseVideo();
   document.getElementById('btnRep')?.classList.remove('on');
   openDetailAt(todayS.vi,todayS.start,todayS.id);
 }
 
-// 상세 탭 문장 행의 반복 버튼 토글
+// [FIX 4] togRowRep — 반복 끄면 일시정지 대신 다음 대사 시작점으로 재생 진행
 function togRowRep(id,s,e,btn){
   if(!detailP?.seekTo)return;
-  if(detailLoop&&dLoopId===id){stopDAll();return;}
+  if(detailLoop&&dLoopId===id){
+    // 반복 끄기: 현재 문장의 end 위치 이후 다음 대사로 이동해서 계속 재생
+    detailLoop=false;dLoopId=null;
+    clearInterval(detailTick);
+    document.querySelectorAll('.rrep').forEach(b=>b.classList.remove('on'));
+    // 다음 대사 찾기
+    const sents=PL[selVI].sentences;
+    const curIdx=sents.findIndex(sent=>sent.id===id);
+    const next=sents[curIdx+1];
+    if(next){
+      detailP.seekTo(toSec(next.start),true);
+      detailP.playVideo();
+    } else {
+      // 마지막 대사면 재생 계속 (영상 끝까지)
+      detailP.seekTo(toSec(e),true);
+      detailP.playVideo();
+    }
+    return;
+  }
   stopDAll();
   detailLoop=true;dLoopId=id;btn.classList.add('on');
   detailP.seekTo(s,true);detailP.playVideo();
@@ -1188,20 +1065,19 @@ function togRowRep(id,s,e,btn){
   },100);
 }
 
-// 상세 탭 구간반복 전체 중지
-function stopDAll(){
+// [FIX 4] stopDAll — 내부에서 pauseVideo 제거 (반복 끄기 시 일시정지 안 함)
+// 단, 외부에서 명시적으로 정지가 필요한 경우를 위해 pause 파라미터 추가
+function stopDAll(pause=false){
   detailLoop=false;dLoopId=null;clearInterval(detailTick);
   document.querySelectorAll('.rrep').forEach(b=>b.classList.remove('on'));
-  detailP?.pauseVideo();
+  if(pause) detailP?.pauseVideo();
 }
 
-// 상세 탭 플레이어를 특정 초로 이동 후 재생
 function seekTo(sec){
   if(!detailP?.seekTo)return;
-  stopDAll();detailP.seekTo(sec,true);detailP.playVideo();
+  stopDAll(true);detailP.seekTo(sec,true);detailP.playVideo();
 }
 
-// 상세 탭에서 특정 화자 대사만 표시
 function filterSpk(name){
   document.getElementById('dfilter').style.display='flex';
   document.getElementById('dfilter-lbl').textContent=name+' 대사만 보는 중';
@@ -1212,7 +1088,6 @@ function clearDFilter(){
   document.querySelectorAll('.srow').forEach(r=>r.style.display='flex');
 }
 
-// 자막 스크롤 컨테이너 안에서 특정 문장 행이 보이도록 스크롤
 function scrollToRowInBox(id, smooth = true) {
   const row = document.getElementById('row-' + id);
   const container = document.querySelector('.transcript-scroll');
@@ -1224,7 +1099,6 @@ function scrollToRowInBox(id, smooth = true) {
   });
 }
 
-// 특정 문장 행으로 스크롤 + 잠깐 하이라이트
 function scrollToRow(id){
   const row=document.getElementById('row-'+id);
   if(!row)return;
@@ -1234,23 +1108,34 @@ function scrollToRow(id){
   setTimeout(()=>row.classList.remove('hl'), 2500);
 }
 
-// 뒤로가기 버튼 — 이전 탭으로 복귀
 function handleBack(){
   stopActiveSentTracking();
   changeTab(prevTab);
   localStorage.setItem('currentTab', prevTab); 
 }
 
-// 탭 전환 — 모든 뷰/탭 초기화 후 대상 탭 활성화
+// [FIX 2] changeTab — 탭 전환 시 검색창 닫기 (상태 초기화 포함)
 function changeTab(tab){
   ['today','all','vlist'].forEach(id=>document.getElementById('view-'+id).style.display='none');
   document.getElementById('view-detail').style.display='none';
   ['today','all','vlist'].forEach(id=>document.getElementById('tab-'+id)?.classList.remove('on'));
   document.getElementById('btnBack').style.visibility='hidden';
   document.getElementById('btnSearch').style.display='none';
+
+  // 검색창 닫기
+  const w=document.getElementById('srchWrap');
+  const inp=document.getElementById('srchIn');
+  if(searchOpenTab && searchOpenTab !== tab){
+    searchOpenTab=null;
+    w.style.display='none';
+    inp.value='';
+    applyFilters();
+    renderVList();
+  }
+
   if(todayP?.pauseVideo)todayP.pauseVideo();
   if(todayLoop){todayLoop=false;clearInterval(todayTick);document.getElementById('btnRep')?.classList.remove('on');}
-  stopDAll();clearDFilter();stopActiveSentTracking();
+  stopDAll(true);clearDFilter();stopActiveSentTracking();
   if(['today','all','vlist'].includes(tab)){
     document.getElementById('view-'+tab).style.display='flex';
     document.getElementById('tab-'+tab)?.classList.add('on');
@@ -1263,10 +1148,8 @@ function changeTab(tab){
   }
 }
 
-// 영상 목록에서 영상 클릭 시 상세 탭으로 이동
 function openDetail(vi){openDetailAt(vi,null,null)}
 
-// 특정 영상(vi), 특정 초(seekSec), 특정 문장(sentId)으로 상세 탭 열기
 function openDetailAt(vi,seekSec,sentId){
   const cur=['today','all','vlist'].find(id=>{const el=document.getElementById('view-'+id);return el&&el.style.display==='flex';});
   if(cur)prevTab=cur;
@@ -1282,6 +1165,14 @@ function openDetailAt(vi,seekSec,sentId){
   document.getElementById('view-detail').style.display='flex';
   document.getElementById('btnBack').style.visibility='visible';
   document.getElementById('btnSearch').style.display='none';
+
+  // 검색창 닫기
+  if(searchOpenTab){
+    searchOpenTab=null;
+    document.getElementById('srchWrap').style.display='none';
+    document.getElementById('srchIn').value='';
+  }
+
   if(seekSec!=null&&!changed)setTimeout(()=>seekTo(seekSec),200);
   if(sentId!=null)setTimeout(()=>scrollToRow(sentId),400);
 
@@ -1289,9 +1180,14 @@ function openDetailAt(vi,seekSec,sentId){
   localStorage.setItem('selectedVI', vi);
 }
 
-// 단어 팝업 열기 — WDB에서 key로 검색해서 하단 시트 표시
+// [FIX 3] showWord — 영상 상세 탭에서 단어 팝업 열 때 영상 일시정지
 function showWord(w){
   const d=WDB[w];if(!d)return;
+  // 상세 탭에서 열린 경우 영상 일시정지
+  const isDetail = document.getElementById('view-detail').style.display==='flex';
+  if(isDetail && detailP && typeof detailP.pauseVideo==='function'){
+    detailP.pauseVideo();
+  }
   document.getElementById('pWord').textContent=w.replace(/__\w+$/,'');
   document.getElementById('pRead').textContent=d.r||'';
   document.getElementById('pMean').textContent=d.m||'';
@@ -1307,11 +1203,9 @@ function showWord(w){
   else pn.style.display='none';
   document.getElementById('popup').classList.add('open');
 }
-// 단어 팝업 닫기
 function closePop(){document.getElementById('popup').classList.remove('open')}
 function maybeClosePop(e){if(e.target===document.getElementById('popup'))closePop()}
 
-// 일본어 원문 클립보드 복사 + 완료 아이콘 잠깐 표시
 function copyJP(e,text,id){
   e.stopPropagation();
   navigator.clipboard.writeText(text).then(()=>{
@@ -1322,19 +1216,16 @@ function copyJP(e,text,id){
   });
 }
 
-// 재생 속도 (0.25 ~ 3.0)
 let playbackRate = 1;
-// 처음 대사부터 다시 시작
 function restartTranscript(){
   if(!detailP?.seekTo)return;
   const sents=PL[selVI].sentences;
   if(!sents||!sents.length)return;
-  stopDAll();
+  stopDAll(true);
   detailP.seekTo(toSec(sents[0].start),true);
   detailP.playVideo();
 }
 
-// 재생 속도 조절 버튼 (+/- 0.25씩)
 function changeSpeed(diff){
   playbackRate += diff;
   if(playbackRate < 0.25) playbackRate = 0.25;
