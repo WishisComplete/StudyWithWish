@@ -119,9 +119,10 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .ntab.on .material-symbols-rounded{font-variation-settings:'FILL' 1}
 .ntab .material-symbols-rounded{font-size:26px}
 
-.rnd-hero{margin:20px 16px 0;background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:26px;overflow:visible;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow);position:relative}
+.rnd-hero{margin:20px 16px 0;background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:26px;overflow:visible;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow);position:relative;will-change:transform;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.rnd-hero:active{cursor:grabbing}
 .rnd-hero-band{display:flex;align-items:center;gap:8px;padding:14px 18px 12px}
-.spkpill{font-size:11px;font-weight:600;letter-spacing:.04em;padding:4px 12px;border-radius:20px;color:rgba(255,255,255,.95);flex-shrink:0;box-shadow:0 1px 6px rgba(0,0,0,.12),0 0 0 .5px #fafafa inset}
+.spkpill{font-size:10px;font-weight:700;letter-spacing:.04em;padding:3px 9px;border-radius:20px;color:rgba(255,255,255,.95);flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.10)}
 .card-vtitle{flex:1;font-size:12px;color:var(--col-vtitle);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .card-vtitle-btn{flex:1;font-size:12px;color:var(--col-vtitle);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:none;border:none;cursor:pointer;text-align:left;font-family:var(--sans);padding:0;text-decoration:underline;text-underline-offset:2px;}
 .card-vtitle-btn:active{opacity:.5}
@@ -129,11 +130,8 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .rnd-hero-body{padding:14px 18px 16px;border-top:.5px solid rgba(255,255,255,.45)}
 
 .jp-name,.jp-plain{color:var(--col-jp)}
-.jp-line{display:block;font-size:26px;font-weight:300;color:var(--col-jp);line-height:1.9;margin-bottom:0}
-.jp-line .cw{display:inline;cursor:pointer;border-radius:5px;padding:1px 3px;transition:background .1s;position:relative}
-.jp-line .cw:hover{background:var(--col-cw-hover)}
-.jp-line .cw ruby rt{font-size:.48em;font-weight:400;color:var(--col-ruby);letter-spacing:.04em}
-.no-ruby .cw rt{visibility:hidden;font-size:0}
+.jp-line{display:block;font-size:26px;font-weight:300;color:var(--col-jp);line-height:1.95;margin-bottom:0}
+.no-ruby .cw rt{display:none}
 
 .sent-box{display:flex;flex-direction:row;align-items:flex-start;gap:4px}
 .sent-box-text{flex:1;min-width:0}
@@ -149,48 +147,44 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .itog.on{color:var(--sky)}
 .itog .material-symbols-rounded{font-size:17px}
 
-/* ── 인라인 단어 드롭다운 (fixed, body 레벨) ── */
-#word-tooltip{
-  display:none;
-  position:fixed;
-  z-index:9999;
-  min-width:220px;
-  max-width:280px;
-  background:rgba(230,242,250,.97);
-  backdrop-filter:blur(24px) saturate(160%);
-  -webkit-backdrop-filter:blur(24px) saturate(160%);
-  border:.5px solid rgba(255,255,255,.92);
-  border-radius:16px;
-  box-shadow:0 8px 32px rgba(30,74,98,.22), 0 0 0 .5px rgba(255,255,255,.6) inset;
-  padding:12px 36px 12px 14px;
-  animation:wdIn .18s cubic-bezier(.22,1,.36,1);
-  pointer-events:auto;
+/* ── 단어 탭 → 요미가나/뜻 위에 표시 ── */
+.cw{
+  display:inline;
+  cursor:pointer;
+  border-radius:4px;
+  padding:0 2px;
+  transition:background .1s;
 }
-#word-tooltip.open{display:block}
-@keyframes wdIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
-
-/* 말풍선 꼭지 */
-#word-tooltip::before{
-  content:'';
+.cw:active{background:var(--col-cw-hover)}
+.cw ruby{
+  display:inline;
+}
+.cw ruby rt{
+  display:block;
   position:absolute;
-  top:-6px;
-  left:var(--arrow-x, 50%);
+  bottom:100%;
+  left:50%;
   transform:translateX(-50%);
-  border:6px solid transparent;
-  border-top:none;
-  border-bottom-color:rgba(230,242,250,.97);
+  font-size:.46em;
+  font-weight:400;
+  color:var(--col-ruby);
+  letter-spacing:.04em;
+  white-space:nowrap;
+  pointer-events:none;
+  line-height:1;
+  margin-bottom:-5px;
 }
-
-.wd-word{font-size:20px;font-weight:300;color:var(--ink);letter-spacing:-.5px;line-height:1.2;margin-bottom:2px}
-.wd-read{font-size:12px;color:var(--ink3);margin-bottom:8px}
-.wd-mean{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px;padding-bottom:8px;border-bottom:.5px solid rgba(255,255,255,.6)}
-.wd-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
-.wd-tag{font-size:11px;font-weight:500;padding:2px 8px;border-radius:12px;border:1px solid}
-.wd-tag.type{border-color:rgba(90,170,212,.4);color:#5aaad4;background:rgba(90,170,212,.08)}
-.wd-tag.grp,.wd-tag.form,.wd-tag.note-tag{border-color:rgba(255,255,255,.6);color:var(--ink3)}
-.wd-note{font-size:12px;line-height:1.6;color:var(--ink2);background:rgba(255,255,255,.45);border:.5px solid rgba(255,255,255,.55);padding:8px 10px;border-radius:10px;margin-top:4px}
-.wd-close{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.55);border:.5px solid rgba(255,255,255,.80);color:var(--ink3);width:22px;height:22px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;line-height:1}
-.wd-close:active{opacity:.6}
+/* rt가 absolute로 뜨려면 가장 가까운 relative 조상이 필요 —
+   jp-line 자체를 relative로 잡으면 모든 cw가 jp-line 기준으로 뜨므로
+   각 cw를 감싸는 inline wrapper span을 쓰는 대신
+   ruby 자체를 inline-block + relative로 처리 */
+.cw ruby{
+  display:inline-block;
+  position:relative;
+}
+.no-ruby .cw ruby rt{display:none}
+.cw.word-active{background:rgba(90,170,212,.12)}
+.cw.word-active ruby rt{color:var(--sky);font-weight:600;font-size:.50em;margin-bottom:-5px}
 
 /* cw 클릭 영역 */
 .sitem-body .jp-line{line-height:1.9;font-size:22px}
@@ -205,7 +199,7 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .hv{color:var(--col-hint-val);font-size:14px;padding:9px 14px 9px 0;flex:1}
 .hv.rv{font-size:15px;font-weight:500;letter-spacing:.02em;color:var(--col-hint-val-bold);padding-top:9px}
 
-.rnd-actions{padding:12px 16px 16px;display:flex;flex-direction:column;gap:14px}
+.rnd-actions{padding:0;display:flex;flex-direction:column;gap:14px}
 .tog-row{display:none}
 
 .rnd-hint-row{display:none;align-items:baseline;gap:0;padding:4px 0 0}
@@ -227,13 +221,15 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .primary-btn:active{opacity:.8;transform:scale(.98)}
 .primary-btn .material-symbols-rounded{font-size:19px}
 
-.sec-head{padding:28px 18px 8px;display:flex;align-items:flex-end;justify-content:space-between}
-.sec-ttl{font-size:28px;font-weight:700;color:var(--col-section-title);letter-spacing:-.5px;line-height:1}
+.sec-head{padding:24px 0 8px;display:flex;align-items:flex-end;justify-content:space-between}
+.sec-ttl{font-size:26px;font-weight:700;color:var(--col-section-title);letter-spacing:-.5px;line-height:1}
 .sec-cnt{font-size:13px;color:var(--col-section-count);padding-bottom:2px}
 
-.filter-panel{padding:8px 16px 6px}
-.filter-sec{display:flex;flex-direction:column;gap:10px}.filter-card{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:18px;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow);padding:10px 14px}
+.filter-panel{padding:0 0 6px}
+.filter-sec{display:flex;flex-direction:column;gap:10px}
+.filter-card{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:18px;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow);padding:9px 12px}
 .filter-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.all-body{padding:0 16px 0;display:flex;flex-direction:column}
 .fl{font-size:12px;font-weight:500;color:var(--col-filter-label);min-width:38px;flex-shrink:0}
 .fc{font-size:14px;font-weight:400;padding:6px 14px;border-radius:20px;border:.5px solid var(--glass-border);background:var(--col-chip-off-bg);color:var(--col-chip-off-text);cursor:pointer;transition:all .15s;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:var(--glass-shadow-sm)}
 .fc:active{opacity:.6}
@@ -243,13 +239,13 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .fc.ryo.on{background:var(--ryo)}
 .fc.sakuya.on{background:var(--sakuya)}
 
-.slist{padding:0 16px;display:flex;flex-direction:column;gap:10px}
+.slist{padding:0;display:flex;flex-direction:column;gap:10px}
 .sitem{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);overflow:visible;border-radius:22px;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow);position:relative}
 .sitem.hidden{display:none}
-.sitem-head{display:flex;align-items:center;gap:8px;padding:9px 14px 7px;background:rgba(255,255,255,.20);border-radius:22px 22px 0 0}
-.vlink{flex:1;font-size:12px;font-weight:400;color:var(--col-vlink);background:none;border:none;cursor:pointer;text-align:left;padding:0;font-family:var(--sans);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.sitem-head{display:flex;align-items:center;gap:5px;padding:5px 10px 4px;background:rgba(255,255,255,.20);border-radius:22px 22px 0 0}
+.vlink{flex:1;font-size:11px;color:var(--col-vlink);background:none;border:none;cursor:pointer;text-align:left;padding:0;font-family:var(--sans);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
 .vlink:active{opacity:.5}
-.sitem-body{padding:10px 14px 12px;border-top:.5px solid rgba(255,255,255,.45)}
+.sitem-body{padding:0;border-top:.5px solid rgba(255,255,255,.45)}
 .empty-msg{padding:60px 16px;text-align:center;font-size:16px;color:var(--col-empty-msg);display:none}
 
 .vlist-toolbar{padding:4px 16px 12px;display:flex;align-items:center;gap:8px}
@@ -294,11 +290,9 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .sspk:active{opacity:.6}
 .sr{flex:1;min-width:0}
 .sr-jp .jp-name,.sr-jp .jp-plain{color:var(--col-sr-jp)}
-.sr-jp{font-size:16px;font-weight:400;color:var(--col-sr-jp);line-height:2;display:block}
-.sr-jp .cw{display:inline;cursor:pointer;border-radius:4px;padding:1px 2px;transition:background .1s;position:relative}
-.sr-jp .cw:hover{background:var(--col-cw-hover)}
+.sr-jp{font-size:16px;font-weight:400;color:var(--col-sr-jp);line-height:2.1;display:block}
 .sr-jp .cw ruby rt{font-size:.55em;color:var(--col-ruby);letter-spacing:.05em}
-.no-ruby .sr-jp rt{visibility:hidden;font-size:0}
+.no-ruby .cw ruby rt{display:none}
 .sr-sound{font-size:12px;color:var(--col-sr-sound);margin-top:2px;line-height:1.4;display:block}
 .sr-trans{font-size:12px;color:var(--col-sr-trans);margin-top:1px;line-height:1.4;display:block}
 .srow-rep{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 10px 10px 4px;flex-shrink:0;align-self:flex-start}
@@ -316,7 +310,8 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .speed-value{min-width:64px;text-align:center;font-weight:500;font-size:14px;color:var(--col-speed-val);background:rgba(255,255,255,.25);height:32px;display:flex;align-items:center;justify-content:center;border-left:.5px solid rgba(255,255,255,.50);border-right:.5px solid rgba(255,255,255,.50)}
 
 /* ── 문화 카드 ── */
-.cult-wrap{margin:0 16px 8px;display:flex;flex-direction:column;gap:0}
+.cult-wrap{margin:12px 16px 8px;display:flex;flex-direction:column;gap:8px}
+.intonation-card{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:20px;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow);overflow:hidden}
 .cult-card{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:20px;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow);overflow:hidden}
 .cult-toggle{width:100%;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:13px 16px;font-family:var(--sans);text-align:left}
 .cult-toggle:active{opacity:.7}
@@ -331,7 +326,7 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .cult-point:last-child{border-bottom:none;padding-bottom:2px}
 .cult-dot{width:5px;height:5px;border-radius:50%;background:var(--sky);flex-shrink:0;margin-top:6px}
 /* ── 유사 패턴 카드 ── */
-.pattern-card{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:20px;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow);overflow:hidden;margin-top:8px}
+.pattern-card{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:20px;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow);overflow:hidden}
 .pattern-toggle{width:100%;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:13px 16px;font-family:var(--sans);text-align:left}
 .pattern-toggle:active{opacity:.7}
 .pattern-toggle-icon{font-size:16px;flex-shrink:0}
@@ -353,7 +348,7 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 .pitem-sound{font-size:12px;color:var(--col-sr-sound);padding-top:7px}
 .pitem-trans{font-size:12px;color:var(--col-sr-trans)}
 /* ── 유사/반대 표현 카드 ── */
-.alt-card{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:20px;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow);overflow:hidden;margin-top:8px}
+.alt-card{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:20px;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow);overflow:hidden}
 .alt-toggle{width:100%;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:13px 16px;font-family:var(--sans);text-align:left}
 .alt-toggle:active{opacity:.7}
 .alt-chevron{font-size:18px;color:var(--ink4);transition:transform .22s cubic-bezier(.22,1,.36,1);flex-shrink:0}
@@ -370,19 +365,58 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 
 .wd-hanja{font-size:11px;color:var(--ink4);background:rgba(255,255,255,.38);border:.5px solid rgba(255,255,255,.55);border-radius:8px;padding:4px 9px;margin-bottom:6px;line-height:1.5}
 
-@media (min-width: 768px) {
+/* ── 전체 문장 카드 토글 ── */
+.sitem-body{cursor:pointer;user-select:none}
+.sitem-body:active{opacity:.75}
+.sitem-reveal{overflow:hidden;max-height:0;transition:max-height .28s cubic-bezier(.22,1,.36,1),opacity .22s ease;opacity:0;pointer-events:none}
+.sitem-body.revealed .sitem-reveal{max-height:120px;opacity:1;pointer-events:auto}
+.sitem-jp-only{padding:7px 10px 6px;display:flex;align-items:center;justify-content:space-between;gap:6px}
+.sitem-jp-only .jp-line{flex:1;font-size:17px;font-weight:300;color:var(--col-jp);line-height:1.6}
+.sitem-tap-hint{font-size:11px;color:var(--ink4);flex-shrink:0;display:flex;align-items:center;gap:2px;opacity:.5;transition:opacity .15s}
+.sitem-tap-hint .material-symbols-rounded{font-size:13px}
+.sitem-body.revealed .sitem-tap-hint{opacity:0}
+.sitem-reveal-inner{padding:3px 10px 8px;border-top:.5px solid rgba(255,255,255,.38)}
+
+/* ── 억양 시각화 카드 ── */
+.intonation-toggle{width:100%;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:13px 16px;font-family:var(--sans);text-align:left}
+.intonation-toggle:active{opacity:.7}
+.intonation-chevron{font-size:18px;color:var(--ink4);transition:transform .22s cubic-bezier(.22,1,.36,1);flex-shrink:0}
+.intonation-card.open .intonation-chevron{transform:rotate(180deg)}
+.intonation-body{max-height:0;overflow:hidden;transition:max-height .3s cubic-bezier(.22,1,.36,1)}
+.intonation-card.open .intonation-body{max-height:300px}
+.intonation-inner{padding:0 16px 16px;border-top:.5px solid rgba(255,255,255,.45)}
+.intonation-svg-wrap{margin-top:12px;background:rgba(255,255,255,.30);border-radius:14px;padding:10px 8px 6px;overflow:visible}
+.intonation-svg-wrap svg{display:block;width:100%;height:auto;overflow:visible}
+.intonation-label{font-size:10px;color:var(--ink4);margin-top:6px;line-height:1.5;opacity:.8}
+.intonation-legend{display:flex;gap:12px;margin-top:8px;align-items:center}
+.int-leg{font-size:11px;color:var(--ink3);display:flex;align-items:center;gap:3px}
+
+/* ── 방언 카드 (랜덤 문장 내) ── */
+.dialect-card{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:20px;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow);overflow:hidden}
+.dialect-toggle{width:100%;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:13px 16px;font-family:var(--sans);text-align:left}
+.dialect-toggle:active{opacity:.7}
+.dialect-chevron{font-size:18px;color:var(--ink4);transition:transform .22s cubic-bezier(.22,1,.36,1);flex-shrink:0}
+.dialect-card.open .dialect-chevron{transform:rotate(180deg)}
+.dialect-body{max-height:0;overflow:hidden;transition:max-height .32s cubic-bezier(.22,1,.36,1)}
+.dialect-card.open .dialect-body{max-height:600px}
+.dialect-inner{padding:0 14px 14px;border-top:.5px solid rgba(255,255,255,.45);display:flex;flex-direction:column;gap:10px}
+.dialect-entry{background:rgba(255,255,255,.38);border:.5px solid rgba(255,255,255,.62);border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:5px}
+.dialect-entry-head{display:flex;align-items:center;gap:8px;margin-bottom:2px}
+.dialect-badge{font-size:10px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:10px;color:#fff}
+.dialect-entry-dial{font-size:22px;font-weight:300;color:var(--col-jp);line-height:1.6}
+.dialect-entry-read{font-size:12px;color:var(--col-sr-sound);margin-top:1px}
+.dialect-entry-note{font-size:12px;color:var(--ink2);background:rgba(255,255,255,.45);border:.5px solid rgba(255,255,255,.55);border-radius:10px;padding:7px 10px;line-height:1.6;margin-top:3px}
   body { justify-content: center; }
   .app { max-width: 900px; width: 100%; }
   .bnav { max-width: 900px; }
   .hdr  { max-width: 900px; }
   .view { padding-bottom: 90px; }
   #view-today { max-width: 580px; margin-left: auto; margin-right: auto; width: 100%; }
-  #view-all { padding: 0 24px; }
-  #view-all .sec-head    { padding: 28px 0 8px; }
-  #view-all .filter-panel { padding: 8px 0 6px; }
-  #view-all .slist { padding: 0; display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; gap: 10px; align-items: start; }
-  #view-all .slist .sitem { height: 100%; display: flex; flex-direction: column; }
-  #view-all .slist .sitem-body { flex: 1; }
+  #view-all { padding: 0; }
+  #view-all .all-body { padding: 0 16px; }
+  #view-all .slist { padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: start; }
+  #view-all .slist .sitem { height: auto; }
+  #view-all .slist .sitem-body { flex: none; }
   #view-all .empty-msg { grid-column: 1 / -1; }
   #view-vlist { padding: 0 24px; }
   #view-vlist .sec-head       { padding: 28px 0 8px; }
@@ -421,7 +455,9 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
     </div>
   </div>
   <div class="srch-wrap" id="srchWrap">
-    <input class="srch-in" id="srchIn" placeholder="단어, 발음, 뜻으로 검색" oninput="searchOpenTab==='vlist'?renderVList():applyFilters()">
+    <input class="srch-in" id="srchIn" placeholder="단어, 발음, 뜻으로 검색"
+      oninput="searchOpenTab==='vlist'?renderVList():applyFilters()"
+      onblur="if(!this.value.trim())setTimeout(()=>{if(!this.value.trim())toggleSearch()},150)">
   </div>
 </header>
 
@@ -438,12 +474,12 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
 </main>
 
 <main class="view" id="view-all">
-  <div class="sec-head">
-    <span class="sec-ttl">전체 문장</span>
-    <span class="sec-cnt" id="total-cnt"></span>
-  </div>
-  <div class="filter-panel">
-    <div class="filter-card">
+  <div class="all-body">
+    <div class="sec-head">
+      <span class="sec-ttl">전체 문장</span>
+      <span class="sec-cnt" id="total-cnt"></span>
+    </div>
+    <div class="filter-card" style="margin-bottom:10px">
       <div class="filter-row">
         <span class="fl">멤버</span>
         <button class="fc riku"   data-f="member" data-v="RIKU"   onclick="togChip(this)">RIKU</button>
@@ -458,9 +494,9 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
         <button class="fc" data-f="jlpt" data-v="N3" onclick="togChip(this)">N3</button>
       </div>
     </div>
+    <div class="slist" id="slist"></div>
+    <div class="empty-msg" id="empty-msg">조건에 맞는 문장이 없어요.</div>
   </div>
-  <div class="slist" id="slist"></div>
-  <div class="empty-msg" id="empty-msg">조건에 맞는 문장이 없어요.</div>
 </main>
 
 <main class="view" id="view-vlist">
@@ -509,17 +545,6 @@ body{font-family:var(--sans);font-weight:400;background:var(--bg);color:var(--in
     <span class="material-symbols-rounded">playlist_play</span>영상 목록
   </button>
 </nav>
-</div>
-
-<!-- 전역 단어 툴팁 (fixed positioning, 모든 탭 공용) -->
-<div id="word-tooltip">
-  <button class="wd-close" id="tooltip-close">✕</button>
-  <div class="wd-word" id="tt-word"></div>
-  <div class="wd-read" id="tt-read"></div>
-  <div class="wd-hanja" id="tt-hanja" style="display:none"></div>
-  <div class="wd-mean" id="tt-mean"></div>
-  <div class="wd-tags" id="tt-tags"></div>
-  <div class="wd-note" id="tt-note" style="display:none"></div>
 </div>
 
 <script>
@@ -1333,6 +1358,196 @@ const SENT_CULT={
   231107005:"挨拶", 231107006:"挨拶"
 };
 
+// ── 팁/트렌드 카드 DB (문화 카드 없는 문장용) ──
+const SENT_TIPS={
+  1101:{icon:"💭",title:"〜ばよかった — 후회 표현",type:"grammar",points:[
+    "「〜ばよかった」는 과거의 선택을 후회할 때 쓰는 표현",
+    "SNS에서 #ばよかった 태그로 공감 후기 많이 올라옴",
+    "격식 있는 자리에서도 OK — 자연스럽고 정중한 표현",
+    "비슷한 표현: 「〜すればよかった」「〜しておけばよかった」"
+  ]},
+  1102:{icon:"⚠️",title:"どういうつもり？ — 주의",type:"caution",points:[
+    "직역하면 '무슨 의도야?' — 상당히 강한 어조의 추궁 표현",
+    "비즈니스나 격식 있는 자리에서는 절대 사용 금지 ❌",
+    "가까운 친구·가족 사이에서만 쓸 수 있는 캐주얼 표현",
+    "부드럽게 바꾸려면: 「どういう意味ですか？」"
+  ]},
+  231107003:{icon:"💡",title:"お勧め — 추천 표현 트렌드",type:"trend",points:[
+    "최근 SNS에서는 「おすすめ」대신 「推し(오시)」가 유행",
+    "「推し」는 자신이 강하게 지지하는 것·사람을 뜻하는 신조어",
+    "「この曲、私の推しです！」= 이 곡이 내 최애야!",
+    "K-POP 팬덤에서 역수입돼 한국에서도 '오시'라고 씀"
+  ]},
+  231107007:{icon:"⚠️",title:"〜の？ — 어조 주의",type:"caution",points:[
+    "「誰がやるの？」의 「の」는 의문 종조사 — 톤에 따라 뉘앙스가 달라짐",
+    "높은 톤 = 가벼운 질문 / 낮고 강한 톤 = 압박·추궁 느낌",
+    "직장·공식 자리에서는 「〜のですか？」「〜でしょうか？」로 교체",
+    "🚫 상사에게 「誰がやるの？」는 무례하게 들릴 수 있음"
+  ]},
+  231107008:{icon:"💡",title:"俺やるよ — 남성 1인칭",type:"tip",points:[
+    "「俺(おれ)」는 남성 캐주얼 1인칭 — 여성이 쓰면 매우 보이시하게 들림",
+    "격식체에서는 반드시 「私(わたし)」또는 「僕(ぼく)」사용",
+    "최근 Z세대 여성 중 「俺」쓰는 경우도 늘어나는 추세 (젠더리스 트렌드)",
+    "「俺やる」→ 격식: 「私がやります」/ 겸손: 「私でよければ」"
+  ]},
+  231107010:{icon:"💡",title:"違う — 부정 표현 뉘앙스",type:"tip",points:[
+    "「違う」는 '다르다/틀리다' 직접 부정 — 꽤 단도직입적인 표현",
+    "격식 있는 자리에서는 「そうではなく…」「少し違いまして…」가 자연스러움",
+    "반복하면 더 강조: 「違う違う」= 아니야 아니야 (강한 부정)",
+    "関西弁으로는 「ちゃうちゃう」도 같은 뉘앙스"
+  ]},
+  231107011:{icon:"⚠️",title:"俺がやる — 직장 사용 주의",type:"caution",points:[
+    "「俺がやる」는 캐주얼 표현 — 직장에서 쓰면 거칠게 들릴 수 있음",
+    "비즈니스 상황에서는 「私がやります」「私が担当します」가 적절",
+    "친한 동료 사이에서는 OK, 상사 앞에서는 NG",
+    "🚫 발표 자리나 미팅에서는 반드시 정중형으로"
+  ]},
+  231107012:{icon:"💡",title:"〜？ 의문 억양",type:"grammar",points:[
+    "「俺やる？」처럼 문장 끝에 「？」만 붙이면 의문문 완성 (구어체)",
+    "일본어 구어에서 「か」없이 억양 올림만으로 의문 표현 가능",
+    "문어체/격식체에서는 반드시 「〜ですか？」형태 사용",
+    "SNS 댓글에서도 「え、そうなの？」형태 많이 사용됨"
+  ]},
+  231107013:{icon:"💡",title:"俺やるよ — よ의 뉘앙스",type:"grammar",points:[
+    "문장 끝 「よ」= 자신감 있는 단언·강조 종조사",
+    "「俺やる」(단언) vs 「俺やるよ」(강조·격려) — 뉘앙스 차이 있음",
+    "「よ」는 남녀 모두 사용 가능, 부드럽게 하려면 「よ〜」로 늘임",
+    "「よね」는 공감 요청 추가: '나 할게, 맞지?' 느낌"
+  ]},
+  231107014:{icon:"💡",title:"どうぞ — 양보·권유 표현",type:"tip",points:[
+    "「どうぞどうぞ」처럼 반복하면 더 친근하고 강조된 권유 표현",
+    "격식체로는 「お先にどうぞ」「どうぞご遠慮なく」",
+    "매장에서 직원이 「どうぞ」하면 '들어오세요/앉으세요' 의미",
+    "전화 통화 끝에도 「では、どうぞ」로 상대방에게 마이크 넘기는 용도"
+  ]},
+  231107015:{icon:"💡",title:"〜ちゃん — 애칭 호칭",type:"tip",points:[
+    "「ちゃん」은 친근감 표시 호칭 — 여성·아이·친한 사이에서 주로 사용",
+    "처음 만난 사람에게 「〜ちゃん」쓰면 무례하게 느껴질 수 있음 ⚠️",
+    "직장에서는 「〜さん」사용이 원칙, 격식 없는 곳에서만 「ちゃん」",
+    "최근 Z세대는 나이 관계없이 「〜くん」「〜ちゃん」쓰는 트렌드"
+  ]},
+  231107016:{icon:"💡",title:"いや — 부드러운 거절",type:"tip",points:[
+    "「いや」는 부드러운 부정 감탄사 — 강한 NO가 아님",
+    "「いや、まだ早い」= 아니, 아직 일러 — 부드럽게 제동 거는 느낌",
+    "격식체 거절은 「申し訳ありませんが…」「少々お時間をください」",
+    "SNS에서 「いや待って」= '잠깐만요' 놀람 반응으로 엄청 많이 쓰임"
+  ]},
+  231107017:{icon:"🔥",title:"교에테아게타이 — SNS 유행 표현",type:"trend",points:[
+    "「教えてあげたい」= 알려주고 싶다 — K-POP 팬들이 많이 쓰는 표현",
+    "최근 「みんなに知ってほしい(모두가 알았으면 해)」와 함께 리트윗 문화 핵심",
+    "「ファンの方に」= 팬분들에게 — 아이돌이 팬에게 전하는 따뜻한 어투",
+    "X(트위터)에서 'この曲教えてあげたい選手権' 같은 해시태그 챌린지 유행"
+  ]},
+  231107018:{icon:"💡",title:"なんで — 이유 묻기",type:"tip",points:[
+    "「なんで」는 「なぜ」의 캐주얼 형태 — 친한 사이에서만 사용",
+    "격식 있는 자리에서는 반드시 「なぜですか」「どういった理由で」",
+    "「なんで？」한 단어만 쓰면 꽤 직접적인 추궁처럼 들릴 수 있음",
+    "부드럽게: 「なんでかな〜」「なんでだろう」처럼 늘이면 혼잣말 느낌"
+  ]},
+  231107019:{icon:"💡",title:"でしょ — 동의 요구",type:"grammar",points:[
+    "「でしょ」=「でしょう」의 구어 단축 — 상대방의 동의를 요구하는 표현",
+    "「〜いないでしょ」= '없잖아요' — 약한 주장·확인 뉘앙스",
+    "격식체: 「〜ではないでしょうか」/ 캐주얼: 「〜じゃない？」「〜よね？」",
+    "연예인들이 팬과 대화할 때 친근감 표현으로 자주 사용"
+  ]},
+  231107020:{icon:"💡",title:"本当に — 강조 부사",type:"tip",points:[
+    "「本当に」= 정말로 — 모든 형용사·동사 앞에 붙여 강조 가능",
+    "구어에서는 「ほんとに」「ほんとうに」두 발음 모두 OK",
+    "SNS에서 「#ほんとに」태그로 진심 어린 공감 표현 많이 사용",
+    "더 강조: 「本当に本当に」/ 슬랭: 「マジで」「まじで本当に」"
+  ]},
+  231107021:{icon:"💡",title:"〜てます — 현재 진행형",type:"grammar",points:[
+    "「焼けてます」=「焼けています」의 구어 단축 — 중간 「い」가 생략",
+    "구어에서는 거의 항상 「〜てる」「〜てます」형태 사용",
+    "격식 문어·발표 상황에서는 「〜ています」를 온전히 발음",
+    "스피드 있는 대화일수록 생략이 자연스러움"
+  ]},
+  231107022:{icon:"💡",title:"さっき — 방금/아까",type:"tip",points:[
+    "「さっき」는 방금 전 ~ 수 분 전을 가리키는 시간 표현",
+    "몇 시간 전이라면 「さっき」가 아닌 「さっきより前」「少し前」",
+    "「さっきも言ったんですけど」= 아까도 말씀드렸는데요 — 부드러운 재촉",
+    "격식체: 「先ほど」가 「さっき」의 정중 표현"
+  ]},
+  231107023:{icon:"💡",title:"回 — 횟수 조수사",type:"grammar",points:[
+    "「回(かい)」는 반복 횟수를 세는 조수사",
+    "「1回·2回·3回」발음: 「いっかい·にかい·さんかい」",
+    "「〜回やった」= ~번 했어 — 과거 경험·실적 강조할 때 자주 씀",
+    "비슷한 조수사: 「度(ど)」= 총 횟수·경험, 「番(ばん)」= 차례·순번"
+  ]},
+  231107024:{icon:"🔥",title:"もう〜行こう — Z세대 트렌드",type:"trend",points:[
+    "「もう10回行こう」처럼 「もう」+숫자+「行こう」는 기세·의욕 표현",
+    "최근 일본 SNS에서 「もう100回聴いた」= 100번 더 들었다 과장 표현 유행",
+    "「行こう(이코우)」는 '가자'지만 여기선 '더 해보자' 기세 의미",
+    "틱톡·릴스에서 「#もう一回」챌린지 형태로도 많이 쓰임"
+  ]},
+  231107025:{icon:"💡",title:"食べる — 캐주얼 단독 사용",type:"tip",points:[
+    "「食べる」단독으로 쓰면 '먹을래?' 또는 '먹어' 뜻 (억양으로 구분)",
+    "올라가는 억양: 「食べる↑？」= 먹을래? / 내려가는: 「食べる↓」= 먹어",
+    "격식체 권유: 「召し上がりますか」/ 캐주얼: 「食べる？」「どう？」",
+    "「食べてみて」= 먹어봐 — 권유·추천의 정석 표현"
+  ]},
+  231107028:{icon:"💡",title:"〜から行こう — 순서 제안",type:"tip",points:[
+    "「〜から行こう」= '~부터 시작하자/가자' — 순서를 자연스럽게 제안",
+    "격식체: 「〜の方からお願いします」「〜から始めましょう」",
+    "「〜からどうぞ」= '~부터 하세요' — 양보·권유 표현으로도 사용",
+    "비즈니스 회의에서 자주 쓰이는 진행 표현"
+  ]},
+  231107029:{icon:"💡",title:"はい — 다양한 뉘앙스",type:"tip",points:[
+    "「はい」는 단순 '네'가 아닌 다양한 뉘앙스로 사용됨",
+    "「はい、行きます」= 네 갑니다 (즉각 응답·활기)",
+    "무기력한 「はぁい…」는 마지못해 대답하는 느낌",
+    "일본에서는 전화 받을 때 「はい、〇〇です」가 기본 응대"
+  ]},
+  231107030:{icon:"💡",title:"〜の食べ方 — ~하는 법",type:"grammar",points:[
+    "「食べ方(たべかた)」= 먹는 법 — 「동사 연용형 + 方」으로 '~하는 방법' 표현",
+    "활용: 「使い方(つかいかた)」= 사용법, 「書き方(かきかた)」= 쓰는 법",
+    "격식체로는 「〜の方法」「〜のやり方」도 사용",
+    "일본 유튜브에서 「〜の食べ方」제목의 먹방 콘텐츠 엄청 많음"
+  ]},
+  231107034:{icon:"🔥",title:"震える — SNS 공감 표현",type:"trend",points:[
+    "「震える」= 떨리다 → SNS에서 '감동해서 소름 돋는다'는 뜻으로 진화",
+    "「鳥肌が立つ(소름 돋다)」와 비슷하게 감동·흥분 상황에서 사용",
+    "X(트위터)에서 「#震えた」태그는 공연·발표 후 감상 해시태그로 정착",
+    "「テレビって」처럼 「って」를 붙이면 화제를 올리는 캐주얼 마커"
+  ]},
+  231107035:{icon:"💡",title:"〜てないよ — 부정 현재진행",type:"grammar",points:[
+    "「始めてないよ」=「始めていないよ」— 'い' 생략한 구어형",
+    "부정 현재진행: 「〜ていない」→ 구어 「〜てない」",
+    "「よ」를 붙이면 상대방에게 알려주거나 가벼운 불만 표현",
+    "격식체: 「まだ始めておりません」/ 캐주얼: 「まだ始めてないって」"
+  ]},
+  231107036:{icon:"💡",title:"部位 — 전문 용어 일상화",type:"tip",points:[
+    "「部位」는 원래 의학·해부학 전문어지만 일본 고기 문화에서 일상화",
+    "야키니쿠 가게에서 「部位を選ぶ(부위를 선택하다)」는 기본 회화",
+    "주요 부위: 「ロース(로스)」「カルビ(갈비)」「ハラミ(횡격막)」「タン(혀)」",
+    "부위마다 먹는 법·굽는 정도가 다르므로 점원에게 묻는 게 일반적"
+  ]},
+  231107037:{icon:"💡",title:"違う — 1단어로 부정",type:"tip",points:[
+    "「違う」한 단어만으로도 완결된 문장 — 일본어의 경제적 표현",
+    "억양·표정에 따라 '달라(사실 정정)'부터 '아니야!(강한 부정)'까지 다양",
+    "격식 자리에서 단독 「違う」는 다소 무뚝뚝하게 들릴 수 있음",
+    "부드럽게: 「ちょっと違うかも」「そうではなくて…」"
+  ]},
+  231107038:{icon:"💡",title:"〜のやつ — 구어 지시 표현",type:"tip",points:[
+    "「やつ」는 '것/녀석' 뜻의 구어 형식명사 — 비격식 표현",
+    "「さっきのやつ」= 아까 그거 — 공식 문서에서는 절대 사용 ❌",
+    "격식체: 「先ほどのもの」「こちらの商品」",
+    "친한 사이에서는 「あのやつ」「このやつ」로 자유롭게 사용 가능"
+  ]},
+  231107040:{icon:"💡",title:"〜たら — 가정·조건 표현",type:"grammar",points:[
+    "「焼いたら」= 구우면/구웠더니 — 「たら」는 조건·완료 후 결과 표현",
+    "「〜たら〜だった」= ~했더니 ~였어 (결과 발견)",
+    "비슷한 표현: 「〜ば(조건)」「〜と(자동 결과)」「〜なら(전제)」",
+    "「変わらん」= 변하지 않아 (関西弁/博多弁) — 「変わらない」의 방언"
+  ]},
+  231107041:{icon:"💡",title:"合ってるよ — 긍정·확인",type:"tip",points:[
+    "「合ってるよ」= 맞아요 — 상대방의 판단·행동을 확인해주는 표현",
+    "「よ」추가로 확신·안심시키는 뉘앙스 부여",
+    "격식체: 「その通りです」「正解です」",
+    "「合ってる？」(질문) vs 「合ってるよ」(확인) — よ 유무로 의미 반전"
+  ]}
+};
+
 const PL=[
   {
     videoId:'8PI3xHI-tZU',
@@ -1416,13 +1631,194 @@ let tTog={ruby:true,sound:false,meaning:false};
 let activeSentTick=null,lastActiveId=null;
 let searchOpenTab=null;
 
-// 현재 tooltip이 가리키는 cw 엘리먼트
-let tooltipAnchor=null;
 // 상세탭에서 단어 열기 전 재생 중이었는지
 let wasPlayingBeforeWord=false;
 
+
+// ══════════════════════════════════════════
+// ── 문장별 방언·사투리 DB ──
+// ── 해당 문장을 방언으로 바꾸면 어떻게 되는지 보여줌
+// ══════════════════════════════════════════
+const SENT_DIALECT={
+  // ここ何の倉庫やったっけ？
+  1100:[
+    {region:'kansai',badge:'関西弁',
+     dial:'ここ何の倉庫やったっけ？',read:'코코 난노 소우코 얏탓케?',
+     note:'「やった」는 標準語에서도 쓰이지만 関西では특히 자연스럽게 쓰임. 「っけ」는 关西でも そのまま使う。'},
+    {region:'hakata',badge:'博多弁',
+     dial:'ここ何の倉庫やったっちゃ？',read:'코코 난노 소우코 얏탓챠?',
+     note:'「〜っちゃ」는 博多弁 특유의 어미 — 「〜でしょ／〜じゃない」느낌의 확인·의문'}
+  ],
+  // お金持って来ればよかったなぁ
+  1101:[
+    {region:'kansai',badge:'関西弁',
+     dial:'お金持ってきたらよかったなぁ',read:'오카네 못테 키타라 요캇타나아',
+     note:'関西弁에서는 「〜ば」조건보다 「〜たら」를 더 자연스럽게 씀. 「なぁ」는 関西でも同じ'},
+    {region:'hakata',badge:'博多弁',
+     dial:'お金持ってきたらよかったばい',read:'오카네 못테 키타라 요캇타바이',
+     note:'「ばい」는 博多弁 어미 — 부드러운 자기 독백·감탄을 나타냄'}
+  ],
+  // どういうつもり？
+  1102:[
+    {region:'kansai',badge:'関西弁',
+     dial:'どういうつもりやねん？',read:'도우이우 츠모리야넨?',
+     note:'「〜やねん」은 関西弁 추궁·반박의 핵심 어미. 更に강하고 직접적인 느낌'},
+    {region:'tokyo_slang',badge:'若者語',
+     dial:'どういうつもりなん？マジで',read:'도우이우 츠모리난? 마지데',
+     note:'東京 Z세대는 「なん」+「マジで」를 붙여 강조하는 패턴을 자주 씀'}
+  ],
+  // 誰がやるの？
+  231107007:[
+    {region:'kansai',badge:'関西弁',
+     dial:'誰がやるん？',read:'다레가 야룬?',
+     note:'関西弁에서 「〜の？」→「〜ん？」으로 단축. 더 가볍고 친근한 의문'},
+    {region:'hakata',badge:'博多弁',
+     dial:'誰がするとや？',read:'다레가 스루토야?',
+     note:'博多弁 「する」+「とや」 — "〜하는 거야?" 의 博多 스타일 의문형'}
+  ],
+  // 俺やるよ・俺やる系
+  231107008:[
+    {region:'kansai',badge:'関西弁',
+     dial:'俺やるで！',read:'오레 야루데!',
+     note:'「〜で」는 関西弁 단언 강조 어미. 「〜よ」보다 더 힘차고 自信에 찬 느낌'},
+    {region:'hakata',badge:'博多弁',
+     dial:'俺がするばい！',read:'오레가 스루바이!',
+     note:'博多弁 「ばい」= 단언·강조. 「する」는 博多では「やる」보다 자연스러운 표현'}
+  ],
+  231107010:[
+    {region:'kansai',badge:'関西弁',
+     dial:'ちゃう、俺やるって！',read:'챠우 오레 야루떼!',
+     note:'「ちゃう」는 関西弁 대표 부정 — 「違う」의 関西버전. テンポよく言い切る느낌'},
+    {region:'hakata',badge:'博多弁',
+     dial:'ちがう、俺がするばい！',read:'치가우 오레가 스루바이!',
+     note:'博多弁에서는 부정은 標準語 「違う」를 유지하면서 어미에 「ばい」를 붙이는 경우 많음'}
+  ],
+  // 違う
+  231107037:[
+    {region:'kansai',badge:'関西弁',
+     dial:'ちゃう',read:'챠우',
+     note:'「違う」의 関西弁 대표 표현. 「ちゃうちゃう」= 아니야 아니야 (반복하면 더 강조)'},
+    {region:'hakata',badge:'博多弁',
+     dial:'ちがう（→ちがーと）',read:'치가우 → 치가토',
+     note:'博多弁에서는 「違う」를 늘여 「ちがーと」로 표현하기도 함. 따뜻한 부정 뉘앙스'}
+  ],
+  // 〜でしょ系
+  231107032:[
+    {region:'kansai',badge:'関西弁',
+     dial:'やばいやん！',read:'야바이얀!',
+     note:'「〜でしょ」→「〜やん」으로 관서화. 「やん」은 공감·확인을 부드럽게 요청'},
+    {region:'hakata',badge:'博多弁',
+     dial:'やばかたい！',read:'야바카타이!',
+     note:'やばい의 i 형용사 어간에 博多弁 어미 「〜かたい」를 붙인 형태'}
+  ],
+  // なんで？
+  231107018:[
+    {region:'kansai',badge:'関西弁',
+     dial:'なんでやねん？',read:'난데야넨?',
+     note:'関西弁 최강 반박·의문 표현. 가볍게 쓰면 장난스러운 뉘앙스가 됨'},
+    {region:'tohoku',badge:'東北弁',
+     dial:'なして？',read:'나시테?',
+     note:'東北弁 「なぜ/なんで」= 「なして」. 북쪽 지방 특유의 부드러운 의문'}
+  ],
+  // 本当に焼けてる
+  231107020:[
+    {region:'kansai',badge:'関西弁',
+     dial:'ほんまに焼けてるん？これ？',read:'혼마니 야케테룬? 코레?',
+     note:'「本当に」→「ほんまに」, 「の？」→「ん？」 두 가지 関西化가 동시에 적용'},
+    {region:'hakata',badge:'博多弁',
+     dial:'ほんとに焼けとう？これ？',read:'혼토니 야케토우? 코레?',
+     note:'「〜ている」→「〜とう」 博多進行形 변환'}
+  ],
+  // やばいやばい
+  231107039:[
+    {region:'kansai',badge:'関西弁',
+     dial:'めっちゃやばい！',read:'멧챠 야바이!',
+     note:'「やばいやばい」반복 대신 関西弁은 「めっちゃ」로 강도 높임. 더 압축적'},
+    {region:'tokyo_slang',badge:'若者語',
+     dial:'えっぐ！えっぐ！',read:'엣구! 엣구!',
+     note:'Z세대 東京 슬랭 「えぐい」의 감탄사형 「えっぐ」— SNS/틱톡 세대의 최강 감탄'}
+  ],
+  // おいしい、やばい？
+  231107031:[
+    {region:'kansai',badge:'関西弁',
+     dial:'おいしい、めっちゃやばない？',read:'오이시이 멧챠 야바나이?',
+     note:'「やばい？」→ 「やばない？」으로 関西의문화. 「めっちゃ」로 강조 추가'},
+    {region:'hakata',badge:'博多弁',
+     dial:'おいしか、やばかたい？',read:'오이시카 야바카타이?',
+     note:'い형용사 어미 「〜い」→「〜か」로 바꾸는 것이 博多弁 형용사 활용의 특징'}
+  ],
+  // 焼いたら変わらん
+  231107040:[
+    {region:'kansai',badge:'関西弁',
+     dial:'焼いても変わらへん',read:'야이테모 카와라헨',
+     note:'「〜ない」→「〜へん」은 関西弁 부정의 핵심. 「変わらない」→「変わらへん」'},
+    {region:'hakata',badge:'博多弁',
+     dial:'焼いても変わらん',read:'야이테모 카와란',
+     note:'「変わらん」은 사실 관서/九州 공통 표현. 博多でも自然に使う'}
+  ],
+  // いただきます
+  231107033:[
+    {region:'kansai',badge:'関西弁',
+     dial:'ほな、いただきまーす！',read:'혼나 이타다키마스!',
+     note:'「じゃあ」→「ほな」는 関西弁 접속사. 「まーす」처럼 늘여 읽는 것도 関西스러움'},
+    {region:'hakata',badge:'博多弁',
+     dial:'いただきまーす！うまそうばい！',read:'이타다키마스! 우마소우바이!',
+     note:'博多 사람들은 감탄 어미 「ばい」를 감정 표현 뒤에 자연스럽게 붙임'}
+  ],
+  // 合ってるよ
+  231107041:[
+    {region:'kansai',badge:'関西弁',
+     dial:'合ってるで！',read:'앗테루데!',
+     note:'「〜よ」→「〜で」関西化. 「で」는 単言しながら相手に伝える関西の어미'},
+    {region:'hakata',badge:'博多弁',
+     dial:'合っとうよ！',read:'앗토우요!',
+     note:'「〜ている」→「〜とう」博多진행형. 「合っとうよ」= "맞고 있어요" = 맞아요'}
+  ]
+};
+
+// ── 방언 카드 CSS 레이블용
+const DIALECT_REGION_LABEL={
+  kansai:'関西弁',hakata:'博多弁',tohoku:'東北弁',
+  tokyo_slang:'若者語'
+};
+const DIALECT_REGION_COLOR={
+  kansai:'#e06868',hakata:'#4aa8d8',
+  tohoku:'#c8a030',tokyo_slang:'#48b878'
+};
+
+function buildDialectCard(s){
+  const entries=SENT_DIALECT[s.id];
+  if(!entries||!entries.length) return '';
+  const items=entries.map(d=>`
+    <div class="dialect-entry">
+      <div class="dialect-entry-head">
+        <span class="dialect-badge" style="background:${DIALECT_REGION_COLOR[d.region]||'#888'}">${DIALECT_REGION_LABEL[d.region]||d.badge}</span>
+      </div>
+      <div class="dialect-entry-dial">${d.dial}</div>
+      <div class="dialect-entry-read">${d.read}</div>
+      <div class="dialect-entry-note">${d.note}</div>
+    </div>`).join('');
+  return `
+    <div class="dialect-card" id="dialect-card">
+      <button class="dialect-toggle" onclick="toggleDialect()">
+        <span style="font-size:16px;flex-shrink:0">🗣️</span>
+        <span style="flex:1;font-size:14px;font-weight:500;color:var(--ink)">방언으로 말하면?</span>
+        <span class="material-symbols-rounded dialect-chevron">expand_more</span>
+      </button>
+      <div class="dialect-body">
+        <div class="dialect-inner">${items}</div>
+      </div>
+    </div>`;
+}
+
+function toggleDialect(){
+  document.getElementById('dialect-card')?.classList.toggle('open');
+}
+
 window.addEventListener('DOMContentLoaded',()=>{
   todayS=ALL[Math.floor(Math.random()*ALL.length)];
+  sentHistory.push(todayS);
+  sentHistoryIdx=0;
   selVI=todayS.vi;
   document.getElementById('total-cnt').textContent=ALL.length+'개';
   renderRandom();
@@ -1430,17 +1826,11 @@ window.addEventListener('DOMContentLoaded',()=>{
   renderVList();
   renderTranscript(selVI);
 
-  // 전역 클릭 — 툴팁 외부 클릭 시 닫기
+  // 전역 탭 — cw 외부 탭 시 닫기
   document.addEventListener('click', e=>{
-    const tt=document.getElementById('word-tooltip');
-    if(tooltipAnchor && !tt.contains(e.target) && e.target!==tooltipAnchor && !tooltipAnchor.contains(e.target)){
+    if(activeCwEl && !activeCwEl.contains(e.target) && e.target!==activeCwEl){
       closeTooltip(true);
     }
-  });
-  // 툴팁 닫기 버튼
-  document.getElementById('tooltip-close').addEventListener('click', e=>{
-    e.stopPropagation();
-    closeTooltip(true);
   });
 
   const isFirstVisit=!sessionStorage.getItem('visited');
@@ -1498,50 +1888,26 @@ function stopActiveSentTracking(){
 
 // ── 고정 위치 툴팁 ──
 
+// ── 단어 탭 → 요미가나 자리에 뜻 교체 ──
+let activeCwEl=null;
+let activeRtEl=null;
+let activeOrigRt='';
+
 function closeTooltip(resumeVideo){
-  const tt=document.getElementById('word-tooltip');
-  tt.classList.remove('open');
-  tooltipAnchor=null;
+  if(activeCwEl){
+    activeCwEl.classList.remove('word-active');
+    activeCwEl=null;
+  }
+  if(activeRtEl){
+    activeRtEl.textContent=activeOrigRt;
+    activeRtEl=null;
+  }
+  activeOrigRt='';
   if(resumeVideo && wasPlayingBeforeWord){
     const isDetail=document.getElementById('view-detail').style.display==='flex';
     if(isDetail && detailP && typeof detailP.playVideo==='function') detailP.playVideo();
     wasPlayingBeforeWord=false;
   }
-}
-
-function positionTooltip(anchorEl){
-  const tt=document.getElementById('word-tooltip');
-  const ar=anchorEl.getBoundingClientRect();
-  const vw=window.innerWidth;
-  const vh=window.innerHeight;
-  const ttW=240;
-  const gap=8;
-
-  // 기본: 앵커 아래 중앙
-  let left=ar.left + ar.width/2 - ttW/2;
-  let top=ar.bottom + gap;
-
-  // 화면 오른쪽 벗어남
-  if(left + ttW > vw - 8) left = vw - ttW - 8;
-  // 화면 왼쪽 벗어남
-  if(left < 8) left = 8;
-
-  // 아래 공간 부족하면 위로
-  tt.style.visibility='hidden';
-  tt.style.display='block';
-  const ttH=tt.offsetHeight;
-  tt.style.display='';
-  tt.style.visibility='';
-  if(top + ttH > vh - 16) top = ar.top - ttH - gap;
-
-  tt.style.left=left+'px';
-  tt.style.top=top+'px';
-  tt.style.minWidth=ttW+'px';
-
-  // 꼭지 위치 (::before는 JS로 못 조작 → 꼭지 대신 left 변수로 before left 설정)
-  // CSS custom property로 꼭지 x 위치 전달
-  const arrowX = (ar.left + ar.width/2) - left;
-  tt.style.setProperty('--arrow-x', Math.max(16, Math.min(arrowX, ttW-16))+'px');
 }
 
 function showWord(e, wkey){
@@ -1550,47 +1916,29 @@ function showWord(e, wkey){
   if(!d) return;
   const cwEl=e.currentTarget;
 
-  // 같은 단어 다시 클릭 → 닫기
-  if(tooltipAnchor===cwEl){
-    closeTooltip(true);
-    return;
-  }
+  if(activeCwEl===cwEl){ closeTooltip(true); return; }
+  closeTooltip(false);
 
-  // 상세 탭이면 영상 일시정지
   const isDetail=document.getElementById('view-detail').style.display==='flex';
   if(isDetail && detailP){
     const state=detailP.getPlayerState?.();
     wasPlayingBeforeWord=(state===1);
     if(wasPlayingBeforeWord) detailP.pauseVideo();
-  } else {
-    wasPlayingBeforeWord=false;
+  } else { wasPlayingBeforeWord=false; }
+
+  activeCwEl=cwEl;
+  cwEl.classList.add('word-active');
+
+  // rt는 항상 존재 (addCwHandlers에서 보장)
+  const rt=cwEl.querySelector('rt');
+  if(rt){
+    activeRtEl=rt;
+    activeOrigRt=rt.textContent;
+    const mean=d.m||'';
+    // 뜻 앞부분만 — 길면 잘라서
+    const short=mean.split(/[·\/\(（]/)[0].trim().slice(0,9);
+    rt.textContent=short;
   }
-
-  tooltipAnchor=cwEl;
-  fillTooltip(wkey, d);
-  const tt=document.getElementById('word-tooltip');
-  tt.classList.add('open');
-  positionTooltip(cwEl);
-}
-
-function fillTooltip(wkey, d){
-  const displayWord=wkey.replace(/__\w+$/,'');
-  document.getElementById('tt-word').textContent=displayWord;
-  document.getElementById('tt-read').textContent=d.r||'';
-  const hanjaEl=document.getElementById('tt-hanja');
-  if(d.hanja){hanjaEl.style.display='block';hanjaEl.textContent=d.hanja;}
-  else hanjaEl.style.display='none';
-  document.getElementById('tt-mean').textContent=d.m||'';
-  document.getElementById('tt-tags').innerHTML=(d.tags||[]).map(t=>{
-    if(t.t)return`<span class="wd-tag type">${t.t}</span>`;
-    if(t.g)return`<span class="wd-tag grp">${t.g}</span>`;
-    if(t.f)return`<span class="wd-tag form">${t.f}</span>`;
-    if(t.n)return`<span class="wd-tag note-tag">${t.n}</span>`;
-    return'';
-  }).join('');
-  const noteEl=document.getElementById('tt-note');
-  if(d.note){noteEl.style.display='block';noteEl.textContent=d.note;}
-  else noteEl.style.display='none';
 }
 
 function renderRandom(){
@@ -1634,9 +1982,24 @@ function renderRandom(){
 
 // data-w 속성 기반으로 onclick 추가 (innerHTML 삽입 후 이벤트 위임)
 function addCwHandlers(html){
-  // data-w 속성을 onclick으로 변환 — 이벤트 위임 방식 사용
-  return html.replace(/class="cw" data-w="([^"]+)"/g,
-    (_, w)=>`class="cw" data-w="${w}" onclick="showWord(event,'${w.replace(/'/g,"\\'")}')"`);
+  // data-w 속성을 onclick으로 변환하면서
+  // .cw 안의 내용 전체를 <ruby>…<rt>요미가나</rt></ruby>로 감싸
+  // 그래야 rt가 한자뿐 아니라 단어 전체 위에 가운데 정렬됨
+  return html.replace(/<span class="cw" data-w="([^"]+)">([\s\S]*?)<\/span>/g,
+    (_, w, inner)=>{
+      // inner 안에 이미 <ruby>X<rt>Y</rt></ruby> 있으면 rt만 뽑아 outer ruby로 올림
+      const rtMatch=inner.match(/<rt[^>]*>([\s\S]*?)<\/rt>/);
+      const rt=rtMatch?rtMatch[1]:'';
+      // ruby 태그 모두 벗기고 텍스트/한자만 남김
+      const bare=inner.replace(/<ruby>|<\/ruby>|<rt[^>]*>[\s\S]*?<\/rt>/g,'');
+      const onclick=`showWord(event,'${w.replace(/'/g,"\\'")}')`;
+      if(rt){
+        return `<span class="cw" data-w="${w}" onclick="${onclick}"><ruby>${bare}<rt>${rt}</rt></ruby></span>`;
+      } else {
+        // 요미가나 없는 단어 (히라가나, 카타카나 등)
+        return `<span class="cw" data-w="${w}" onclick="${onclick}"><ruby>${bare}<rt></rt></ruby></span>`;
+      }
+    });
 }
 
 
@@ -1645,7 +2008,10 @@ function renderCultCard(s){
   const wrap=document.getElementById('cult-wrap');
   wrap.innerHTML='';
 
-  // 1. 문화 카드 (있는 경우만)
+  // 0. 억양 시각화 카드 (항상 먼저)
+  wrap.innerHTML+=buildIntonationCard(s);
+
+  // 1. 문화 카드 (있는 경우만) / 없으면 팁 카드
   const cultKey=SENT_CULT[s.id];
   if(cultKey&&CULT[cultKey]){
     const c=CULT[cultKey];
@@ -1660,42 +2026,75 @@ function renderCultCard(s){
         </button>
         <div class="cult-body"><div class="cult-inner">${points}</div></div>
       </div>`;
+  } else {
+    // 팁/트렌드 카드
+    const tip=SENT_TIPS[s.id];
+    if(tip){
+      const typeLabel={grammar:'📖 문법 팁',caution:'⚠️ 사용 주의',trend:'🔥 트렌드',tip:'💡 학습 팁'}[tip.type]||'💡 팁';
+      const points=tip.points.map(p=>`
+        <div class="cult-point"><span class="cult-dot"></span><span>${p}</span></div>`).join('');
+      wrap.innerHTML+=`
+        <div class="cult-card" id="cult-card">
+          <button class="cult-toggle" onclick="toggleCult()">
+            <span class="cult-icon">${tip.icon}</span>
+            <span class="cult-title">${typeLabel} · ${tip.title}</span>
+            <span class="material-symbols-rounded cult-chevron">expand_more</span>
+          </button>
+          <div class="cult-body"><div class="cult-inner">${points}</div></div>
+        </div>`;
+    }
   }
 
-  // 2. 유사 패턴 예문 (전체 문장 대응)
+  // 2. 유사 패턴 예문 — alt와 중복 제거
   const pd=SENT_PATTERN[s.id];
-  if(pd&&pd.patterns&&pd.patterns.length){
-    const items=pd.patterns.map((p,i)=>`
-      <div class="pitem" id="pitem-${i}">
-        <button class="pitem-toggle" onclick="togglePitem(${i})">
-          <span class="pitem-jp">${p.jp}</span>
-          <span class="material-symbols-rounded pitem-arr">chevron_right</span>
-        </button>
-        <div class="pitem-detail">
-          <div class="pitem-detail-inner">
-            <span class="pitem-sound">${p.sound}</span>
-            <span class="pitem-trans">${p.trans}</span>
-          </div>
-        </div>
-      </div>`).join('');
-    wrap.innerHTML+=`
-      <div class="pattern-card" id="pattern-card">
-        <button class="pattern-toggle" onclick="togglePattern()">
-          <span class="pattern-toggle-icon">💬</span>
-          <span class="pattern-toggle-title">유사 패턴 예문</span>
-          <span class="material-symbols-rounded pattern-chevron">expand_more</span>
-        </button>
-        <div class="pattern-body"><div class="pattern-inner">${items}</div></div>
-      </div>`;
+  const ad=SENT_ALT[s.id];
+
+  // alt에 있는 jp 텍스트 집합
+  const altJpSet=new Set();
+  if(ad){
+    (ad.similar||[]).forEach(a=>altJpSet.add(a.jp));
+    (ad.opposite||[]).forEach(a=>altJpSet.add(a.jp));
   }
 
-  // 3. 비슷한/반대 표현 (전체 문장 대응)
-  const ad=SENT_ALT[s.id];
+  if(pd&&pd.patterns&&pd.patterns.length){
+    const filtered=pd.patterns.filter(p=>!altJpSet.has(p.jp));
+    if(filtered.length){
+      const items=filtered.map((p,i)=>`
+        <div class="pitem" id="pitem-${i}">
+          <button class="pitem-toggle" onclick="togglePitem(${i})">
+            <span class="pitem-jp">${p.jp}</span>
+            <span class="material-symbols-rounded pitem-arr">chevron_right</span>
+          </button>
+          <div class="pitem-detail">
+            <div class="pitem-detail-inner">
+              <span class="pitem-sound">${p.sound}</span>
+              <span class="pitem-trans">${p.trans}</span>
+            </div>
+          </div>
+        </div>`).join('');
+      wrap.innerHTML+=`
+        <div class="pattern-card" id="pattern-card">
+          <button class="pattern-toggle" onclick="togglePattern()">
+            <span class="pattern-toggle-icon">💬</span>
+            <span class="pattern-toggle-title">유사 패턴 예문</span>
+            <span class="material-symbols-rounded pattern-chevron">expand_more</span>
+          </button>
+          <div class="pattern-body"><div class="pattern-inner">${items}</div></div>
+        </div>`;
+    }
+  }
+
+  // 3. 비슷한/반대 표현 — 패턴과 중복 제거
+  const patternJpSet=new Set();
+  if(pd&&pd.patterns) pd.patterns.forEach(p=>patternJpSet.add(p.jp));
+
   if(ad&&(ad.similar||ad.opposite)){
     let inner='';
-    if(ad.similar&&ad.similar.length){
+    const simFiltered=(ad.similar||[]).filter(a=>!patternJpSet.has(a.jp));
+    const oppFiltered=(ad.opposite||[]).filter(a=>!patternJpSet.has(a.jp));
+    if(simFiltered.length){
       inner+=`<div class="alt-section-label">🔗 비슷한 표현</div>`;
-      inner+=ad.similar.map(a=>`
+      inner+=simFiltered.map(a=>`
         <div class="alt-item">
           <div class="alt-item-label">${a.label}</div>
           <div class="alt-item-jp">${a.jp}</div>
@@ -1703,9 +2102,9 @@ function renderCultCard(s){
           <div class="alt-item-trans">${a.trans}</div>
         </div>`).join('');
     }
-    if(ad.opposite&&ad.opposite.length){
+    if(oppFiltered.length){
       inner+=`<div class="alt-section-label">↔️ 반대 표현</div>`;
-      inner+=ad.opposite.map(a=>`
+      inner+=oppFiltered.map(a=>`
         <div class="alt-item">
           <div class="alt-item-label">${a.label}</div>
           <div class="alt-item-jp">${a.jp}</div>
@@ -1713,20 +2112,222 @@ function renderCultCard(s){
           <div class="alt-item-trans">${a.trans}</div>
         </div>`).join('');
     }
-    wrap.innerHTML+=`
-      <div class="alt-card" id="alt-card">
-        <button class="alt-toggle" onclick="toggleAlt()">
-          <span style="font-size:16px;flex-shrink:0">↔️</span>
-          <span style="flex:1;font-size:14px;font-weight:500;color:var(--ink)">비슷한 · 반대 표현</span>
-          <span class="material-symbols-rounded alt-chevron">expand_more</span>
-        </button>
-        <div class="alt-body"><div class="alt-inner">${inner}</div></div>
-      </div>`;
+    if(inner){
+      wrap.innerHTML+=`
+        <div class="alt-card" id="alt-card">
+          <button class="alt-toggle" onclick="toggleAlt()">
+            <span style="font-size:16px;flex-shrink:0">↔️</span>
+            <span style="flex:1;font-size:14px;font-weight:500;color:var(--ink)">비슷한 · 반대 표현</span>
+            <span class="material-symbols-rounded alt-chevron">expand_more</span>
+          </button>
+          <div class="alt-body"><div class="alt-inner">${inner}</div></div>
+        </div>`;
+    }
   }
+
+  // 4. 방언 카드
+  const dialectHtml=buildDialectCard(s);
+  if(dialectHtml) wrap.innerHTML+=dialectHtml;
 }
 
 function toggleCult(){
   document.getElementById('cult-card')?.classList.toggle('open');
+}
+
+// ── 억양 시각화 카드 ──
+function buildIntonationCard(s){
+  const words=tokenizePlain(s.plain);
+  if(!words||words.length===0) return '';
+  const pitchData=guessPitch(words, s.sound, s.plain);
+  const liaisons=detectLiaison(words);
+  const svgStr=buildPitchSVG(words, pitchData, liaisons);
+  return `
+    <div class="intonation-card" id="intonation-card">
+      <button class="intonation-toggle" onclick="toggleIntonation()">
+        <span style="font-size:16px;flex-shrink:0">〜</span>
+        <span style="flex:1;font-size:14px;font-weight:500;color:var(--ink)">억양 시각화</span>
+        <span class="material-symbols-rounded intonation-chevron">expand_more</span>
+      </button>
+      <div class="intonation-body">
+        <div class="intonation-inner">
+          <div class="intonation-svg-wrap">${svgStr}</div>
+          <div class="intonation-legend">
+            <span class="int-leg"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#5aaad4;vertical-align:middle;margin-right:3px"></span>음의 높낮이</span>
+            ${liaisons.some(l=>l)?'<span class="int-leg"><span style="color:#d870a8;font-size:13px;margin-right:2px">⌢</span>연음</span>':''}
+          </div>
+          <div class="intonation-label">※ 일본어 표준 악센트 규칙 기반 추정값입니다.</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function toggleIntonation(){
+  document.getElementById('intonation-card')?.classList.toggle('open');
+}
+
+function tokenizePlain(plain){
+  const cleaned=plain.replace(/[？！。、「」『』【】〔〕…]/g,' ').trim();
+  const tokens=[];
+  let cur='';
+  for(let i=0;i<cleaned.length;i++){
+    const ch=cleaned[i];
+    if(ch===' '){if(cur){tokens.push(cur);cur='';}}
+    else{cur+=ch;}
+  }
+  if(cur) tokens.push(cur);
+  const result=[];
+  for(const t of tokens){
+    if(t.length<=5){result.push(t);}
+    else{for(let i=0;i<t.length;i+=4) result.push(t.slice(i,i+4));}
+  }
+  return result.filter(x=>x.length>0).slice(0,12);
+}
+
+// 연음(liaison) 발생 위치 감지
+function detectLiaison(words){
+  // 연음: て→で接続、助詞連接、音声変化が起こりやすいペア
+  const liaisonPairs=[
+    [/って$/,/$/],[/て$/,/[いくる]/],[/で$/,/[きくる]/],
+    [/[のがをはもに]$/,/.+/],[/たら$/,/.+/],[/[ん]$/,/[だな]/]
+  ];
+  return words.map((_,i)=>{
+    if(i===words.length-1) return false;
+    const cur=words[i], next=words[i+1];
+    // てform + 補助動詞
+    if(/[てで]$/.test(cur)&&/^[いくあ]/.test(next)) return true;
+    // 助詞連接
+    if(/[のがをはもに]$/.test(cur)) return true;
+    // 促音化・撥音化連接
+    if(/[んっ]$/.test(cur)&&/^[だなに]/.test(next)) return true;
+    return false;
+  });
+}
+
+function guessPitch(words, sound, plain){
+  const n=words.length;
+  const pitches=[];
+  const isQuestion=/[？?]/.test(plain)||sound.endsWith('?');
+  const isExclaim=/[！!]/.test(plain);
+  const isFormal=/ます|です|ください|ございます/.test(plain);
+  const isCasual=/じゃん|でしょ|よね|なぁ|っす|おっす/.test(plain);
+
+  // 각 단어별 기본 피치 산출
+  for(let i=0;i<n;i++){
+    const w=words[i];
+    const ratio=i/(n>1?n-1:1);
+    let pitch;
+
+    // 일본어 표준 악센트: 첫 모라 저 → 두번째 이후 고 → 조사에서 하강
+    if(i===0){
+      // 1음절 단어는 높게, 2음절+ 첫 단어는 낮게 시작
+      pitch=w.length===1?0.75:0.22;
+    } else if(i===1){
+      pitch=0.88;
+    } else {
+      // 중간: 약한 하강 트렌드
+      pitch=0.82-ratio*0.38;
+    }
+
+    // 단어별 특성 보정
+    if(/^[なのかよねわ]$/.test(w)) pitch=Math.max(0.12,pitch-0.18); // 終助詞
+    if(/^[は|が|を|に|で|と|も]$/.test(w)) pitch=Math.max(0.15,pitch-0.12); // 助詞
+    if(/^(マジ|やばい|すごい|えー|えっ|あー|おー)/.test(w)) pitch=Math.min(0.95,pitch+0.15);
+    if(/^(ない|なぁ|ね|よ)$/.test(w)) pitch=Math.max(0.12,pitch-0.15);
+    if(isFormal&&i===n-1) pitch=0.35; // 丁寧語終止は低め
+    if(isQuestion&&i===n-1) pitch=Math.min(0.9,pitch+0.3); // 疑問上昇
+    if(isExclaim&&i===n-1) pitch=Math.min(0.95,pitch+0.15);
+    if(isCasual) pitch=Math.min(0.92,pitch+0.05); // カジュアルは全体的に動き大きい
+
+    pitches.push(Math.max(0.10,Math.min(0.95,pitch)));
+  }
+  return pitches;
+}
+
+function buildPitchSVG(words, pitches, liaisons){
+  const n=words.length;
+  const W=340;
+  // 단어 수에 따라 동적으로 높이 결정
+  const labelRows=Math.ceil(n/6);
+  const H=110+labelRows*4;
+  const padL=10, padR=10, padT=14, padB=38;
+  const innerW=W-padL-padR;
+  const innerH=H-padT-padB;
+  const colW=innerW/n;
+
+  const xs=words.map((_,i)=>padL+colW*i+colW/2);
+  const ys=pitches.map(p=>padT+innerH*(1-p));
+
+  // ── 부드러운 곡선 (Catmull-Rom → Bezier 변환) ──
+  function catmullToBezier(pts){
+    if(pts.length<2) return `M ${pts[0][0]},${pts[0][1]}`;
+    let d=`M ${pts[0][0].toFixed(2)},${pts[0][1].toFixed(2)}`;
+    for(let i=0;i<pts.length-1;i++){
+      const p0=pts[Math.max(0,i-1)];
+      const p1=pts[i];
+      const p2=pts[i+1];
+      const p3=pts[Math.min(pts.length-1,i+2)];
+      const cp1x=(p1[0]+(p2[0]-p0[0])/6).toFixed(2);
+      const cp1y=(p1[1]+(p2[1]-p0[1])/6).toFixed(2);
+      const cp2x=(p2[0]-(p3[0]-p1[0])/6).toFixed(2);
+      const cp2y=(p2[1]-(p3[1]-p1[1])/6).toFixed(2);
+      d+=` C ${cp1x},${cp1y} ${cp2x},${cp2y} ${p2[0].toFixed(2)},${p2[1].toFixed(2)}`;
+    }
+    return d;
+  }
+
+  const pts=xs.map((x,i)=>[x,ys[i]]);
+  const curvePath=catmullToBezier(pts);
+
+  // 채우기용 하단 path
+  const fillPath=curvePath+` L ${xs[n-1].toFixed(2)},${(padT+innerH).toFixed(2)} L ${xs[0].toFixed(2)},${(padT+innerH).toFixed(2)} Z`;
+
+  // 단어별 억양 레이블 (H / M / L)
+  const accentLabels=pitches.map((p,i)=>{
+    const label=p>=0.72?'H':p>=0.42?'M':'L';
+    const color=p>=0.72?'#5aaad4':p>=0.42?'#90b8c8':'#b0b0b0';
+    const x=xs[i];
+    const y=ys[i]-7;
+    return `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" font-size="8" font-weight="600" fill="${color}" opacity="0.85">${label}</text>`;
+  }).join('');
+
+  // 점
+  const dots=xs.map((x,i)=>`<circle cx="${x.toFixed(1)}" cy="${ys[i].toFixed(1)}" r="3.5" fill="#5aaad4" stroke="rgba(255,255,255,.7)" stroke-width="1" opacity="0.95"/>`).join('');
+
+  // 단어 라벨
+  const labels=words.map((w,i)=>{
+    const x=xs[i];
+    const y=H-6;
+    return `<text x="${x.toFixed(1)}" y="${y}" text-anchor="middle" font-size="9.5" fill="#5a7584" font-family="inherit">${esc(w)}</text>`;
+  }).join('');
+
+  // 연음 마크 (⌢ 호 모양)
+  const liaisonMarks=liaisons.map((has,i)=>{
+    if(!has||i>=n-1) return '';
+    const x1=xs[i], x2=xs[i+1];
+    const mx=(x1+x2)/2;
+    const my=H-padB+16; // 단어 라벨 아래쪽
+    const rx=(x2-x1)*0.38;
+    return `<path d="M ${(mx-rx).toFixed(1)},${my} Q ${mx.toFixed(1)},${(my-7).toFixed(1)} ${(mx+rx).toFixed(1)},${my}" fill="none" stroke="#d870a8" stroke-width="1.5" opacity="0.75"/>
+    <text x="${mx.toFixed(1)}" y="${(my-9).toFixed(1)}" text-anchor="middle" font-size="7" fill="#d870a8" opacity="0.75">연음</text>`;
+  }).join('');
+
+  // 배경 가이드
+  const guides=['H','M','L'].map((lbl,idx)=>{
+    const levels=[0.75,0.45,0.18];
+    const gy=padT+innerH*(1-levels[idx]);
+    return `<line x1="${padL}" y1="${gy.toFixed(1)}" x2="${W-padR}" y2="${gy.toFixed(1)}" stroke="rgba(90,170,212,.10)" stroke-width="1" stroke-dasharray="3,4"/>
+    <text x="${(padL-2).toFixed(1)}" y="${(gy+3).toFixed(1)}" text-anchor="end" font-size="7.5" fill="rgba(90,170,212,.45)">${lbl}</text>`;
+  }).join('');
+
+  return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
+    ${guides}
+    <path d="${fillPath}" fill="rgba(90,170,212,.07)"/>
+    <path d="${curvePath}" fill="none" stroke="#5aaad4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+    ${accentLabels}
+    ${dots}
+    ${labels}
+    ${liaisonMarks}
+  </svg>`;
 }
 
 function togglePattern(){
@@ -1755,16 +2356,35 @@ function togRnd(type){
 function sentBox(s,ctx){
   const cid='c-'+ctx;
   const plain=esc2(s.plain);
-  return `<div class="sitem-sent-box">
-    <div class="jp-line">${addCwHandlers(s.jp)}</div>
-    <button class="cp-btn sitem-cp" id="${cid}" onclick="copyJP(event,'${plain}','${cid}')">
-      <span class="material-symbols-rounded">content_copy</span>
-    </button>
-    <div class="sitem-hints">
-      <div class="sitem-hint-row"><span class="hk">발음</span><span class="hv rv">${s.sound}</span></div>
-      <div class="sitem-hint-row"><span class="hk">의미</span><span class="hv">${s.trans}</span></div>
+  const bid='sib-'+ctx;
+  return `<div class="sitem-body" id="${bid}" onclick="togSitem('${bid}',event)">
+    <div class="sitem-jp-only">
+      <div class="jp-line">${addCwHandlers(s.jp)}</div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex-shrink:0">
+        <button class="cp-btn sitem-cp-top" id="${cid}" onclick="copyJP(event,'${plain}','${cid}');event.stopPropagation()" style="position:static">
+          <span class="material-symbols-rounded">content_copy</span>
+        </button>
+        <span class="sitem-tap-hint"><span class="material-symbols-rounded">touch_app</span></span>
+      </div>
+    </div>
+    <div class="sitem-reveal">
+      <div class="sitem-reveal-inner">
+        <div class="sitem-hint-row" style="display:flex;align-items:baseline;gap:0;padding:4px 0 1px">
+          <span class="hk">발음</span><span class="hv rv">${s.sound}</span>
+        </div>
+        <div class="sitem-hint-row" style="display:flex;align-items:baseline;gap:0;padding:1px 0 4px">
+          <span class="hk">의미</span><span class="hv">${s.trans}</span>
+        </div>
+      </div>
     </div>
   </div>`;
+}
+
+function togSitem(id, e){
+  // cw 클릭 (단어 툴팁)은 토글 무시
+  if(e.target.closest('.cw')) return;
+  const el=document.getElementById(id);
+  if(el) el.classList.toggle('revealed');
 }
 
 function renderAll(){
@@ -1875,7 +2495,8 @@ function toggleSearch(){
   } else {
     searchOpenTab=currentTab;w.style.display='block';
     inp.placeholder=isVlist?'영상 제목 검색':'단어, 발음, 뜻으로 검색';
-    inp.value='';inp.focus();
+    inp.value='';
+    requestAnimationFrame(()=>inp.focus());
   }
 }
 
@@ -1953,6 +2574,173 @@ function scrollToRow(id){
   setTimeout(()=>row.classList.remove('hl'),2500);
 }
 
+// ── 스와이프 / 페이지 플립 ──
+
+// 랜덤 문장 카드 스와이프 (책장 넘기기)
+(function initCardSwipe(){
+  const TABS=['today','all','vlist'];
+  let swStartX=0, swStartY=0, swStartTab=null;
+  let cardStartX=-999, cardStartY=0, cardSwiping=false, cardDir=0;
+  let mouseDown=false;
+
+  function getActiveTab(){
+    return TABS.find(id=>document.getElementById('view-'+id)?.style.display==='flex')||'today';
+  }
+  function getRndHero(){return document.querySelector('#view-today .rnd-hero');}
+
+  function onDragStart(cx, cy){
+    swStartX=cx; swStartY=cy; swStartTab=getActiveTab();
+    const hero=getRndHero();
+    if(!hero){cardStartX=-999;return;}
+    const r=hero.getBoundingClientRect();
+    if(cx>=r.left&&cx<=r.right&&cy>=r.top&&cy<=r.bottom){
+      cardStartX=cx; cardStartY=cy; cardSwiping=false; cardDir=0;
+    } else {cardStartX=-999;}
+  }
+
+  function onDragMove(cx, cy){
+    if(cardStartX!==-999){
+      const dx=cx-cardStartX, dy=cy-cardStartY;
+      if(!cardSwiping&&(Math.abs(dx)>8||Math.abs(dy)>8)){
+        cardSwiping=true;
+        cardDir=Math.abs(dy)>=Math.abs(dx)?(dy>0?2:-2):(dx>0?1:-1);
+      }
+      if(cardSwiping&&Math.abs(cardDir)===2){
+        const hero=getRndHero();
+        if(hero) hero.style.transform=`translateY(${(cy-cardStartY)*0.38}px) scale(${1-Math.abs(cy-cardStartY)*0.0005})`;
+      }
+    }
+  }
+
+  function onDragEnd(cx, cy){
+    const hero=getRndHero();
+    const dx=cx-cardStartX, dy=cy-cardStartY;
+    const wasSwiping=cardSwiping;
+    const lastDir=cardDir;
+    const savedCardStartX=cardStartX;
+    cardSwiping=false; cardStartX=-999; cardDir=0;
+
+    // ── 탭 스와이프 (카드 밖에서 가로) ──
+    const detailOpen=document.getElementById('view-detail')?.style.display==='flex';
+    if(!detailOpen){
+      const ddx=cx-swStartX, ddy=cy-swStartY;
+      const heroR=hero?.getBoundingClientRect();
+      const onCard=heroR&&swStartY>=heroR.top&&swStartY<=heroR.bottom&&swStartX>=heroR.left&&swStartX<=heroR.right;
+      if(!onCard&&Math.abs(ddx)>=Math.abs(ddy)*1.3&&Math.abs(ddx)>=52){
+        const cur=TABS.indexOf(swStartTab);
+        if(cur!==-1){
+          if(ddx<0&&cur<TABS.length-1) changeTab(TABS[cur+1]);
+          else if(ddx>0&&cur>0) changeTab(TABS[cur-1]);
+          return;
+        }
+      }
+    }
+
+    if(!hero||savedCardStartX===-999) return;
+
+    const isVert=Math.abs(lastDir)===2;
+    const dist=isVert?Math.abs(dy):Math.abs(dx);
+
+    if(!wasSwiping||!isVert||dist<50){
+      hero.style.transition='transform .35s cubic-bezier(.22,1,.36,1)';
+      hero.style.transform='';
+      setTimeout(()=>hero.style.transition='',380);
+      return;
+    }
+
+    // 위로 스와이프(dy<0) → 새 랜덤, 아래로 스와이프(dy>0) → 이전 문장
+    const goBack=dy>0;
+    const dir=goBack?1:-1; // 1=아래로 날아가기, -1=위로 날아가기
+    hero.style.transition='transform .25s cubic-bezier(.55,.0,.85,.06), opacity .2s ease';
+    hero.style.transform=`translateY(${dir*100}%) scale(0.88)`;
+    hero.style.opacity='0';
+    setTimeout(()=>{
+      if(goBack) flipToPrevSent();
+      else flipToNextSent();
+      const nh=getRndHero(); if(!nh) return;
+      nh.style.transition='none';
+      nh.style.transform=`translateY(${-dir*70}%) scale(0.92)`;
+      nh.style.opacity='0.2';
+      setTimeout(()=>{
+        nh.style.transition='transform .32s cubic-bezier(.22,1,.36,1), opacity .26s ease';
+        nh.style.transform=''; nh.style.opacity='1';
+        setTimeout(()=>nh.style.transition='',360);
+      },30);
+    },230);
+  }
+
+  // ── 터치 ──
+  document.addEventListener('touchstart', e=>{
+    onDragStart(e.touches[0].clientX, e.touches[0].clientY);
+  },{passive:true});
+  document.addEventListener('touchmove', e=>{
+    onDragMove(e.touches[0].clientX, e.touches[0].clientY);
+  },{passive:true});
+  document.addEventListener('touchend', e=>{
+    onDragEnd(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
+  },{passive:true});
+
+  // ── 마우스 (웹 데스크톱) ──
+  document.addEventListener('mousedown', e=>{
+    if(e.target.closest('button,a,input,select,textarea')) return;
+    mouseDown=true;
+    onDragStart(e.clientX, e.clientY);
+  });
+  document.addEventListener('mousemove', e=>{
+    if(!mouseDown) return;
+    onDragMove(e.clientX, e.clientY);
+  });
+  document.addEventListener('mouseup', e=>{
+    if(!mouseDown) return;
+    mouseDown=false;
+    onDragEnd(e.clientX, e.clientY);
+  });
+  document.addEventListener('mouseleave', ()=>{
+    if(!mouseDown) return;
+    mouseDown=false;
+    const hero=getRndHero();
+    if(hero){
+      hero.style.transition='transform .35s cubic-bezier(.22,1,.36,1)';
+      hero.style.transform='';
+      setTimeout(()=>hero.style.transition='',380);
+    }
+    cardStartX=-999; cardSwiping=false; cardDir=0;
+  });
+})();
+
+// ── 랜덤 문장 히스토리 ──
+const sentHistory=[];
+let sentHistoryIdx=-1;
+
+function flipToNextSent(){
+  // 히스토리 앞에 더 있으면 앞으로 이동, 없으면 새 랜덤
+  if(sentHistoryIdx < sentHistory.length-1){
+    sentHistoryIdx++;
+    todayS=sentHistory[sentHistoryIdx];
+  } else {
+    const cur=todayS;
+    let next;
+    do { next=ALL[Math.floor(Math.random()*ALL.length)]; } while(next.id===cur.id&&ALL.length>1);
+    sentHistory.splice(sentHistoryIdx+1); // 앞 히스토리 제거
+    sentHistory.push(next);
+    if(sentHistory.length>30) sentHistory.shift(); // 최대 30개
+    sentHistoryIdx=sentHistory.length-1;
+    todayS=next;
+  }
+  selVI=todayS.vi;
+  renderRandom();
+}
+
+function flipToPrevSent(){
+  if(sentHistoryIdx<=0) return; // 이전 없으면 무시
+  sentHistoryIdx--;
+  todayS=sentHistory[sentHistoryIdx];
+  selVI=todayS.vi;
+  renderRandom();
+}
+
+function flipToRandomSent(){ flipToNextSent(); }
+
 function handleBack(){
   stopActiveSentTracking();
   closeTooltip(false);
@@ -1962,7 +2750,7 @@ function handleBack(){
 
 function changeTab(tab){
   closeTooltip(false);
-  ['today','all','vlist'].forEach(id=>document.getElementById('view-'+id).style.display='none');
+  ['today','all','vlist'].forEach(id=>document.getElementById('view-'+id)?.style.setProperty('display','none'));
   document.getElementById('view-detail').style.display='none';
   ['today','all','vlist'].forEach(id=>document.getElementById('tab-'+id)?.classList.remove('on'));
   document.getElementById('btnBack').style.visibility='hidden';
@@ -1997,7 +2785,7 @@ function openDetailAt(vi,seekSec,sentId){
     }
   }
   clearDFilter();
-  ['today','all','vlist'].forEach(id=>{document.getElementById('view-'+id).style.display='none';document.getElementById('tab-'+id)?.classList.remove('on');});
+  ['today','all','vlist'].forEach(id=>{document.getElementById('view-'+id)?.style.setProperty('display','none');document.getElementById('tab-'+id)?.classList.remove('on');});
   document.getElementById('view-detail').style.display='flex';
   document.getElementById('btnBack').style.visibility='visible';
   document.getElementById('btnSearch').style.display='none';
